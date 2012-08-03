@@ -6,8 +6,11 @@ public class GameManager {
 	
 	private ArrayList<Game> games;
 	
-	public void createGame(String gamename){
-		games.add(new Game(gamename));		
+	public int createGame(String gamename){
+		Game newGame = new Game(gamename);
+		games.add(newGame);
+		return newGame.getGameID();
+		
 	}
 	
 	public void closeGame(Game game){
@@ -18,8 +21,8 @@ public class GameManager {
 		
 	}
 	
-	public Object getGames(){
-		return null;
+	public ArrayList<Game> getGames(){
+		return games;
 	}
 	
 	public void addGamerToGame(Gamer gamer, String gameID){

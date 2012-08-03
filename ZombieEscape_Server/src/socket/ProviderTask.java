@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 
+import server.GPS_location;
+import server.Game;
 import server.GameManager;
 import server.Gamer;
 
@@ -45,7 +48,7 @@ public class ProviderTask implements Runnable {
 			SocketMessage message = new SocketMessage();
 			do {
 				try {
-					message = gson(input.readLine(), SocketMessage.class);
+					message = gson.fromJson(input.readLine(), SocketMessage.class);
 
 					System.out.println("client>" + message.command);
 
@@ -70,9 +73,16 @@ public class ProviderTask implements Runnable {
 		}
 	}
 
-	private SocketMessage gson(String readLine, Class<SocketMessage> class1) {
-		// TODO Auto-generated method stub
-		return null;
+	private void newGamer(String message) {
+		SocketMessage newGamer = gson.fromJson(message, SocketMessage.class);
+		int gamerID;
+		if (newGamer.command.equals("newGamer")) {
+			gamer = new Gamer((String) newGamer.value);
+			gamerID = gamer.getGamerID();
+		} else {
+			gamerID = -1;
+		}
+		sendJSONObject(gamerID);
 	}
 
 	/**
@@ -81,7 +91,7 @@ public class ProviderTask implements Runnable {
 	private void parseMessage(SocketMessage message) {
 		switch (message.command) {
 		case ("newGame"):
-			newGame();
+			newGame(message.value);
 			break;
 		case ("listGames"):
 			listGames();
@@ -93,16 +103,11 @@ public class ProviderTask implements Runnable {
 			removeGamer();
 			break;
 		case ("setLocation"):
-			setLocation();
+			setLocation(message.value);
 			break;
 		default:
 			System.err.println("Unkown Command: " + message.command);
 		}
-	}
-
-	private void removeGamer() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -121,34 +126,39 @@ public class ProviderTask implements Runnable {
 
 	private void addGamer(Object json) {
 		String gameID = (String) json;
-		gameManager.addGamerToGame(gamer, gameID);
-	
+		gameManager.addGamerToGame(gamer, gameID);	
 	}
 
 	private void listGames() {
-		// TODO Auto-generated method stub
-	
-	}
-
-	private void newGamer(String message) {
-		SocketMessage newGamer = gson.fromJson(message, SocketMessage.class);
-		int gamerID;
-		if (newGamer.command.equals("newGamer")) {
-			gamer = new Gamer((String) newGamer.value);
-			gamerID = gamer.getGamerID();
-		} else {
-			gamerID = -1;
+		ArrayList<Game> currentGames = gameManager.getGames();
+		ArrayList<Socket_GameOverview> gameList = new ArrayList<>(currentGames.size());
+		for(Game g : currentGames){
+			Socket_GameOverview go = new Socket_GameOverview();
+			go.amountGamers = g.getActiveGamersCount();
+			go.gameID = g.getGameID();
+			go.name = g.getName();
+			GPS_location gps = g.getLocation();
+			go.longitude = gps.longitude;
+			go.latitude = gps.latitude;			
+			gameList.add(go);
 		}
-		sendJSONObject(gamerID);
+		sendJSONObject(gameList);	
 	}
 
-	private void newGame() {
-		// TODO Auto-generated method stub
-
+	private void newGame(Object json) {
+		String gamename = (String) json;
+		int gameID = gameManager.createGame(gamename);
+		sendJSONObject(gameID);
 	}
 
-	private void setLocation() {
-		// TODO Auto-generated method stub
+	private void removeGamer() {
+		gamer.quitGame();	
+		sendJSONObject(true);
+	}
+
+	private void setLocation(Object json) {
+		GPS_location location = gson.fromJson((String) json, GPS_location.class);
+		gamer.setLocation(location);
 	
 	}
 

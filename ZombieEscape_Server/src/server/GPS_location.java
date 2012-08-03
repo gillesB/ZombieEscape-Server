@@ -2,7 +2,7 @@ package server;
 
 public class GPS_location {
 	
-	double longitude;
-	double latitude;
+	public double longitude;
+	public double latitude;
 
 }

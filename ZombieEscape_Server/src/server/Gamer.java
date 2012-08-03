@@ -8,6 +8,7 @@ public class Gamer {
 	private GPS_location location;
 	private boolean zombie;
 	private final int gamerID;
+	private Game game;
 	private static AtomicInteger gamerIDcounter = new AtomicInteger(0);
 	
 	
@@ -29,14 +30,20 @@ public class Gamer {
 
 
 
-	private void setLocation(GPS_location location){
-		
+	public void setLocation(GPS_location location){
+		this.location = location;
 	}
 
 
 
 	public int getGamerID() {
 		return gamerID;
+	}
+
+
+
+	public void quitGame() {
+		game.removeGamer(this);		
 	}
 	
 	

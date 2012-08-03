@@ -10,9 +10,6 @@ public class Game {
 	private String name;
 	private ArrayList<Gamer> gamers;
 	
-	//probablyNotNeeded just take gamers.size
-	private int activGamers = 0;
-	
 	public Game(String gamename) {
 		gameID = gameIDcounter.getAndAdd(1);
 		this.name = gamename;
@@ -20,7 +17,7 @@ public class Game {
 	}
 
 	public int getActiveGamersCount(){
-		return 0;
+		return gamers.size();
 	}
 	
 	public GPS_location getLocation(){
@@ -49,6 +46,10 @@ public class Game {
 
 	public int getGameID() {
 		return gameID;
+	}
+
+	public String getName() {
+		return name;
 	}
 	
 	
