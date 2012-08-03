@@ -32,10 +32,10 @@ public class ProviderTask implements Runnable {
 
 	// RecommenderSystem recommender;
 
-	// public ProviderTask(Socket clientSocket, RecommenderSystem recommender) {
-	// this.clientSocket = clientSocket;
-	// this.recommender = recommender;
-	// }
+	public ProviderTask(Socket clientSocket, GameManager gameManager) {
+		this.clientSocket = clientSocket;
+		this.gameManager = gameManager;
+	}
 
 	@Override
 	public void run() {
@@ -126,23 +126,23 @@ public class ProviderTask implements Runnable {
 
 	private void addGamer(Object json) {
 		String gameID = (String) json;
-		gameManager.addGamerToGame(gamer, gameID);	
+		gameManager.addGamerToGame(gamer, gameID);
 	}
 
 	private void listGames() {
 		ArrayList<Game> currentGames = gameManager.getGames();
 		ArrayList<Socket_GameOverview> gameList = new ArrayList<>(currentGames.size());
-		for(Game g : currentGames){
+		for (Game g : currentGames) {
 			Socket_GameOverview go = new Socket_GameOverview();
 			go.amountGamers = g.getActiveGamersCount();
 			go.gameID = g.getGameID();
 			go.name = g.getName();
 			GPS_location gps = g.getLocation();
 			go.longitude = gps.longitude;
-			go.latitude = gps.latitude;			
+			go.latitude = gps.latitude;
 			gameList.add(go);
 		}
-		sendJSONObject(gameList);	
+		sendJSONObject(gameList);
 	}
 
 	private void newGame(Object json) {
@@ -152,14 +152,14 @@ public class ProviderTask implements Runnable {
 	}
 
 	private void removeGamer() {
-		gamer.quitGame();	
+		gamer.quitGame();
 		sendJSONObject(true);
 	}
 
 	private void setLocation(Object json) {
 		GPS_location location = gson.fromJson((String) json, GPS_location.class);
 		gamer.setLocation(location);
-	
+
 	}
 
 }

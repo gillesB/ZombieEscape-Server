@@ -6,6 +6,8 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import server.GameManager;
+
 /**
  * Listens on port 2004, if some clients connect and provides them a ProviderTask
  * 
@@ -18,11 +20,11 @@ public class ParallelProvider implements Runnable {
 	protected boolean isStopped = false;
 	protected Thread currentThread = null;
 	protected ExecutorService threadPool = Executors.newFixedThreadPool(10);
-	//RecommenderSystem recommender;
+	GameManager gameManager;
 
-	//public ParallelProvider(RecommenderSystem recommender) {
-	//	this.recommender = recommender;
-	//}
+	public ParallelProvider(GameManager gameManager) {
+		this.gameManager = gameManager;
+	}
 	
 	@Override
 	public void run() {
@@ -46,7 +48,7 @@ public class ParallelProvider implements Runnable {
 				throw new RuntimeException("Error accepting client connection",e);
 			}
 			System.out.println("Connection received from "+ clientSocket.getInetAddress().getHostName());
-			//this.threadPool.execute(new ProviderTask(clientSocket, recommender));
+			this.threadPool.execute(new ProviderTask(clientSocket, gameManager));
 		}
 		
 		this.threadPool.shutdown();
