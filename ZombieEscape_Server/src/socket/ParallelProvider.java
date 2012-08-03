@@ -1,4 +1,4 @@
-package server;
+package socket;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -24,6 +24,7 @@ public class ParallelProvider implements Runnable {
 	//	this.recommender = recommender;
 	//}
 	
+	@Override
 	public void run() {
 		synchronized (this) {
 			this.currentThread = Thread.currentThread();
