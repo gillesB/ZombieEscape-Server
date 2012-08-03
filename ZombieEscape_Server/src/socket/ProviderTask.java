@@ -45,6 +45,7 @@ public class ProviderTask implements Runnable {
 			output = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 
 			newGamer(input.readLine());
+
 			SocketMessage message = new SocketMessage();
 			do {
 				try {
@@ -74,6 +75,7 @@ public class ProviderTask implements Runnable {
 	}
 
 	private void newGamer(String message) {
+		System.out.println("newGamer() entered");
 		SocketMessage newGamer = gson.fromJson(message, SocketMessage.class);
 		int gamerID;
 		if (newGamer.command.equals("newGamer")) {
@@ -116,7 +118,7 @@ public class ProviderTask implements Runnable {
 	private void sendJSONObject(Object obj) {
 		try {
 			String json = gson.toJson(obj);
-			output.write(json);
+			output.write(json + "\n");
 			output.flush();
 			System.out.println("server>" + json);
 		} catch (IOException ioException) {
