@@ -6,7 +6,7 @@ import socket.ParallelProvider;
 
 public class GameManager {
 
-	private ArrayList<Game> games;
+	private ArrayList<Game> games = new ArrayList<>();
 
 	public GameManager() {
 		super();
@@ -25,7 +25,7 @@ public class GameManager {
 		games.remove(game);
 	}
 
-	public void closeInactivGames() {
+	public void closeInactiveGames() {
 
 	}
 
@@ -34,6 +34,10 @@ public class GameManager {
 	}
 
 	public void addGamerToGame(Gamer gamer, String gameID) {
+		Game oldGame = gamer.getGame();
+		if(oldGame != null){
+			oldGame.removeGamer(gamer);
+		}
 		Game game = getGameByID(gameID);
 		game.addGamer(gamer);
 	}

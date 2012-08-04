@@ -2,8 +2,8 @@ package socket;
 
 public class SocketMessage {
 	
-	public SocketMessage() {
-		
+	public SocketMessage(String command) {
+		this.command = command;
 	}
 	
 	public SocketMessage(String command, Object value) {

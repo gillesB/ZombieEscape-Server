@@ -46,19 +46,20 @@ public class ProviderTask implements Runnable {
 
 			newGamer(input.readLine());
 
-			SocketMessage message = new SocketMessage();
-			do {
-				try {
+			try {
+				SocketMessage message;
+				do {
+
 					message = gson.fromJson(input.readLine(), SocketMessage.class);
 
 					System.out.println("client>" + message.command);
 
 					parseMessage(message);
 
-				} catch (EOFException e) {// occures when client stalls
-					break;
-				}
-			} while (!message.command.equals("bye"));
+				} while (!message.command.equals("bye"));
+			} catch (EOFException e) {// occures when client stalls
+				e.printStackTrace();
+			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -107,6 +108,9 @@ public class ProviderTask implements Runnable {
 		case ("setLocation"):
 			setLocation(message.value);
 			break;
+		case ("bye"):
+			// do nothing, is handled in run()
+			break;
 		default:
 			System.err.println("Unkown Command: " + message.command);
 		}
@@ -129,6 +133,7 @@ public class ProviderTask implements Runnable {
 	private void addGamer(Object json) {
 		String gameID = (String) json;
 		gameManager.addGamerToGame(gamer, gameID);
+		sendJSONObject(true);
 	}
 
 	private void listGames() {

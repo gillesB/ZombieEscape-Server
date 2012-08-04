@@ -45,11 +45,43 @@ public class TestNetwork {
 	public static void main(String[] args) {
 		TestNetwork tn = TestNetwork.getInstance();
 		try {
+			//connect to the server
 			tn.openConnection("127.0.0.1");
+			
+			//create a new gamer on the server, this step has to be done everytime, as the gamers are not saved
 			sendJSONObject(new SocketMessage("newGamer","master xardas"));
+			//get the gamerIDm till now it is not needed, but could be usefull in the future
 			int gamerID = gson.fromJson(socketIn.readLine(), Integer.class);
 			System.out.println(gamerID);
+			
+			//add 2 new games
+			sendJSONObject(new SocketMessage("newGame","game1"));
+			int game1ID = gson.fromJson(socketIn.readLine(), Integer.class);			
+			sendJSONObject(new SocketMessage("newGame","game2"));
+			int game2ID = gson.fromJson(socketIn.readLine(), Integer.class);
+			
+			//list existing games, same code can be found in printGameList()
+			sendJSONObject(new SocketMessage("listGames"));
+			String gamelist =  socketIn.readLine();
+			System.out.println(gamelist);
+			
+			//join own game
+			sendJSONObject(new SocketMessage("addGamer", ((Integer)game1ID).toString() ));
+			boolean added = gson.fromJson(socketIn.readLine(), Boolean.class);
+			sendJSONObject(new SocketMessage("addGamer", ((Integer)game2ID).toString() ));
+			added = gson.fromJson(socketIn.readLine(), Boolean.class);
+			
+			printGameList();
+			
+			
+			
 
+
+
+			
+			//say good bye
+			sendJSONObject(new SocketMessage("bye"));
+			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -135,6 +167,12 @@ public class TestNetwork {
 			}
 		};
 		t.start();
+	}
+	
+	private static void printGameList() throws IOException{
+		sendJSONObject(new SocketMessage("listGames"));
+		String gamelist =  socketIn.readLine();
+		System.out.println(gamelist);
 	}
 
 }

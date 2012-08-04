@@ -22,6 +22,11 @@ public class Gamer {
 		super();
 		this.gamerID = gamerIDcounter.getAndAdd(1);
 		this.name = name;
+		this.location = new GPS_location();
+	}
+
+	public GPS_location getLocation() {
+		return location;
 	}
 
 	public void setLocation(GPS_location location) {
@@ -35,5 +40,15 @@ public class Gamer {
 	public void quitGame() {
 		game.removeGamer(this);
 	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+	
+	
 
 }
