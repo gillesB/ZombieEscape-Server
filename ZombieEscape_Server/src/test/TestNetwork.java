@@ -10,6 +10,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import server.GPS_location;
 import socket.SocketMessage;
 
 import com.google.gson.Gson;
@@ -69,16 +70,19 @@ public class TestNetwork {
 			sendJSONObject(new SocketMessage("addGamer", ((Integer)game1ID).toString() ));
 			boolean added = gson.fromJson(socketIn.readLine(), Boolean.class);
 			sendJSONObject(new SocketMessage("addGamer", ((Integer)game2ID).toString() ));
-			added = gson.fromJson(socketIn.readLine(), Boolean.class);
-			
+			added = gson.fromJson(socketIn.readLine(), Boolean.class);			
 			printGameList();
 			
+			//set location
+			GPS_location location = new GPS_location(42.0, 42.0);
+			sendJSONObject(new SocketMessage("setLocation", location));			
+			printGameList();
 			
-			
+			//remove from game
+			sendJSONObject(new SocketMessage("removeGamer"));
+			boolean removed = gson.fromJson(socketIn.readLine(), Boolean.class);
+			printGameList();
 
-
-
-			
 			//say good bye
 			sendJSONObject(new SocketMessage("bye"));
 			

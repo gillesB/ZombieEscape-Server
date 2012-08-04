@@ -15,6 +15,7 @@ import server.GameManager;
 import server.Gamer;
 
 import com.google.gson.Gson;
+import com.google.gson.internal.StringMap;
 
 /**
  * makes the actual communication with a client. See Socket Commands in the
@@ -164,7 +165,7 @@ public class ProviderTask implements Runnable {
 	}
 
 	private void setLocation(Object json) {
-		GPS_location location = gson.fromJson((String) json, GPS_location.class);
+		GPS_location location = gson.fromJson(json.toString(), GPS_location.class);
 		gamer.setLocation(location);
 
 	}
