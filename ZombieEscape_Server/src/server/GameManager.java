@@ -19,6 +19,7 @@ public class GameManager {
 		synchronized (games) {
 			games.add(newGame);
 		}
+		new Thread(newGame).start();
 		return newGame.getGameID();
 
 	}

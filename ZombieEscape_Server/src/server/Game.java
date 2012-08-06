@@ -84,9 +84,7 @@ public class Game implements Runnable {
 			for(Gamer g : gamersClone){
 				g.getProviderTask().listGamers(overview);
 			}			
-			
 		}
-
 	}
 
 	public void findInaktivGamers() {

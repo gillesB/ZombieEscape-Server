@@ -68,6 +68,7 @@ public class ProviderTask implements Runnable {
 				output.close();
 				input.close();
 				clientSocket.close();
+				gamer.quitGame();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -80,7 +81,7 @@ public class ProviderTask implements Runnable {
 		SocketMessage newGamer = gson.fromJson(message, SocketMessage.class);
 		int gamerID;
 		if (newGamer.command.equals("newGamer")) {
-			gamer = new Gamer((String) newGamer.value);
+			gamer = new Gamer((String) newGamer.value, this);
 			gamerID = gamer.getGamerID();
 		} else {
 			gamerID = -1;

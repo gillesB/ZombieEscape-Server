@@ -22,11 +22,12 @@ public class Gamer {
 		this.providerTask = providerTask;
 	}
 
-	public Gamer(String name) {
+	public Gamer(String name, ProviderTask providerTask ) {
 		super();
 		this.gamerID = gamerIDcounter.getAndAdd(1);
 		this.name = name;
 		this.location = new GPS_location();
+		this.providerTask = providerTask;
 	}
 
 	public GPS_location getLocation() {

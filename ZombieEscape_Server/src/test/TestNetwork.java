@@ -82,6 +82,17 @@ public class TestNetwork {
 			sendJSONObject(new SocketMessage("removeGamer"));
 			boolean removed = gson.fromJson(socketIn.readLine(), Boolean.class);
 			printGameList();
+			
+			//test if messages from server are received
+			sendJSONObject(new SocketMessage("addGamer", ((Integer)game1ID).toString() ));
+			added = gson.fromJson(socketIn.readLine(), Boolean.class);
+			for(int i = 0; i <= 5; i++){
+				Thread.sleep(1000);
+				if(socketIn.ready()){
+					System.out.println(socketIn.readLine());
+				}
+				
+			}
 
 			//say good bye
 			sendJSONObject(new SocketMessage("bye"));
