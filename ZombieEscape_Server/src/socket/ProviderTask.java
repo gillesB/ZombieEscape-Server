@@ -169,4 +169,20 @@ public class ProviderTask implements Runnable {
 
 	}
 
+	
+	//commands send to the client	
+	
+	public void fight(){
+		sendJSONObject(new SocketMessage("fight"));
+	}
+	
+	public void fightOver(boolean b) {
+		sendJSONObject(new SocketMessage("fightOver", b));		
+	}
+	
+	public void listGamers(ArrayList<Socket_GamerOverview> overview){
+		sendJSONObject(new SocketMessage("listGamers", overview));
+		
+	}
+
 }

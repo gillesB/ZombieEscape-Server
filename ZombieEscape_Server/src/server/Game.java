@@ -1,9 +1,12 @@
 package server;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Game {
+import socket.Socket_GamerOverview;
+
+public class Game implements Runnable {
 
 	private int gameID;
 	private static AtomicInteger gameIDcounter = new AtomicInteger(0);
@@ -22,10 +25,8 @@ public class Game {
 
 	public GPS_location getLocation() {
 		GPS_location location = new GPS_location();
-		ArrayList<Gamer> gamersClone;
-		synchronized (gamers) {
-			gamersClone = (ArrayList<Gamer>) gamers.clone();
-		}
+		ArrayList<Gamer> gamersClone = getGamersClone();
+
 		int amountGamers = gamersClone.size();
 		if (amountGamers != 0) {
 			for (Gamer g : gamersClone) {
@@ -57,16 +58,69 @@ public class Game {
 		}
 	}
 
+	@Override
+	public void run() {
+		while (true) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			ArrayList<Gamer> gamersClone = getGamersClone();
+			findCollision(gamersClone);
+			
+			ArrayList<Socket_GamerOverview> overview = new ArrayList<>(gamersClone.size());
+			for(Gamer g : gamersClone){
+				Socket_GamerOverview s = new Socket_GamerOverview();
+				s.gamername = g.getName();
+				GPS_location gps = g.getLocation();
+				s.latitude = gps.latitude;
+				s.longitude = gps.longitude;
+				s.zombie = g.isZombie();
+				overview.add(s);
+			}
+			
+			for(Gamer g : gamersClone){
+				g.getProviderTask().listGamers(overview);
+			}			
+			
+		}
+
+	}
+
 	public void findInaktivGamers() {
 
 	}
 
-	public void findCollision() {
-
+	public void findCollision(ArrayList<Gamer> gamersClone) {
+		for (int i = 0; i < gamersClone.size() - 1; i++) {
+			Gamer g1 = gamersClone.get(i);
+			for (int j = i + 1; j < gamersClone.size(); j++) {
+				Gamer g2 = gamersClone.get(j);
+				//TODO I have no idea how big the distance has to be
+				if ((g1.isZombie() ^ g2.isZombie()) && g1.getLocation().getDistance(g2.getLocation()) < 0.5) { // only one of the gamers is a zombie and they are near to each other
+					fight(g1, g2);
+				}
+			}
+		}
 	}
 
 	public void fight(Gamer g1, Gamer g2) {
-
+		//very simple version to begin
+		g1.getProviderTask().fight();
+		g2.getProviderTask().fight();
+		
+		Random r = new Random();
+		boolean zombieWins = (r.nextInt() % 2 == 0) ? true : false;
+		if(g1.isZombie() && zombieWins || !g1.isZombie() && !zombieWins){
+				g1.fightOutcome(true);
+				g2.fightOutcome(false);			
+		} else{
+			g1.fightOutcome(false);
+			g2.fightOutcome(true);
+		}
+		
 	}
 
 	public int getGameID() {
@@ -75,6 +129,12 @@ public class Game {
 
 	public String getName() {
 		return name;
+	}
+
+	public ArrayList<Gamer> getGamersClone() {
+		synchronized (gamers) {
+			return (ArrayList<Gamer>) gamers.clone();
+		}
 	}
 
 }
