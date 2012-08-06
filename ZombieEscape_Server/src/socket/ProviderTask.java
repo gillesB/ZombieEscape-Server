@@ -15,7 +15,6 @@ import server.GameManager;
 import server.Gamer;
 
 import com.google.gson.Gson;
-import com.google.gson.internal.StringMap;
 
 /**
  * makes the actual communication with a client. See Socket Commands in the
@@ -138,7 +137,7 @@ public class ProviderTask implements Runnable {
 	}
 
 	private void listGames() {
-		ArrayList<Game> currentGames = gameManager.getGames();
+		ArrayList<Game> currentGames = gameManager.getGamesClone();
 		ArrayList<Socket_GameOverview> gameList = new ArrayList<>(currentGames.size());
 		for (Game g : currentGames) {
 			Socket_GameOverview go = new Socket_GameOverview();

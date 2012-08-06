@@ -16,26 +16,26 @@ public class GameManager {
 
 	public int createGame(String gamename) {
 		Game newGame = new Game(gamename);
-		games.add(newGame);
+		synchronized (games) {
+			games.add(newGame);
+		}
 		return newGame.getGameID();
 
 	}
 
 	public void closeGame(Game game) {
-		games.remove(game);
+		synchronized (games) {
+			games.remove(game);
+		}
 	}
 
 	public void closeInactiveGames() {
 
 	}
 
-	public ArrayList<Game> getGames() {
-		return games;
-	}
-
 	public void addGamerToGame(Gamer gamer, String gameID) {
 		Game oldGame = gamer.getGame();
-		if(oldGame != null){
+		if (oldGame != null) {
 			oldGame.removeGamer(gamer);
 		}
 		Game game = getGameByID(gameID);
@@ -47,7 +47,8 @@ public class GameManager {
 	}
 
 	private Game getGameByID(int gameID) {
-		for (Game g : games) {
+		ArrayList<Game> gamesClone = getGamesClone();
+		for (Game g : gamesClone) {
 			if (g.getGameID() == gameID) {
 				return g;
 			}
@@ -57,6 +58,12 @@ public class GameManager {
 
 	public static void main(String[] args) {
 		GameManager gm = new GameManager();
+	}
+
+	public ArrayList<Game> getGamesClone() {
+		synchronized (games) {
+			return (ArrayList<Game>) games.clone();
+		}
 	}
 
 }

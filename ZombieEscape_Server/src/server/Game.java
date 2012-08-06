@@ -22,9 +22,13 @@ public class Game {
 
 	public GPS_location getLocation() {
 		GPS_location location = new GPS_location();
-		int amountGamers = gamers.size();
+		ArrayList<Gamer> gamersClone;
+		synchronized (gamers) {
+			gamersClone = (ArrayList<Gamer>) gamers.clone();
+		}
+		int amountGamers = gamersClone.size();
 		if (amountGamers != 0) {
-			for (Gamer g : gamers) {
+			for (Gamer g : gamersClone) {
 				GPS_location gamerLocation = g.getLocation();
 				location.longitude += gamerLocation.longitude;
 				location.latitude += gamerLocation.latitude;
@@ -36,13 +40,21 @@ public class Game {
 	}
 
 	public void addGamer(Gamer gamer) {
-		gamers.add(gamer);
-		gamer.setGame(this);
+		synchronized (gamers) {
+			gamers.add(gamer);
+		}
+		synchronized (gamer) {
+			gamer.setGame(this);
+		}
 	}
 
 	public void removeGamer(Gamer gamer) {
-		gamers.remove(gamer);
-		gamer.setGame(null);
+		synchronized (gamers) {
+			gamers.remove(gamer);
+		}
+		synchronized (gamer) {
+			gamer.setGame(null);
+		}
 	}
 
 	public void findInaktivGamers() {
