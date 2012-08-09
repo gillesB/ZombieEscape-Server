@@ -10,11 +10,13 @@ public class Game implements Runnable {
 
 	private int gameID;
 	private static AtomicInteger gameIDcounter = new AtomicInteger(0);
+	private static AtomicInteger zombieCount= new AtomicInteger(0);
+	private static AtomicInteger humanCount= new AtomicInteger(0);
 	private String name;
 	private ArrayList<Gamer> gamers;
 
 	public Game(String gamename) {
-		gameID = gameIDcounter.getAndAdd(1);
+		gameID = gameIDcounter.getAndIncrement();
 		this.name = gamename;
 		this.gamers = new ArrayList<Gamer>();
 	}
@@ -45,6 +47,15 @@ public class Game implements Runnable {
 			gamers.add(gamer);
 		}
 		synchronized (gamer) {
+			//does the gamer become a zombie or a human?
+			if(zombieCount.get() < humanCount.get()){
+				gamer.setZombie(true);
+				zombieCount.getAndIncrement();
+			} else {
+				gamer.setZombie(false);
+				humanCount.getAndIncrement();
+			}
+			
 			gamer.setGame(this);
 		}
 	}
@@ -52,8 +63,13 @@ public class Game implements Runnable {
 	public void removeGamer(Gamer gamer) {
 		synchronized (gamers) {
 			gamers.remove(gamer);
-		}
+		}		
 		synchronized (gamer) {
+			if(gamer.isZombie()){
+				zombieCount.getAndDecrement();
+			} else {
+				humanCount.getAndDecrement();
+			}
 			gamer.setGame(null);
 		}
 	}

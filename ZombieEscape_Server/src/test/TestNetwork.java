@@ -68,9 +68,11 @@ public class TestNetwork {
 			
 			//join own game
 			sendJSONObject(new SocketMessage("addGamer", ((Integer)game1ID).toString() ));
-			boolean added = gson.fromJson(socketIn.readLine(), Boolean.class);
+			boolean human = gson.fromJson(socketIn.readLine(), Boolean.class);
+			printJoinedGameMessage(human);
 			sendJSONObject(new SocketMessage("addGamer", ((Integer)game2ID).toString() ));
-			added = gson.fromJson(socketIn.readLine(), Boolean.class);			
+			human = gson.fromJson(socketIn.readLine(), Boolean.class);		
+			printJoinedGameMessage(human);
 			printGameList();
 			
 			//set location
@@ -85,7 +87,8 @@ public class TestNetwork {
 			
 			//test if messages from server are received
 			sendJSONObject(new SocketMessage("addGamer", ((Integer)game1ID).toString() ));
-			added = gson.fromJson(socketIn.readLine(), Boolean.class);
+			human = gson.fromJson(socketIn.readLine(), Boolean.class);
+			printJoinedGameMessage(human);
 			for(int i = 0; i <= 5; i++){
 				Thread.sleep(1000);
 				if(socketIn.ready()){
@@ -188,6 +191,14 @@ public class TestNetwork {
 		sendJSONObject(new SocketMessage("listGames"));
 		String gamelist =  socketIn.readLine();
 		System.out.println(gamelist);
+	}
+	
+	private static void printJoinedGameMessage(boolean human){
+		if(human){
+			System.out.println("I am a human.");
+		} else {
+			System.out.println("BRAAAIIIINNNNZZZZZ!!!!");
+		}
 	}
 
 }

@@ -134,7 +134,7 @@ public class ProviderTask implements Runnable {
 	private void addGamer(Object json) {
 		String gameID = (String) json;
 		gameManager.addGamerToGame(gamer, gameID);
-		sendJSONObject(true);
+		sendJSONObject(!gamer.isZombie());
 	}
 
 	private void listGames() {

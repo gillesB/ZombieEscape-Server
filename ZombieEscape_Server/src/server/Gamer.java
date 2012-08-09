@@ -18,11 +18,11 @@ public class Gamer {
 		super();
 		this.name = name;
 		this.location = location;
-		this.gamerID = gamerIDcounter.getAndAdd(1);
+		this.gamerID = gamerIDcounter.getAndIncrement();
 		this.providerTask = providerTask;
 	}
 
-	public Gamer(String name, ProviderTask providerTask ) {
+	public Gamer(String name, ProviderTask providerTask) {
 		super();
 		this.gamerID = gamerIDcounter.getAndAdd(1);
 		this.name = name;
@@ -58,6 +58,10 @@ public class Gamer {
 		return zombie;
 	}
 
+	public void setZombie(boolean zombie) {
+		this.zombie = zombie;
+	}
+
 	public void fightOutcome(boolean b) {
 		providerTask.fightOver(b);
 		if (zombie == false) {
@@ -72,7 +76,5 @@ public class Gamer {
 	public String getName() {
 		return name;
 	}
-	
-	
 
 }
