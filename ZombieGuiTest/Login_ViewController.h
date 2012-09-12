@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface Login_ViewController : UIViewController
+- (IBAction)onBtnLoginClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *edtUserName;
 
 @end

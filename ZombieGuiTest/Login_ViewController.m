@@ -13,6 +13,7 @@
 @end
 
 @implementation Login_ViewController
+@synthesize edtUserName;
 
 - (void)viewDidLoad
 {
@@ -22,6 +23,7 @@
 
 - (void)viewDidUnload
 {
+    [self setEdtUserName:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -31,4 +33,11 @@
     return YES;
 }
 
+- (IBAction)onBtnLoginClick:(id)sender {
+    if (![[edtUserName text] compare:@""]){
+        NSLog(@"%@",[edtUserName text]);
+    } else {
+        NSLog(@"%@",@"Username is empty");
+    }
+}
 @end
