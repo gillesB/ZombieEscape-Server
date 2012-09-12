@@ -34,8 +34,8 @@
 }
 
 - (IBAction)onBtnLoginClick:(id)sender {
-    if (![[edtUserName text] compare:@""]){
-        NSLog(@"%@",[edtUserName text]);
+    if ([[edtUserName text] length] != 0){
+        [self performSegueWithIdentifier: @"segLoginToMainMenu" sender: self];
     } else {
         NSLog(@"%@",@"Username is empty");
     }
