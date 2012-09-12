@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 HTW Saarland. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "Login_ViewController.h"
 
-@interface ViewController ()
+@interface Login_ViewController ()
 
 @end
 
-@implementation ViewController
+@implementation Login_ViewController
 
 - (void)viewDidLoad
 {

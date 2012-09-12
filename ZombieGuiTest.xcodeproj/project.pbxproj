@@ -14,7 +14,7 @@
 		19786C551600B5730089F833 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19786C541600B5730089F833 /* main.m */; };
 		19786C591600B5730089F833 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19786C581600B5730089F833 /* AppDelegate.m */; };
 		19786C5C1600B5730089F833 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19786C5A1600B5730089F833 /* MainStoryboard.storyboard */; };
-		19786C5F1600B5730089F833 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19786C5E1600B5730089F833 /* ViewController.m */; };
+		19786C5F1600B5730089F833 /* Login_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19786C5E1600B5730089F833 /* Login_ViewController.m */; };
 		19786C671600B5730089F833 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19786C661600B5730089F833 /* SenTestingKit.framework */; };
 		19786C681600B5730089F833 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19786C481600B5730089F833 /* UIKit.framework */; };
 		19786C691600B5730089F833 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19786C4A1600B5730089F833 /* Foundation.framework */; };
@@ -44,8 +44,8 @@
 		19786C571600B5730089F833 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		19786C581600B5730089F833 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		19786C5B1600B5730089F833 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		19786C5D1600B5730089F833 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		19786C5E1600B5730089F833 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		19786C5D1600B5730089F833 /* Login_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Login_ViewController.h; sourceTree = "<group>"; };
+		19786C5E1600B5730089F833 /* Login_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Login_ViewController.m; sourceTree = "<group>"; };
 		19786C651600B5730089F833 /* ZombieGuiTestTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZombieGuiTestTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19786C661600B5730089F833 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		19786C6E1600B5730089F833 /* ZombieGuiTestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZombieGuiTestTests-Info.plist"; sourceTree = "<group>"; };
@@ -114,8 +114,8 @@
 				19786C571600B5730089F833 /* AppDelegate.h */,
 				19786C581600B5730089F833 /* AppDelegate.m */,
 				19786C5A1600B5730089F833 /* MainStoryboard.storyboard */,
-				19786C5D1600B5730089F833 /* ViewController.h */,
-				19786C5E1600B5730089F833 /* ViewController.m */,
+				19786C5D1600B5730089F833 /* Login_ViewController.h */,
+				19786C5E1600B5730089F833 /* Login_ViewController.m */,
 				19786C4F1600B5730089F833 /* Supporting Files */,
 			);
 			path = ZombieGuiTest;
@@ -260,7 +260,7 @@
 			files = (
 				19786C551600B5730089F833 /* main.m in Sources */,
 				19786C591600B5730089F833 /* AppDelegate.m in Sources */,
-				19786C5F1600B5730089F833 /* ViewController.m in Sources */,
+				19786C5F1600B5730089F833 /* Login_ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
