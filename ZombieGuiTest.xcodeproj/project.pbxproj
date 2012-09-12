@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		19786C491600B5730089F833 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19786C481600B5730089F833 /* UIKit.framework */; };
+		19786C4B1600B5730089F833 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19786C4A1600B5730089F833 /* Foundation.framework */; };
+		19786C4D1600B5730089F833 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19786C4C1600B5730089F833 /* CoreGraphics.framework */; };
+		19786C531600B5730089F833 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19786C511600B5730089F833 /* InfoPlist.strings */; };
+		19786C551600B5730089F833 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19786C541600B5730089F833 /* main.m */; };
+		19786C591600B5730089F833 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19786C581600B5730089F833 /* AppDelegate.m */; };
+		19786C5C1600B5730089F833 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19786C5A1600B5730089F833 /* MainStoryboard.storyboard */; };
+		19786C5F1600B5730089F833 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19786C5E1600B5730089F833 /* ViewController.m */; };
+		19786C671600B5730089F833 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19786C661600B5730089F833 /* SenTestingKit.framework */; };
+		19786C681600B5730089F833 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19786C481600B5730089F833 /* UIKit.framework */; };
+		19786C691600B5730089F833 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19786C4A1600B5730089F833 /* Foundation.framework */; };
+		19786C711600B5730089F833 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19786C6F1600B5730089F833 /* InfoPlist.strings */; };
+		19786C741600B5730089F833 /* ZombieGuiTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19786C731600B5730089F833 /* ZombieGuiTestTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		19786C6A1600B5730089F833 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19786C3B1600B5730089F833 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 19786C431600B5730089F833;
+			remoteInfo = ZombieGuiTest;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		19786C441600B5730089F833 /* ZombieGuiTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZombieGuiTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		19786C481600B5730089F833 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		19786C4A1600B5730089F833 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		19786C4C1600B5730089F833 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		19786C501600B5730089F833 /* ZombieGuiTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZombieGuiTest-Info.plist"; sourceTree = "<group>"; };
+		19786C521600B5730089F833 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		19786C541600B5730089F833 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		19786C561600B5730089F833 /* ZombieGuiTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZombieGuiTest-Prefix.pch"; sourceTree = "<group>"; };
+		19786C571600B5730089F833 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		19786C581600B5730089F833 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		19786C5B1600B5730089F833 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		19786C5D1600B5730089F833 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		19786C5E1600B5730089F833 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		19786C651600B5730089F833 /* ZombieGuiTestTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZombieGuiTestTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		19786C661600B5730089F833 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		19786C6E1600B5730089F833 /* ZombieGuiTestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZombieGuiTestTests-Info.plist"; sourceTree = "<group>"; };
+		19786C701600B5730089F833 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		19786C721600B5730089F833 /* ZombieGuiTestTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZombieGuiTestTests.h; sourceTree = "<group>"; };
+		19786C731600B5730089F833 /* ZombieGuiTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZombieGuiTestTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		19786C411600B5730089F833 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19786C491600B5730089F833 /* UIKit.framework in Frameworks */,
+				19786C4B1600B5730089F833 /* Foundation.framework in Frameworks */,
+				19786C4D1600B5730089F833 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		19786C611600B5730089F833 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19786C671600B5730089F833 /* SenTestingKit.framework in Frameworks */,
+				19786C681600B5730089F833 /* UIKit.framework in Frameworks */,
+				19786C691600B5730089F833 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19786C391600B5730089F833 = {
+			isa = PBXGroup;
+			children = (
+				19786C4E1600B5730089F833 /* ZombieGuiTest */,
+				19786C6C1600B5730089F833 /* ZombieGuiTestTests */,
+				19786C471600B5730089F833 /* Frameworks */,
+				19786C451600B5730089F833 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		19786C451600B5730089F833 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				19786C441600B5730089F833 /* ZombieGuiTest.app */,
+				19786C651600B5730089F833 /* ZombieGuiTestTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		19786C471600B5730089F833 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				19786C481600B5730089F833 /* UIKit.framework */,
+				19786C4A1600B5730089F833 /* Foundation.framework */,
+				19786C4C1600B5730089F833 /* CoreGraphics.framework */,
+				19786C661600B5730089F833 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		19786C4E1600B5730089F833 /* ZombieGuiTest */ = {
+			isa = PBXGroup;
+			children = (
+				19786C571600B5730089F833 /* AppDelegate.h */,
+				19786C581600B5730089F833 /* AppDelegate.m */,
+				19786C5A1600B5730089F833 /* MainStoryboard.storyboard */,
+				19786C5D1600B5730089F833 /* ViewController.h */,
+				19786C5E1600B5730089F833 /* ViewController.m */,
+				19786C4F1600B5730089F833 /* Supporting Files */,
+			);
+			path = ZombieGuiTest;
+			sourceTree = "<group>";
+		};
+		19786C4F1600B5730089F833 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				19786C501600B5730089F833 /* ZombieGuiTest-Info.plist */,
+				19786C511600B5730089F833 /* InfoPlist.strings */,
+				19786C541600B5730089F833 /* main.m */,
+				19786C561600B5730089F833 /* ZombieGuiTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		19786C6C1600B5730089F833 /* ZombieGuiTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				19786C721600B5730089F833 /* ZombieGuiTestTests.h */,
+				19786C731600B5730089F833 /* ZombieGuiTestTests.m */,
+				19786C6D1600B5730089F833 /* Supporting Files */,
+			);
+			path = ZombieGuiTestTests;
+			sourceTree = "<group>";
+		};
+		19786C6D1600B5730089F833 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				19786C6E1600B5730089F833 /* ZombieGuiTestTests-Info.plist */,
+				19786C6F1600B5730089F833 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		19786C431600B5730089F833 /* ZombieGuiTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 19786C771600B5730089F833 /* Build configuration list for PBXNativeTarget "ZombieGuiTest" */;
+			buildPhases = (
+				19786C401600B5730089F833 /* Sources */,
+				19786C411600B5730089F833 /* Frameworks */,
+				19786C421600B5730089F833 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZombieGuiTest;
+			productName = ZombieGuiTest;
+			productReference = 19786C441600B5730089F833 /* ZombieGuiTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		19786C641600B5730089F833 /* ZombieGuiTestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 19786C7A1600B5730089F833 /* Build configuration list for PBXNativeTarget "ZombieGuiTestTests" */;
+			buildPhases = (
+				19786C601600B5730089F833 /* Sources */,
+				19786C611600B5730089F833 /* Frameworks */,
+				19786C621600B5730089F833 /* Resources */,
+				19786C631600B5730089F833 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				19786C6B1600B5730089F833 /* PBXTargetDependency */,
+			);
+			name = ZombieGuiTestTests;
+			productName = ZombieGuiTestTests;
+			productReference = 19786C651600B5730089F833 /* ZombieGuiTestTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		19786C3B1600B5730089F833 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "HTW Saarland";
+			};
+			buildConfigurationList = 19786C3E1600B5730089F833 /* Build configuration list for PBXProject "ZombieGuiTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 19786C391600B5730089F833;
+			productRefGroup = 19786C451600B5730089F833 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				19786C431600B5730089F833 /* ZombieGuiTest */,
+				19786C641600B5730089F833 /* ZombieGuiTestTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		19786C421600B5730089F833 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19786C531600B5730089F833 /* InfoPlist.strings in Resources */,
+				19786C5C1600B5730089F833 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		19786C621600B5730089F833 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19786C711600B5730089F833 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		19786C631600B5730089F833 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		19786C401600B5730089F833 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19786C551600B5730089F833 /* main.m in Sources */,
+				19786C591600B5730089F833 /* AppDelegate.m in Sources */,
+				19786C5F1600B5730089F833 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		19786C601600B5730089F833 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19786C741600B5730089F833 /* ZombieGuiTestTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		19786C6B1600B5730089F833 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 19786C431600B5730089F833 /* ZombieGuiTest */;
+			targetProxy = 19786C6A1600B5730089F833 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		19786C511600B5730089F833 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				19786C521600B5730089F833 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		19786C5A1600B5730089F833 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				19786C5B1600B5730089F833 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		19786C6F1600B5730089F833 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				19786C701600B5730089F833 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		19786C751600B5730089F833 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		19786C761600B5730089F833 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		19786C781600B5730089F833 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ZombieGuiTest/ZombieGuiTest-Prefix.pch";
+				INFOPLIST_FILE = "ZombieGuiTest/ZombieGuiTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		19786C791600B5730089F833 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ZombieGuiTest/ZombieGuiTest-Prefix.pch";
+				INFOPLIST_FILE = "ZombieGuiTest/ZombieGuiTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		19786C7B1600B5730089F833 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ZombieGuiTest.app/ZombieGuiTest";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ZombieGuiTest/ZombieGuiTest-Prefix.pch";
+				INFOPLIST_FILE = "ZombieGuiTestTests/ZombieGuiTestTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		19786C7C1600B5730089F833 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ZombieGuiTest.app/ZombieGuiTest";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ZombieGuiTest/ZombieGuiTest-Prefix.pch";
+				INFOPLIST_FILE = "ZombieGuiTestTests/ZombieGuiTestTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		19786C3E1600B5730089F833 /* Build configuration list for PBXProject "ZombieGuiTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19786C751600B5730089F833 /* Debug */,
+				19786C761600B5730089F833 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		19786C771600B5730089F833 /* Build configuration list for PBXNativeTarget "ZombieGuiTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19786C781600B5730089F833 /* Debug */,
+				19786C791600B5730089F833 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		19786C7A1600B5730089F833 /* Build configuration list for PBXNativeTarget "ZombieGuiTestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19786C7B1600B5730089F833 /* Debug */,
+				19786C7C1600B5730089F833 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 19786C3B1600B5730089F833 /* Project object */;
+}
