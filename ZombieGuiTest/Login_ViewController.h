@@ -10,6 +10,7 @@
 
 @interface Login_ViewController : UIViewController
 - (IBAction)onBtnLoginClick:(id)sender;
+- (void) showMessageNoUserName;
 @property (weak, nonatomic) IBOutlet UITextField *edtUserName;
 
 @end

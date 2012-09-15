@@ -38,6 +38,19 @@
         [self performSegueWithIdentifier: @"segLoginToMainMenu" sender: self];
     } else {
         NSLog(@"%@",@"Username is empty");
+        [self showMessageNoUserName];
     }
 }
+
+- (void) showMessageNoUserName{
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Information"
+                                                      message:@"Please enter a Username."
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    
+    [message show];
+}
+
+
 @end
