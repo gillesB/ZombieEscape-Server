@@ -7,6 +7,7 @@
 //
 
 #import "Login_ViewController.h"
+#import "PlistHandler.h"
 
 @interface Login_ViewController ()
 
@@ -19,6 +20,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+
+    // dump the username
+    NSString* username = [[PlistHandler sharedHandler] getUsername];
+    [edtUserName setText:username];
+
 }
 
 - (void)viewDidUnload
@@ -36,6 +43,7 @@
 - (IBAction)onBtnLoginClick:(id)sender {
     if ([[edtUserName text] length] != 0){
         [self performSegueWithIdentifier: @"segLoginToMainMenu" sender: self];
+        [[PlistHandler sharedHandler] setUsername:[edtUserName text]];
     } else {
         NSLog(@"%@",@"Username is empty");
         [self showMessageNoUserName];
