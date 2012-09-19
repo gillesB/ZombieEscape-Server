@@ -9,20 +9,20 @@
 #import <Foundation/Foundation.h>
 
 @interface Socket_GameOverview : NSObject{
-    NSInteger *gameID;
+    int gameID;
     NSString *name;
-    NSInteger *amountGamers;
+    int amountGamers;
     double longitude;
     double latitude;
 }
 
-@property(nonatomic) NSInteger *gameID;
+@property(nonatomic) int gameID;
 @property(nonatomic, copy) NSString *name;
-@property(nonatomic) NSInteger *amountGamers;
+@property(nonatomic) int amountGamers;
 @property(nonatomic) double longitude;
 @property(nonatomic) double latitude;
 
-- (id)initWithGameID:(NSInteger*) gameID name:(NSString*) name amountGamers:(NSInteger*) amountGamers longitude:(double) longitude latitude:(double) latitude;
+- (id)initWithGameID:(int) gameID name:(NSString*) name amountGamers:(int) amountGamers longitude:(double) longitude latitude:(double) latitude;
 
 
 

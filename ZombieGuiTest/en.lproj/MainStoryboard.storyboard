@@ -182,11 +182,11 @@
             </objects>
             <point key="canvasLocation" x="526" y="2123"/>
         </scene>
-        <!--Table View Controller - Join Game-->
+        <!--Join Game View Controller - Join Game-->
         <scene sceneID="cKo-41-ot9">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uiX-VG-nQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="X7s-VJ-6Or" sceneMemberID="viewController">
+                <tableViewController id="X7s-VJ-6Or" customClass="JoinGameViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="JiB-V4-Z0z">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -222,6 +222,18 @@
             <point key="canvasLocation" x="1535" y="79"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="JoinGameViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JoinGameViewController.h"/>
+        </class>
+        <class className="Login_ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Login_ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="onBtnLoginClick:"/>
+                <relationship kind="outlet" name="edtUserName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
