@@ -20,6 +20,7 @@
 		19786C691600B5730089F833 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19786C4A1600B5730089F833 /* Foundation.framework */; };
 		19786C711600B5730089F833 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19786C6F1600B5730089F833 /* InfoPlist.strings */; };
 		19786C741600B5730089F833 /* ZombieGuiTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19786C731600B5730089F833 /* ZombieGuiTestTests.m */; };
+		C27CE4E71609B9DC000FFD7C /* GameOverviewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CE4E61609B9DC000FFD7C /* GameOverviewTableCell.m */; };
 		C2B3ECC716074384005D3F16 /* ZombieGuiTest.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2B3ECC616074384005D3F16 /* ZombieGuiTest.plist */; };
 		C2B3ECCA16076A32005D3F16 /* Socket_GameOverview.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3ECC916076A32005D3F16 /* Socket_GameOverview.m */; };
 		C2B3ECCD16077088005D3F16 /* JoinGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3ECCC16077088005D3F16 /* JoinGameViewController.m */; };
@@ -56,6 +57,8 @@
 		19786C701600B5730089F833 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		19786C721600B5730089F833 /* ZombieGuiTestTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZombieGuiTestTests.h; sourceTree = "<group>"; };
 		19786C731600B5730089F833 /* ZombieGuiTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZombieGuiTestTests.m; sourceTree = "<group>"; };
+		C27CE4E51609B9DC000FFD7C /* GameOverviewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOverviewTableCell.h; path = ../GameOverviewTableCell.h; sourceTree = "<group>"; };
+		C27CE4E61609B9DC000FFD7C /* GameOverviewTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameOverviewTableCell.m; path = ../GameOverviewTableCell.m; sourceTree = "<group>"; };
 		C2B3ECC616074384005D3F16 /* ZombieGuiTest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ZombieGuiTest.plist; sourceTree = "<group>"; };
 		C2B3ECC816076A32005D3F16 /* Socket_GameOverview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Socket_GameOverview.h; sourceTree = "<group>"; };
 		C2B3ECC916076A32005D3F16 /* Socket_GameOverview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Socket_GameOverview.m; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 		19786C4E1600B5730089F833 /* ZombieGuiTest */ = {
 			isa = PBXGroup;
 			children = (
+				C27CE4E51609B9DC000FFD7C /* GameOverviewTableCell.h */,
+				C27CE4E61609B9DC000FFD7C /* GameOverviewTableCell.m */,
 				19786C571600B5730089F833 /* AppDelegate.h */,
 				C2B5050D16051CAD00EA29F5 /* PlistHandler.h */,
 				C2B5050E16051CAD00EA29F5 /* PlistHandler.m */,
@@ -306,6 +311,7 @@
 				C2B5050F16051CAD00EA29F5 /* PlistHandler.m in Sources */,
 				C2B3ECCA16076A32005D3F16 /* Socket_GameOverview.m in Sources */,
 				C2B3ECCD16077088005D3F16 /* JoinGameViewController.m in Sources */,
+				C27CE4E71609B9DC000FFD7C /* GameOverviewTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

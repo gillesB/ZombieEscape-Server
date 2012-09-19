@@ -8,6 +8,7 @@
 
 #import "JoinGameViewController.h"
 #import "Socket_GameOverview.h"
+#import "GameOverviewTableCell.h"
 
 @interface JoinGameViewController ()
 
@@ -70,17 +71,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    GameOverviewTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
     if(cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+        cell = [[GameOverviewTableCell alloc] initWithStyle:UITableViewCellStyleDefault
                                        reuseIdentifier:CellIdentifier];
     }
     
     Socket_GameOverview *s = (Socket_GameOverview*)[gameList objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = s.name;
+    //cell.lblGameName.text = s.name;
+    [cell.lblGameName setText:s.name];
+    cell.lblAmountGamers.text = [NSString stringWithFormat:@"%d", s.amountGamers];
+    //TODO calculate distance
+    cell.lblDistance.text = @"0";
+   
     
     
     
