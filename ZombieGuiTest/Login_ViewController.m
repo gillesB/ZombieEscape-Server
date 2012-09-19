@@ -15,6 +15,11 @@
 
 @implementation Login_ViewController
 @synthesize edtUserName;
+@synthesize netCom = _netCom;
+
+
+
+
 
 - (void)viewDidLoad
 {
@@ -25,6 +30,7 @@
     // dump the username
     NSString* username = [[PlistHandler sharedHandler] getUsername];
     [edtUserName setText:username];
+    _netCom = [NetWorkCom getNetWorkCom];
 
 }
 
@@ -44,6 +50,7 @@
     if ([[edtUserName text] length] != 0){
         [self performSegueWithIdentifier: @"segLoginToMainMenu" sender: self];
         [[PlistHandler sharedHandler] setUsername:[edtUserName text]];
+        [_netCom createNewPlayer: edtUserName.text];
     } else {
         NSLog(@"%@",@"Username is empty");
         [self showMessageNoUserName];

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetWorkCom.h"
 
 @interface Login_ViewController : UIViewController
 - (IBAction)onBtnLoginClick:(id)sender;
 - (void) showMessageNoUserName;
 @property (weak, nonatomic) IBOutlet UITextField *edtUserName;
+@property (strong , nonatomic ) NetWorkCom * netCom;
 
 @end

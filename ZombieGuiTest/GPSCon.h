@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NetWorkCom.h"
+#import <CoreLocation/CoreLocation.h>
+#import "GPSLocation.h"
 
-@interface GPSCon : NSObject
+
+@interface GPSCon : NSObject <CLLocationManagerDelegate>{
+    CLLocationManager *locationManager;}
+
+@property (weak,nonatomic) NetWorkCom* netCom;
 
 @end

@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GPSLocation.h"
+
+
+NSInputStream *inputStream;
+NSOutputStream *outputStream;
 
 @interface NetWorkCom : NSObject
+
+-(void) createNewPlayer:(NSString*)playerName ;
+-(void) createNewGame:(NSString*)gameName ;
+-(void) addPlayerToGame:(NSString*)gameID;
+-(void) removePlayer;
+-(void) setLocation:(GPSLocation*)loc;
+
++ (id)getNetWorkCom;
 
 @end
