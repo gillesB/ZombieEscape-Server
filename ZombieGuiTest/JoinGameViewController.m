@@ -8,7 +8,6 @@
 
 #import "JoinGameViewController.h"
 #import "Socket_GameOverview.h"
-#import "GameOverviewTableCell.h"
 
 @interface JoinGameViewController ()
 
@@ -57,7 +56,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
@@ -70,24 +68,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    GameOverviewTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    // Configure the cell...
-    if(cell == nil){
-        cell = [[GameOverviewTableCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                       reuseIdentifier:CellIdentifier];
-    }
-    
-    Socket_GameOverview *s = (Socket_GameOverview*)[gameList objectAtIndex:indexPath.row];
-    
-    //cell.lblGameName.text = s.name;
-    [cell.lblGameName setText:s.name];
-    cell.lblAmountGamers.text = [NSString stringWithFormat:@"%d", s.amountGamers];
-    //TODO calculate distance
-    cell.lblDistance.text = @"0";
-   
-    
+    UITableViewCell *cell = [tableView
+                             dequeueReusableCellWithIdentifier:@"CustomCell"];
+	Socket_GameOverview *s = [self.gameList objectAtIndex:indexPath.row];
+	UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
+    nameLabel.text = s.name;
+    UILabel *amountPlayers = (UILabel *)[cell viewWithTag:101];
+    amountPlayers.text = [[NSString alloc] initWithFormat:@"%d",s.amountGamers];
+    UILabel *distance = (UILabel *)[cell viewWithTag:102];
+    //TODO calculate actual distance
+    distance.text = @"0";
     
     
     return cell;
@@ -144,8 +134,7 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
-    Socket_GameOverview* game = [gameList objectAtIndex:indexPath.row];
-    NSLog(@"GameID of selected Game: %d", game.gameID);
+    //TODO go to the game view
     
 }
 
