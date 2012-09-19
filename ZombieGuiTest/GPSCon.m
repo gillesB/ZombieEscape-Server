@@ -33,6 +33,7 @@ CLLocation* lastUpdatedLocation ;
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     // locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
     [locationManager startUpdatingLocation];  
+    return self;
 }
 
 @end
