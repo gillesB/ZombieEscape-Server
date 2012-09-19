@@ -20,4 +20,17 @@
     return self;
 }
 
+-(NSDictionary*) toJson {
+    
+    
+    return nil;
+    
+}
+
++(id) FromJsonToObject:(NSString *)jString{
+    
+    
+    return nil;
+}
+
 @end

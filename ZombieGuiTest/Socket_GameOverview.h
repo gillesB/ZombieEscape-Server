@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JsonSerializable.h"
 
-@interface Socket_GameOverview : NSObject{
+@interface Socket_GameOverview : NSObject <JsonSerializable>{
     int gameID;
     NSString *name;
     int amountGamers;
