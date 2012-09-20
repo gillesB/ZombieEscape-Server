@@ -143,8 +143,8 @@
     Socket_GameOverview *g2 = [[Socket_GameOverview alloc]initWithGameID:2 name:@"Zombie Escape" amountGamers:42 longitude:10 latitude:10];
     Socket_GameOverview *g3 = [[Socket_GameOverview alloc]initWithGameID:3 name:@"Paranorman" amountGamers:5 longitude:47 latitude:11];
     
-    NSMutableArray* gameList = [[NSMutableArray alloc]initWithObjects:g1, g2, g3, nil ];
-    return gameList;
+    NSMutableArray* game_list = [[NSMutableArray alloc]initWithObjects:g1, g2, g3, nil ];
+    return game_list;
     
 }
 

@@ -11,12 +11,12 @@
 @implementation Socket_GameOverview
 @synthesize gameID, name, amountGamers, longitude, latitude;
 
-- (id) initWithGameID:(int)gameID name:(NSString *)name amountGamers:(int)amountGamers longitude:(double)longitude latitude:(double)latitude{
-    self.gameID = gameID;
-    self.name = name;
-    self.amountGamers = amountGamers;
-    self.longitude = longitude;
-    self.latitude = latitude;
+- (id) initWithGameID:(int)g_id name:(NSString *)n amountGamers:(int)am_ga longitude:(double)longi latitude:(double)lati{
+    self.gameID = g_id;
+    self.name = n;
+    self.amountGamers = am_ga;
+    self.longitude = longi;
+    self.latitude = lati;
     return self;
 }
 

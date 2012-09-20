@@ -23,7 +23,7 @@
 @property(nonatomic) double longitude;
 @property(nonatomic) double latitude;
 
-- (id)initWithGameID:(int) gameID name:(NSString*) name amountGamers:(int) amountGamers longitude:(double) longitude latitude:(double) latitude;
+- (id)initWithGameID:(int) g_id name:(NSString*) n amountGamers:(int) am_ga longitude:(double) longi latitude:(double) lati;
 
 
 

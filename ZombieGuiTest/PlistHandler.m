@@ -25,8 +25,8 @@
         NSString *documentsDirectory = [paths objectAtIndex:0];
         
         // get the path to our plist ("Documents/foo.plist")
-        NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"ZombieGuiTest.plist"];
-        return plistPath;
+        NSString *plist_path = [documentsDirectory stringByAppendingPathComponent:@"ZombieGuiTest.plist"];
+        return plist_path;
     }
     
     - (NSMutableDictionary*) readOrCreatePList{
