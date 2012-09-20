@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NetWorkCom.h"
 
 
 @implementation AppDelegate
@@ -15,6 +16,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    //init NetWorkCom (a singleton responsible for thet Networkconnection and Communication)
+    [NetWorkCom getNetWorkCom];
+    
     return YES;
 }
 							
