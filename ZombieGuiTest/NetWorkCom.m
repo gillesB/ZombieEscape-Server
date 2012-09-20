@@ -9,6 +9,8 @@
 #import "NetWorkCom.h"
 #import "SocketMessage.h"
 #import "PlistHandler.h"
+#import "Classes/SBJson.h"
+#import "Socket_GameOverview.h"
 
 
 @implementation NetWorkCom
@@ -83,8 +85,30 @@
     SocketMessage *msg = [SocketMessage createSocketMessageWithCommand:@"listGames" andValue: nil];
     [self writeJson:msg.toJson ToStream:outputStream];
     NSString* json = [inputStream readLine];
-    NSLog(@"from server lsgames: %@", json);
-    return nil;
+    NSLog(@"from server lsgames %@", json);
+    
+    // Create SBJSON object to parse JSON
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    NSArray *id_array = [parser objectWithString:json];
+    
+    NSMutableArray *gnameArray = [[NSMutableArray alloc] initWithCapacity:[id_array count]];
+    
+    for (int i = 0; i < [id_array count];i++) {
+        NSDictionary *d = [id_array objectAtIndex:i];
+        int gameID = [[d objectForKey:@"gameID"] intValue];
+        NSString* name = [d objectForKey:@"name"];
+        double amount = [[d objectForKey:@"amountGamers"] doubleValue];
+        double longi = [[d objectForKey:@"longitude"] doubleValue];
+        double lati = [[d objectForKey:@"latitude"] doubleValue];
+        
+        
+        Socket_GameOverview *s = [[Socket_GameOverview alloc] initWithGameID:gameID name:name amountGamers:amount longitude:longi latitude:lati];
+        
+        [gnameArray addObject:s];
+        
+    }
+
+    return gnameArray;
     
 }
 
