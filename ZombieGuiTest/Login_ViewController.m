@@ -45,6 +45,9 @@
 }
 
 - (IBAction)onBtnLoginClick:(id)sender {
+    
+    //TODO if no connection to the server do not try to login
+    
     if ([[edtUserName text] length] != 0){
         [self performSegueWithIdentifier: @"segLoginToMainMenu" sender: self];
         [[PlistHandler sharedHandler] setUsername:[edtUserName text]];

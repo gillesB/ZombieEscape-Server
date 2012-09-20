@@ -109,7 +109,6 @@
 		19786C391600B5730089F833 = {
 			isa = PBXGroup;
 			children = (
-				C27CB70E160AFE1F002A22FC /* CoreLocation.framework */,
 				C27CB6FF160AF541002A22FC /* Model.xcdatamodeld */,
 				19786C4E1600B5730089F833 /* ZombieGuiTest */,
 				19786C6C1600B5730089F833 /* ZombieGuiTestTests */,
@@ -131,6 +130,7 @@
 		19786C471600B5730089F833 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C27CB70E160AFE1F002A22FC /* CoreLocation.framework */,
 				19786C481600B5730089F833 /* UIKit.framework */,
 				19786C4A1600B5730089F833 /* Foundation.framework */,
 				19786C4C1600B5730089F833 /* CoreGraphics.framework */,
