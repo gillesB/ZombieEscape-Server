@@ -28,10 +28,10 @@
     
 
     // print the username from the plistfile in the editbox
-    edtUserName.text = [[PlistHandler sharedHandler] getUsername];
+    edtUserName.text = [[PlistHandler getPlistHandler] getUsername];
     
     // print the server ip address from the plistfile in the other editbox
-    edtIPAddress.text = [[PlistHandler sharedHandler] getServerIPAddress];
+    edtIPAddress.text = [[PlistHandler getPlistHandler] getServerIPAddress];
     
     //self.edtIPAddress.delegate = self;
     
@@ -58,7 +58,7 @@
         [self showMessageNoNetworkConnection];
     } else if ([[edtUserName text] length] != 0){
         [self performSegueWithIdentifier: @"segLoginToMainMenu" sender: self];
-        [[PlistHandler sharedHandler] setUsername:[edtUserName text]];
+        [[PlistHandler getPlistHandler] setUsername:[edtUserName text]];
         [[NetWorkCom getNetWorkCom] createNewPlayer: edtUserName.text];
     } else { //Connection is ready but username is empty
         NSLog(@"%@",@"Username is empty");
@@ -88,7 +88,7 @@
 
 
 - (IBAction)edtIPAddressChanged:(id)sender {
-    [[PlistHandler sharedHandler] setServerIPAddress:edtIPAddress.text];
+    [[PlistHandler getPlistHandler] setServerIPAddress:edtIPAddress.text];
     [[NetWorkCom getNetWorkCom] reconnect];
 }
 @end

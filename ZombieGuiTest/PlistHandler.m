@@ -79,7 +79,7 @@
 
 #pragma mark Singleton Methods
 
-+ (id)sharedHandler {
++ (id)getPlistHandler {
     static PlistHandler *sharedHandler = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

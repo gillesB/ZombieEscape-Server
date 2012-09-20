@@ -101,7 +101,7 @@
 - (void)initNetworkComm {
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
-    CFStringRef ipAddress = (__bridge CFStringRef)([[PlistHandler sharedHandler] getServerIPAddress]);
+    CFStringRef ipAddress = (__bridge CFStringRef)([[PlistHandler getPlistHandler] getServerIPAddress]);
     
     CFStreamCreatePairWithSocketToHost(NULL, ipAddress, 2004, &readStream, &writeStream);
     inputStream = (__bridge NSInputStream *)readStream;

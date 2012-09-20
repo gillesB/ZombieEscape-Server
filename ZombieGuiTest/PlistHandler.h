@@ -22,6 +22,6 @@
 - (NSString* ) getServerIPAddress;
 - (void) setServerIPAddress:(NSString *)serverIPAddress;
 
-+ (id)sharedHandler;
++ (id)getPlistHandler;
 
 @end
