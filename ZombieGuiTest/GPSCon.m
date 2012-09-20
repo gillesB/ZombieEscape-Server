@@ -11,19 +11,12 @@
 
 @implementation GPSCon
 CLLocation* lastUpdatedLocation ;
-@synthesize netCom =_netCom;
-
--(NetWorkCom *) netcom{
-    if(self.netCom == nil)
-        self.netCom = [NetWorkCom getNetWorkCom];
-    return self.netCom;
-}
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     
     if ([lastUpdatedLocation distanceFromLocation:newLocation] > 5 ){
         lastUpdatedLocation = newLocation;
-        [_netCom setLocation:[[GPSLocation alloc] initWithLong:[newLocation coordinate].longitude AndLat:[newLocation coordinate].latitude]];
+        [[NetWorkCom getNetWorkCom] setLocation:[[GPSLocation alloc] initWithLong:[newLocation coordinate].longitude AndLat:[newLocation coordinate].latitude]];
     }
 }
 

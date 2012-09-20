@@ -15,6 +15,4 @@
 @interface GPSCon : NSObject <CLLocationManagerDelegate>{
     CLLocationManager *locationManager;}
 
-@property (weak,nonatomic) NetWorkCom* netCom;
-
 @end

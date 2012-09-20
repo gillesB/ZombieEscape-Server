@@ -13,6 +13,5 @@
 - (IBAction)onBtnLoginClick:(id)sender;
 - (void) showMessageNoUserName;
 @property (weak, nonatomic) IBOutlet UITextField *edtUserName;
-@property (strong , nonatomic ) NetWorkCom * netCom;
 
 @end
