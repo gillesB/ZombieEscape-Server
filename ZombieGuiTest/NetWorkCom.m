@@ -8,6 +8,7 @@
 
 #import "NetWorkCom.h"
 #import "SocketMessage.h"
+#import "PlistHandler.h"
 
 
 @implementation NetWorkCom
@@ -100,7 +101,9 @@
 - (void)initNetworkComm {
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
-    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"192.168.1.7", 2004, &readStream, &writeStream);
+    CFStringRef ipAddress = (__bridge CFStringRef)([[PlistHandler sharedHandler] getServerIPAddress]);
+    
+    CFStreamCreatePairWithSocketToHost(NULL, ipAddress, 2004, &readStream, &writeStream);
     inputStream = (__bridge NSInputStream *)readStream;
     outputStream = (__bridge NSOutputStream *)writeStream;
     [inputStream setDelegate:self];
@@ -119,6 +122,19 @@
         return NO;
     }
 }
+
+-(void) closeConnection{
+    [inputStream close];
+    [outputStream close];
+}
+
+-(void) reconnect{
+    [self closeConnection];
+    [self initNetworkComm];
+}
+
+
+
 
 
 

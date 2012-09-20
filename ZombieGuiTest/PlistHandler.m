@@ -42,7 +42,7 @@
         } else {
             // ...if it doesn't, create it
             NSLog(@"dict didn't exist, creating...");
-            dict = [NSMutableDictionary dictionaryWithCapacity:1];
+            dict = [NSMutableDictionary dictionaryWithCapacity:2];
             
             // Fill the dictionary with default values, either by copying
             // a default plist from our bundle to the Documents directory
@@ -53,6 +53,7 @@
             // create a NSNumber object containing the
             // integer value 1 and add it as 'key1' to the dictionary.
             [dict setObject:@"" forKey:@"username"];
+            [dict setObject:@"192.168.2.101" forKey:@"serverIPAddress"];
             
             // write dictionary to Documents directory...
             NSLog(@"writing to %@...", plistPath);
@@ -107,6 +108,16 @@
     [plistDictionary setValue: username forKey:@"username"];
     [self savePlist];
     NSLog(@"New username set: %@", username);
+}
+
+- (NSString* ) getServerIPAddress{
+    return [plistDictionary valueForKey:@"serverIPAddress" ];
+}
+
+- (void) setServerIPAddress:(NSString *)serverIPAddress{
+    [plistDictionary setValue: serverIPAddress forKey:@"serverIPAddress"];
+    [self savePlist];
+    NSLog(@"New serverIPAddress set: %@", serverIPAddress);
 }
 
 @end

@@ -14,5 +14,7 @@
 - (void) showMessageNoUserName;
 - (void) showMessageNoNetworkConnection;
 @property (weak, nonatomic) IBOutlet UITextField *edtUserName;
+@property (weak, nonatomic) IBOutlet UITextField *edtIPAddress;
+- (IBAction)edtIPAddressChanged:(id)sender;
 
 @end

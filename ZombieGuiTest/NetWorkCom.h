@@ -22,6 +22,9 @@ NSOutputStream *outputStream;
 -(void) setLocation:(GPSLocation*)loc;
 
 -(BOOL) isConnected;
+-(void) closeConnection;
+-(void) reconnect;
+
 
 + (id)getNetWorkCom;
 

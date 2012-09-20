@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="11E2617" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="11E53" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
@@ -42,11 +42,21 @@
                                     <action selector="onBtnLoginClick:" destination="2" eventType="touchUpInside" id="6MG-1o-qF4"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="IP Address" minimumFontSize="17" id="RhR-lN-z20">
+                                <rect key="frame" x="20" y="892" width="153" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                <connections>
+                                    <action selector="edtIPAddressChanged:" destination="2" eventType="editingDidEndOnExit" id="TlM-RO-e0d"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="i1g-U1-jJn"/>
                     <connections>
+                        <outlet property="edtIPAddress" destination="RhR-lN-z20" id="6iB-Q9-D7u"/>
                         <outlet property="edtUserName" destination="qSe-1G-Ce9" id="IKO-aL-yBI"/>
                         <segue destination="yLB-k0-mcp" kind="modal" identifier="segLoginToMainMenu" id="V07-IL-7cQ"/>
                     </connections>
@@ -242,7 +252,9 @@
         <class className="Login_ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Login_ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="edtIPAddressChanged:"/>
                 <relationship kind="action" name="onBtnLoginClick:"/>
+                <relationship kind="outlet" name="edtIPAddress" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="edtUserName" candidateClass="UITextField"/>
             </relationships>
         </class>

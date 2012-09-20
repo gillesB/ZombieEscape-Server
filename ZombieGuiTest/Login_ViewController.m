@@ -15,6 +15,7 @@
 
 @implementation Login_ViewController
 @synthesize edtUserName;
+@synthesize edtIPAddress;
 
 
 
@@ -26,15 +27,21 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
 
-    // dump the username
-    NSString* username = [[PlistHandler sharedHandler] getUsername];
-    [edtUserName setText:username];
+    // print the username from the plistfile in the editbox
+    edtUserName.text = [[PlistHandler sharedHandler] getUsername];
+    
+    // print the server ip address from the plistfile in the other editbox
+    edtIPAddress.text = [[PlistHandler sharedHandler] getServerIPAddress];
+    
+    //self.edtIPAddress.delegate = self;
+    
 
 }
 
 - (void)viewDidUnload
 {
     [self setEdtUserName:nil];
+    [self setEdtIPAddress:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -80,4 +87,8 @@
 }
 
 
+- (IBAction)edtIPAddressChanged:(id)sender {
+    [[PlistHandler sharedHandler] setServerIPAddress:edtIPAddress.text];
+    [[NetWorkCom getNetWorkCom] reconnect];
+}
 @end

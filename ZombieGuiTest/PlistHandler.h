@@ -19,6 +19,9 @@
 - (NSString* ) getUsername;
 - (void) setUsername:(NSString *)username;
 
+- (NSString* ) getServerIPAddress;
+- (void) setServerIPAddress:(NSString *)serverIPAddress;
+
 + (id)sharedHandler;
 
 @end
