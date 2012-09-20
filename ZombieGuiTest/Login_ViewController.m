@@ -46,13 +46,14 @@
 
 - (IBAction)onBtnLoginClick:(id)sender {
     
-    //TODO if no connection to the server do not try to login
-    
-    if ([[edtUserName text] length] != 0){
+    if(![[NetWorkCom getNetWorkCom] isConnected]){
+        NSLog(@"%@",@"Network connection is not ready");
+        [self showMessageNoNetworkConnection];
+    } else if ([[edtUserName text] length] != 0){
         [self performSegueWithIdentifier: @"segLoginToMainMenu" sender: self];
         [[PlistHandler sharedHandler] setUsername:[edtUserName text]];
         [[NetWorkCom getNetWorkCom] createNewPlayer: edtUserName.text];
-    } else {
+    } else { //Connection is ready but username is empty
         NSLog(@"%@",@"Username is empty");
         [self showMessageNoUserName];
     }
@@ -61,6 +62,16 @@
 - (void) showMessageNoUserName{
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Information"
                                                       message:@"Please enter a Username."
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    
+    [message show];
+}
+
+- (void) showMessageNoNetworkConnection{
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Information"
+                                                      message:@"No network connection. Please wait and try again or check network connection."
                                                      delegate:nil
                                             cancelButtonTitle:@"OK"
                                             otherButtonTitles:nil];

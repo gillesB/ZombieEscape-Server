@@ -112,6 +112,14 @@
     
 }
 
+- (BOOL) isConnected {
+    if (inputStream.streamStatus == NSStreamStatusOpen){
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 
 
 @end

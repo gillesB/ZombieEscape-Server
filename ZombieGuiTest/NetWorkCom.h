@@ -21,6 +21,10 @@ NSOutputStream *outputStream;
 -(void) removePlayer;
 -(void) setLocation:(GPSLocation*)loc;
 
+-(BOOL) isConnected;
+
 + (id)getNetWorkCom;
+
+
 
 @end
