@@ -86,7 +86,7 @@
     [message show];
 }
 
-
+//TODO edtIPAddress still gets hidden by virtual keyboard
 - (IBAction)edtIPAddressChanged:(id)sender {
     [[PlistHandler getPlistHandler] setServerIPAddress:edtIPAddress.text];
     [[NetWorkCom getNetWorkCom] reconnect];

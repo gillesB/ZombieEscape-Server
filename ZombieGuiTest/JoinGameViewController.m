@@ -8,6 +8,7 @@
 
 #import "JoinGameViewController.h"
 #import "Socket_GameOverview.h"
+#import "NetWorkCom.h"
 
 @interface JoinGameViewController ()
 
@@ -37,7 +38,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //TODO get the gamelist from the server
-    self.gameList = [self createArrayToDisplay];
+    self.gameList = [[NetWorkCom getNetWorkCom] getGamelist];//[self createArrayToDisplay];
 }
 
 - (void)viewDidUnload

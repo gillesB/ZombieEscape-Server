@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "GPSLocation.h"
+#import "MDBufferedInputStream.h"
 
 
-NSInputStream *inputStream;
+MDBufferedInputStream *inputStream;
 NSOutputStream *outputStream;
 
 @interface NetWorkCom : NSObject
@@ -20,6 +21,7 @@ NSOutputStream *outputStream;
 -(void) addPlayerToGame:(NSString*)gameID;
 -(void) removePlayer;
 -(void) setLocation:(GPSLocation*)loc;
+-(NSMutableArray*) getGamelist;
 
 -(BOOL) isConnected;
 -(void) closeConnection;

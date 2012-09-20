@@ -26,6 +26,7 @@
 		C27CB708160AF55F002A22FC /* NetWorkCom.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB705160AF55F002A22FC /* NetWorkCom.m */; };
 		C27CB709160AF55F002A22FC /* SocketMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB707160AF55F002A22FC /* SocketMessage.m */; };
 		C27CB70F160AFE1F002A22FC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27CB70E160AFE1F002A22FC /* CoreLocation.framework */; };
+		C2AB89DB160B78E40075696F /* MDBufferedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AB89DA160B78E40075696F /* MDBufferedInputStream.m */; };
 		C2B3ECC716074384005D3F16 /* ZombieGuiTest.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2B3ECC616074384005D3F16 /* ZombieGuiTest.plist */; };
 		C2B3ECCA16076A32005D3F16 /* Socket_GameOverview.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3ECC916076A32005D3F16 /* Socket_GameOverview.m */; };
 		C2B3ECCD16077088005D3F16 /* JoinGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3ECCC16077088005D3F16 /* JoinGameViewController.m */; };
@@ -72,6 +73,8 @@
 		C27CB706160AF55F002A22FC /* SocketMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketMessage.h; sourceTree = "<group>"; };
 		C27CB707160AF55F002A22FC /* SocketMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketMessage.m; sourceTree = "<group>"; };
 		C27CB70E160AFE1F002A22FC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C2AB89D9160B78E40075696F /* MDBufferedInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDBufferedInputStream.h; path = ../MDBufferedInputStream.h; sourceTree = "<group>"; };
+		C2AB89DA160B78E40075696F /* MDBufferedInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDBufferedInputStream.m; path = ../MDBufferedInputStream.m; sourceTree = "<group>"; };
 		C2B3ECC616074384005D3F16 /* ZombieGuiTest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ZombieGuiTest.plist; sourceTree = "<group>"; };
 		C2B3ECC816076A32005D3F16 /* Socket_GameOverview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Socket_GameOverview.h; sourceTree = "<group>"; };
 		C2B3ECC916076A32005D3F16 /* Socket_GameOverview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Socket_GameOverview.m; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 		19786C4E1600B5730089F833 /* ZombieGuiTest */ = {
 			isa = PBXGroup;
 			children = (
+				C2AB89D9160B78E40075696F /* MDBufferedInputStream.h */,
+				C2AB89DA160B78E40075696F /* MDBufferedInputStream.m */,
 				19786C571600B5730089F833 /* AppDelegate.h */,
 				19786C581600B5730089F833 /* AppDelegate.m */,
 				C27CB6FA160AF541002A22FC /* GPSCon.h */,
@@ -339,6 +344,7 @@
 				C27CB703160AF541002A22FC /* Model.xcdatamodeld in Sources */,
 				C27CB708160AF55F002A22FC /* NetWorkCom.m in Sources */,
 				C27CB709160AF55F002A22FC /* SocketMessage.m in Sources */,
+				C2AB89DB160B78E40075696F /* MDBufferedInputStream.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

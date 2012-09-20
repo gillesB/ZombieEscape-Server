@@ -79,6 +79,15 @@
     [self writeJson:msg.toJson ToStream:outputStream];
 }
 
+-(NSMutableArray*) getGamelist{
+    SocketMessage *msg = [SocketMessage createSocketMessageWithCommand:@"listGames" andValue: nil];
+    [self writeJson:msg.toJson ToStream:outputStream];
+    NSString* json = [inputStream readLine];
+    NSLog(@"from server lsgames: %@", json);
+    return nil;
+    
+}
+
 
 -(void)writeJson:(NSDictionary*)dict ToStream:(NSOutputStream*)stream{
     
@@ -104,11 +113,12 @@
     CFStringRef ipAddress = (__bridge CFStringRef)([[PlistHandler getPlistHandler] getServerIPAddress]);
     
     CFStreamCreatePairWithSocketToHost(NULL, ipAddress, 2004, &readStream, &writeStream);
-    inputStream = (__bridge NSInputStream *)readStream;
+    NSInputStream* input =(__bridge NSInputStream *)readStream;
+    inputStream = [[MDBufferedInputStream alloc] initWithInputStream:input bufferSize:1024 encoding:NSUTF8StringEncoding];
     outputStream = (__bridge NSOutputStream *)writeStream;
-    [inputStream setDelegate:self];
+    [inputStream.stream setDelegate:self];
     [outputStream setDelegate:self];
-    [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [inputStream.stream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [inputStream open];
     [outputStream open];
@@ -132,9 +142,6 @@
     [self closeConnection];
     [self initNetworkComm];
 }
-
-
-
 
 
 

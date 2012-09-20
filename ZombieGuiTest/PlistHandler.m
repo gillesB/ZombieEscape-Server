@@ -14,9 +14,6 @@
 
 @end
 
-//TODO enter Server IP manually
-
-
 @implementation PlistHandler (hidden)
     
     - (NSString*) getPlistPath{
