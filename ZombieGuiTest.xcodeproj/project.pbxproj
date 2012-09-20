@@ -20,6 +20,12 @@
 		19786C691600B5730089F833 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19786C4A1600B5730089F833 /* Foundation.framework */; };
 		19786C711600B5730089F833 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19786C6F1600B5730089F833 /* InfoPlist.strings */; };
 		19786C741600B5730089F833 /* ZombieGuiTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19786C731600B5730089F833 /* ZombieGuiTestTests.m */; };
+		C27CB701160AF541002A22FC /* GPSCon.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FB160AF541002A22FC /* GPSCon.m */; };
+		C27CB702160AF541002A22FC /* GPSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FD160AF541002A22FC /* GPSLocation.m */; };
+		C27CB703160AF541002A22FC /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FF160AF541002A22FC /* Model.xcdatamodeld */; };
+		C27CB708160AF55F002A22FC /* NetWorkCom.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB705160AF55F002A22FC /* NetWorkCom.m */; };
+		C27CB709160AF55F002A22FC /* SocketMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB707160AF55F002A22FC /* SocketMessage.m */; };
+		C27CB70F160AFE1F002A22FC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27CB70E160AFE1F002A22FC /* CoreLocation.framework */; };
 		C2B3ECC716074384005D3F16 /* ZombieGuiTest.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2B3ECC616074384005D3F16 /* ZombieGuiTest.plist */; };
 		C2B3ECCA16076A32005D3F16 /* Socket_GameOverview.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3ECC916076A32005D3F16 /* Socket_GameOverview.m */; };
 		C2B3ECCD16077088005D3F16 /* JoinGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3ECCC16077088005D3F16 /* JoinGameViewController.m */; };
@@ -56,6 +62,16 @@
 		19786C701600B5730089F833 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		19786C721600B5730089F833 /* ZombieGuiTestTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZombieGuiTestTests.h; sourceTree = "<group>"; };
 		19786C731600B5730089F833 /* ZombieGuiTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZombieGuiTestTests.m; sourceTree = "<group>"; };
+		C27CB6FA160AF541002A22FC /* GPSCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSCon.h; sourceTree = "<group>"; };
+		C27CB6FB160AF541002A22FC /* GPSCon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSCon.m; sourceTree = "<group>"; };
+		C27CB6FC160AF541002A22FC /* GPSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSLocation.h; sourceTree = "<group>"; };
+		C27CB6FD160AF541002A22FC /* GPSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSLocation.m; sourceTree = "<group>"; };
+		C27CB6FE160AF541002A22FC /* JsonSerializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonSerializable.h; sourceTree = "<group>"; };
+		C27CB700160AF541002A22FC /* NetWorkCom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkCom.h; sourceTree = "<group>"; };
+		C27CB705160AF55F002A22FC /* NetWorkCom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkCom.m; sourceTree = "<group>"; };
+		C27CB706160AF55F002A22FC /* SocketMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketMessage.h; sourceTree = "<group>"; };
+		C27CB707160AF55F002A22FC /* SocketMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketMessage.m; sourceTree = "<group>"; };
+		C27CB70E160AFE1F002A22FC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C2B3ECC616074384005D3F16 /* ZombieGuiTest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ZombieGuiTest.plist; sourceTree = "<group>"; };
 		C2B3ECC816076A32005D3F16 /* Socket_GameOverview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Socket_GameOverview.h; sourceTree = "<group>"; };
 		C2B3ECC916076A32005D3F16 /* Socket_GameOverview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Socket_GameOverview.m; sourceTree = "<group>"; };
@@ -70,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C27CB70F160AFE1F002A22FC /* CoreLocation.framework in Frameworks */,
 				19786C491600B5730089F833 /* UIKit.framework in Frameworks */,
 				19786C4B1600B5730089F833 /* Foundation.framework in Frameworks */,
 				19786C4D1600B5730089F833 /* CoreGraphics.framework in Frameworks */,
@@ -92,6 +109,8 @@
 		19786C391600B5730089F833 = {
 			isa = PBXGroup;
 			children = (
+				C27CB70E160AFE1F002A22FC /* CoreLocation.framework */,
+				C27CB6FF160AF541002A22FC /* Model.xcdatamodeld */,
 				19786C4E1600B5730089F833 /* ZombieGuiTest */,
 				19786C6C1600B5730089F833 /* ZombieGuiTestTests */,
 				19786C471600B5730089F833 /* Frameworks */,
@@ -124,17 +143,26 @@
 			isa = PBXGroup;
 			children = (
 				19786C571600B5730089F833 /* AppDelegate.h */,
-				C2B5050D16051CAD00EA29F5 /* PlistHandler.h */,
-				C2B5050E16051CAD00EA29F5 /* PlistHandler.m */,
 				19786C581600B5730089F833 /* AppDelegate.m */,
-				19786C5A1600B5730089F833 /* MainStoryboard.storyboard */,
-				19786C5D1600B5730089F833 /* Login_ViewController.h */,
-				19786C5E1600B5730089F833 /* Login_ViewController.m */,
-				C2B3ECC816076A32005D3F16 /* Socket_GameOverview.h */,
-				C2B3ECC916076A32005D3F16 /* Socket_GameOverview.m */,
-				19786C4F1600B5730089F833 /* Supporting Files */,
+				C27CB6FA160AF541002A22FC /* GPSCon.h */,
+				C27CB6FB160AF541002A22FC /* GPSCon.m */,
+				C27CB6FC160AF541002A22FC /* GPSLocation.h */,
+				C27CB6FD160AF541002A22FC /* GPSLocation.m */,
 				C2B3ECCB16077087005D3F16 /* JoinGameViewController.h */,
 				C2B3ECCC16077088005D3F16 /* JoinGameViewController.m */,
+				C27CB6FE160AF541002A22FC /* JsonSerializable.h */,
+				19786C5D1600B5730089F833 /* Login_ViewController.h */,
+				19786C5E1600B5730089F833 /* Login_ViewController.m */,
+				19786C5A1600B5730089F833 /* MainStoryboard.storyboard */,
+				C27CB700160AF541002A22FC /* NetWorkCom.h */,
+				C27CB705160AF55F002A22FC /* NetWorkCom.m */,
+				C2B5050D16051CAD00EA29F5 /* PlistHandler.h */,
+				C2B5050E16051CAD00EA29F5 /* PlistHandler.m */,
+				C2B3ECC816076A32005D3F16 /* Socket_GameOverview.h */,
+				C2B3ECC916076A32005D3F16 /* Socket_GameOverview.m */,
+				C27CB706160AF55F002A22FC /* SocketMessage.h */,
+				C27CB707160AF55F002A22FC /* SocketMessage.m */,
+				19786C4F1600B5730089F833 /* Supporting Files */,
 			);
 			path = ZombieGuiTest;
 			sourceTree = "<group>";
@@ -306,6 +334,11 @@
 				C2B5050F16051CAD00EA29F5 /* PlistHandler.m in Sources */,
 				C2B3ECCA16076A32005D3F16 /* Socket_GameOverview.m in Sources */,
 				C2B3ECCD16077088005D3F16 /* JoinGameViewController.m in Sources */,
+				C27CB701160AF541002A22FC /* GPSCon.m in Sources */,
+				C27CB702160AF541002A22FC /* GPSLocation.m in Sources */,
+				C27CB703160AF541002A22FC /* Model.xcdatamodeld in Sources */,
+				C27CB708160AF55F002A22FC /* NetWorkCom.m in Sources */,
+				C27CB709160AF55F002A22FC /* SocketMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +526,18 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C27CB6FF160AF541002A22FC /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+			);
+			name = Model.xcdatamodeld;
+			path = ZombieGuiTest/Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 19786C3B1600B5730089F833 /* Project object */;
 }

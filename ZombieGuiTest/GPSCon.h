@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NetWorkCom.h"
 #import <CoreLocation/CoreLocation.h>
+#import "NetWorkCom.h"
 #import "GPSLocation.h"
 
 
