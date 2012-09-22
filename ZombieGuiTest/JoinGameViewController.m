@@ -138,14 +138,5 @@
     
 }
 
-- (NSMutableArray*) createArrayToDisplay{
-    Socket_GameOverview *g1 = [[Socket_GameOverview alloc]initWithGameID:1 name:@"G1" amountGamers:23 longitude:0 latitude:0];
-    Socket_GameOverview *g2 = [[Socket_GameOverview alloc]initWithGameID:2 name:@"Zombie Escape" amountGamers:42 longitude:10 latitude:10];
-    Socket_GameOverview *g3 = [[Socket_GameOverview alloc]initWithGameID:3 name:@"Paranorman" amountGamers:5 longitude:47 latitude:11];
-    
-    NSMutableArray* game_list = [[NSMutableArray alloc]initWithObjects:g1, g2, g3, nil ];
-    return game_list;
-    
-}
 
 @end
