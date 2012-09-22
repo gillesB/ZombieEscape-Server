@@ -261,15 +261,26 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="KxZ-Jd-IIU">
-                                <rect key="frame" x="20" y="20" width="728" height="964"/>
+                                <rect key="frame" x="20" y="20" width="728" height="753"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="xZS-0n-uNN">
+                                <rect key="frame" x="71" y="837" width="627" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="LocationLabel" destination="xZS-0n-uNN" id="I4R-Xa-DTx"/>
+                        <outlet property="MapView" destination="KxZ-Jd-IIU" id="1q4-eP-QC8"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2521" y="459"/>
+            <point key="canvasLocation" x="2573" y="675"/>
         </scene>
     </scenes>
     <classes>
