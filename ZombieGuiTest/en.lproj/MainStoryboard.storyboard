@@ -164,6 +164,7 @@
                                 </state>
                                 <connections>
                                     <action selector="btnCreateGameOnClick:" destination="LuZ-aD-vX1" eventType="touchUpInside" id="1IZ-Ck-G1c"/>
+                                    <segue destination="ksl-lR-LfY" kind="push" id="EsY-3b-2I5"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Game Name" minimumFontSize="17" id="tHw-hE-8Fi">
@@ -315,9 +316,41 @@
             <point key="canvasLocation" x="2573" y="675"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="Create_GameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Create_GameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnCreateGameOnClick:"/>
+                <relationship kind="outlet" name="btnCreateGame" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="edtGameName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="JoinGameViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JoinGameViewController.h"/>
+        </class>
+        <class className="Login_ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Login_ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="edtIPAddressChanged:"/>
+                <relationship kind="action" name="onBtnLoginClick:"/>
+                <relationship kind="outlet" name="edtIPAddress" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="edtUserName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="LocationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="MapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="EsY-3b-2I5"/>
+    </inferredMetricsTieBreakers>
 </document>

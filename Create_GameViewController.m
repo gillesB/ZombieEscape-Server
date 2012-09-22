@@ -48,11 +48,13 @@
 - (IBAction)btnCreateGameOnClick:(id)sender {
     NSString* gamename = [edtGameName text];
     if ([gamename length] != 0){
-        //TODO perform segue to game
-        //[self performSegueWithIdentifier: @"segLoginToMainMenu" sender: self];
+        //TODO perform segue to mapview, via joinGame (low prio)
         
-        [[NetWorkCom getNetWorkCom] createNewGame: gamename];
-    } else { //Connection is ready but username is empty
+        int gameID = [[NetWorkCom getNetWorkCom] createNewGame: gamename];
+        [[NetWorkCom getNetWorkCom] addPlayerToGame:gameID];
+
+        
+    } else { //Connection is ready but gamename is empty
         NSLog(@"%@",@"GameName is empty");
         [self showMessageNoGameName];
     }

@@ -19,7 +19,7 @@
 }
 
 -(void) createNewPlayer:(NSString*)playerName ;
--(void) createNewGame:(NSString*)gameName ;
+-(int) createNewGame:(NSString*)gameName ;
 -(void) addPlayerToGame:(int)gameID;
 -(void) removePlayer;
 -(void) setLocation:(GPSLocation*)loc;

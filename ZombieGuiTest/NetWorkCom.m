@@ -62,9 +62,11 @@
     [self writeJson:msg.toJson ToStream:outputStream];
 }
 
--(void) createNewGame:(NSString*)gameName {
+-(int) createNewGame:(NSString*)gameName {
     SocketMessage *msg = [SocketMessage createSocketMessageWithCommand:@"newGame" andValue:gameName];               
     [self writeJson:msg.toJson ToStream:outputStream];
+    //return the gameID received from the server
+    return [[inputStream readLine] intValue];
 }
 
 -(void) addPlayerToGame:(int)gameID{
