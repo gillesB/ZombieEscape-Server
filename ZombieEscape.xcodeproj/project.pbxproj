@@ -57,22 +57,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		19786C441600B5730089F833 /* ZombieGuiTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZombieGuiTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		19786C441600B5730089F833 /* ZombieEscape.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZombieEscape.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19786C481600B5730089F833 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		19786C4A1600B5730089F833 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		19786C4C1600B5730089F833 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		19786C501600B5730089F833 /* ZombieGuiTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZombieGuiTest-Info.plist"; sourceTree = "<group>"; };
+		19786C501600B5730089F833 /* ZombieEscape-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZombieEscape-Info.plist"; sourceTree = "<group>"; };
 		19786C521600B5730089F833 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		19786C541600B5730089F833 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		19786C561600B5730089F833 /* ZombieGuiTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZombieGuiTest-Prefix.pch"; sourceTree = "<group>"; };
+		19786C561600B5730089F833 /* ZombieEscape-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZombieEscape-Prefix.pch"; sourceTree = "<group>"; };
 		19786C571600B5730089F833 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		19786C581600B5730089F833 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		19786C5B1600B5730089F833 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		19786C5D1600B5730089F833 /* Login_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Login_ViewController.h; sourceTree = "<group>"; };
 		19786C5E1600B5730089F833 /* Login_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Login_ViewController.m; sourceTree = "<group>"; };
-		19786C651600B5730089F833 /* ZombieGuiTestTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZombieGuiTestTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		19786C651600B5730089F833 /* ZombieEscapeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZombieEscapeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19786C661600B5730089F833 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		19786C6E1600B5730089F833 /* ZombieGuiTestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZombieGuiTestTests-Info.plist"; sourceTree = "<group>"; };
+		19786C6E1600B5730089F833 /* ZombieEscapeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZombieEscapeTests-Info.plist"; sourceTree = "<group>"; };
 		19786C701600B5730089F833 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		19786C721600B5730089F833 /* ZombieGuiTestTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZombieGuiTestTests.h; sourceTree = "<group>"; };
 		19786C731600B5730089F833 /* ZombieGuiTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZombieGuiTestTests.m; sourceTree = "<group>"; };
@@ -152,20 +152,20 @@
 		19786C391600B5730089F833 = {
 			isa = PBXGroup;
 			children = (
-				C27CB6FF160AF541002A22FC /* Model.xcdatamodeld */,
 				19786C4E1600B5730089F833 /* ZombieGuiTest */,
-				19786C6C1600B5730089F833 /* ZombieGuiTestTests */,
 				19786C471600B5730089F833 /* Frameworks */,
+				C27CB6FF160AF541002A22FC /* Model.xcdatamodeld */,
 				19786C451600B5730089F833 /* Products */,
 				C2B3ECC516074298005D3F16 /* Resources */,
+				19786C6C1600B5730089F833 /* ZombieGuiTestTests */,
 			);
 			sourceTree = "<group>";
 		};
 		19786C451600B5730089F833 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				19786C441600B5730089F833 /* ZombieGuiTest.app */,
-				19786C651600B5730089F833 /* ZombieGuiTestTests.octest */,
+				19786C441600B5730089F833 /* ZombieEscape.app */,
+				19786C651600B5730089F833 /* ZombieEscapeTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,12 +185,11 @@
 		19786C4E1600B5730089F833 /* ZombieGuiTest */ = {
 			isa = PBXGroup;
 			children = (
-				C2AB89D9160B78E40075696F /* MDBufferedInputStream.h */,
-				C2AB89DA160B78E40075696F /* MDBufferedInputStream.m */,
-				C27A1D6B160DB8940034AF45 /* Create_GameViewController.h */,
-				C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */,
 				19786C571600B5730089F833 /* AppDelegate.h */,
 				19786C581600B5730089F833 /* AppDelegate.m */,
+				C2AB89DD160B8C2C0075696F /* Classes */,
+				C27A1D6B160DB8940034AF45 /* Create_GameViewController.h */,
+				C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */,
 				C27CB6FA160AF541002A22FC /* GPSCon.h */,
 				C27CB6FB160AF541002A22FC /* GPSCon.m */,
 				C27CB6FC160AF541002A22FC /* GPSLocation.h */,
@@ -201,6 +200,8 @@
 				19786C5D1600B5730089F833 /* Login_ViewController.h */,
 				19786C5E1600B5730089F833 /* Login_ViewController.m */,
 				19786C5A1600B5730089F833 /* MainStoryboard.storyboard */,
+				C2AB89D9160B78E40075696F /* MDBufferedInputStream.h */,
+				C2AB89DA160B78E40075696F /* MDBufferedInputStream.m */,
 				C27CB700160AF541002A22FC /* NetWorkCom.h */,
 				C27CB705160AF55F002A22FC /* NetWorkCom.m */,
 				C2B5050D16051CAD00EA29F5 /* PlistHandler.h */,
@@ -209,7 +210,6 @@
 				C2B3ECC916076A32005D3F16 /* Socket_GameOverview.m */,
 				C27CB706160AF55F002A22FC /* SocketMessage.h */,
 				C27CB707160AF55F002A22FC /* SocketMessage.m */,
-				C2AB89DD160B8C2C0075696F /* Classes */,
 				19786C4F1600B5730089F833 /* Supporting Files */,
 			);
 			path = ZombieGuiTest;
@@ -218,10 +218,10 @@
 		19786C4F1600B5730089F833 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				19786C501600B5730089F833 /* ZombieGuiTest-Info.plist */,
+				19786C501600B5730089F833 /* ZombieEscape-Info.plist */,
 				19786C511600B5730089F833 /* InfoPlist.strings */,
 				19786C541600B5730089F833 /* main.m */,
-				19786C561600B5730089F833 /* ZombieGuiTest-Prefix.pch */,
+				19786C561600B5730089F833 /* ZombieEscape-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -239,7 +239,7 @@
 		19786C6D1600B5730089F833 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				19786C6E1600B5730089F833 /* ZombieGuiTestTests-Info.plist */,
+				19786C6E1600B5730089F833 /* ZombieEscapeTests-Info.plist */,
 				19786C6F1600B5730089F833 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -289,9 +289,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		19786C431600B5730089F833 /* ZombieGuiTest */ = {
+		19786C431600B5730089F833 /* ZombieEscape */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 19786C771600B5730089F833 /* Build configuration list for PBXNativeTarget "ZombieGuiTest" */;
+			buildConfigurationList = 19786C771600B5730089F833 /* Build configuration list for PBXNativeTarget "ZombieEscape" */;
 			buildPhases = (
 				19786C401600B5730089F833 /* Sources */,
 				19786C411600B5730089F833 /* Frameworks */,
@@ -302,14 +302,14 @@
 			);
 			dependencies = (
 			);
-			name = ZombieGuiTest;
+			name = ZombieEscape;
 			productName = ZombieGuiTest;
-			productReference = 19786C441600B5730089F833 /* ZombieGuiTest.app */;
+			productReference = 19786C441600B5730089F833 /* ZombieEscape.app */;
 			productType = "com.apple.product-type.application";
 		};
-		19786C641600B5730089F833 /* ZombieGuiTestTests */ = {
+		19786C641600B5730089F833 /* ZombieEscapeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 19786C7A1600B5730089F833 /* Build configuration list for PBXNativeTarget "ZombieGuiTestTests" */;
+			buildConfigurationList = 19786C7A1600B5730089F833 /* Build configuration list for PBXNativeTarget "ZombieEscapeTests" */;
 			buildPhases = (
 				19786C601600B5730089F833 /* Sources */,
 				19786C611600B5730089F833 /* Frameworks */,
@@ -321,9 +321,9 @@
 			dependencies = (
 				19786C6B1600B5730089F833 /* PBXTargetDependency */,
 			);
-			name = ZombieGuiTestTests;
+			name = ZombieEscapeTests;
 			productName = ZombieGuiTestTests;
-			productReference = 19786C651600B5730089F833 /* ZombieGuiTestTests.octest */;
+			productReference = 19786C651600B5730089F833 /* ZombieEscapeTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -335,7 +335,7 @@
 				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "HTW Saarland";
 			};
-			buildConfigurationList = 19786C3E1600B5730089F833 /* Build configuration list for PBXProject "ZombieGuiTest" */;
+			buildConfigurationList = 19786C3E1600B5730089F833 /* Build configuration list for PBXProject "ZombieEscape" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -347,8 +347,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				19786C431600B5730089F833 /* ZombieGuiTest */,
-				19786C641600B5730089F833 /* ZombieGuiTestTests */,
+				19786C431600B5730089F833 /* ZombieEscape */,
+				19786C641600B5730089F833 /* ZombieEscapeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -449,7 +449,7 @@
 /* Begin PBXTargetDependency section */
 		19786C6B1600B5730089F833 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 19786C431600B5730089F833 /* ZombieGuiTest */;
+			target = 19786C431600B5730089F833 /* ZombieEscape */;
 			targetProxy = 19786C6A1600B5730089F833 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -537,9 +537,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ZombieGuiTest/ZombieGuiTest-Prefix.pch";
-				INFOPLIST_FILE = "ZombieGuiTest/ZombieGuiTest-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "ZombieGuiTest/ZombieEscape-Prefix.pch";
+				INFOPLIST_FILE = "ZombieGuiTest/ZombieEscape-Info.plist";
+				PRODUCT_NAME = ZombieEscape;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -548,9 +548,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ZombieGuiTest/ZombieGuiTest-Prefix.pch";
-				INFOPLIST_FILE = "ZombieGuiTest/ZombieGuiTest-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "ZombieGuiTest/ZombieEscape-Prefix.pch";
+				INFOPLIST_FILE = "ZombieGuiTest/ZombieEscape-Info.plist";
+				PRODUCT_NAME = ZombieEscape;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -565,8 +565,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZombieGuiTest/ZombieGuiTest-Prefix.pch";
-				INFOPLIST_FILE = "ZombieGuiTestTests/ZombieGuiTestTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "ZombieGuiTestTests/ZombieEscapeTests-Info.plist";
+				PRODUCT_NAME = ZombieEscapeTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -582,8 +582,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZombieGuiTest/ZombieGuiTest-Prefix.pch";
-				INFOPLIST_FILE = "ZombieGuiTestTests/ZombieGuiTestTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "ZombieGuiTestTests/ZombieEscapeTests-Info.plist";
+				PRODUCT_NAME = ZombieEscapeTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -592,7 +592,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		19786C3E1600B5730089F833 /* Build configuration list for PBXProject "ZombieGuiTest" */ = {
+		19786C3E1600B5730089F833 /* Build configuration list for PBXProject "ZombieEscape" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				19786C751600B5730089F833 /* Debug */,
@@ -601,7 +601,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		19786C771600B5730089F833 /* Build configuration list for PBXNativeTarget "ZombieGuiTest" */ = {
+		19786C771600B5730089F833 /* Build configuration list for PBXNativeTarget "ZombieEscape" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				19786C781600B5730089F833 /* Debug */,
@@ -610,7 +610,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		19786C7A1600B5730089F833 /* Build configuration list for PBXNativeTarget "ZombieGuiTestTests" */ = {
+		19786C7A1600B5730089F833 /* Build configuration list for PBXNativeTarget "ZombieEscapeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				19786C7B1600B5730089F833 /* Debug */,
