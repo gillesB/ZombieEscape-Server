@@ -37,8 +37,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    //TODO get the gamelist from the server
-    self.gameList = [[NetWorkCom getNetWorkCom] getGamelist];//[self createArrayToDisplay];
+    self.gameList = [[NetWorkCom getNetWorkCom] getGamelist];
 }
 
 - (void)viewDidUnload

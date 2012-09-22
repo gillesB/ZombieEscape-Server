@@ -142,11 +142,11 @@
             </objects>
             <point key="canvasLocation" x="416" y="831"/>
         </scene>
-        <!--View Controller - Create Game-->
+        <!--Create Game View Controller - Create Game-->
         <scene sceneID="Ma7-IL-ydv">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qd-Ln-OW7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="LuZ-aD-vX1" sceneMemberID="viewController">
+                <viewController id="LuZ-aD-vX1" customClass="Create_GameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OWO-Gn-zNO">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -162,6 +162,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnCreateGameOnClick:" destination="LuZ-aD-vX1" eventType="touchUpInside" id="1IZ-Ck-G1c"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Game Name" minimumFontSize="17" id="tHw-hE-8Fi">
                                 <rect key="frame" x="336" y="347" width="97" height="31"/>
@@ -173,6 +176,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Game" id="nk0-ye-rKU"/>
+                    <connections>
+                        <outlet property="btnCreateGame" destination="Qxg-xi-EK3" id="pZH-Cw-ctA"/>
+                        <outlet property="edtGameName" destination="tHw-hE-8Fi" id="W0q-ia-NwG"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="1590" y="1331"/>
@@ -245,20 +252,6 @@
             <point key="canvasLocation" x="1535" y="79"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="JoinGameViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JoinGameViewController.h"/>
-        </class>
-        <class className="Login_ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Login_ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="edtIPAddressChanged:"/>
-                <relationship kind="action" name="onBtnLoginClick:"/>
-                <relationship kind="outlet" name="edtIPAddress" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="edtUserName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

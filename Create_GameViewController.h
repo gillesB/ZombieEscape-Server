@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Create_GameControllerViewController : UIViewController
+@interface Create_GameViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *edtGameName;
+@property (weak, nonatomic) IBOutlet UIButton *btnCreateGame;
+- (IBAction)btnCreateGameOnClick:(id)sender;
+
+- (void) showMessageNoGameName;
 
 @end

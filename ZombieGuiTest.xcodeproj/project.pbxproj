@@ -20,6 +20,7 @@
 		19786C691600B5730089F833 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19786C4A1600B5730089F833 /* Foundation.framework */; };
 		19786C711600B5730089F833 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19786C6F1600B5730089F833 /* InfoPlist.strings */; };
 		19786C741600B5730089F833 /* ZombieGuiTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19786C731600B5730089F833 /* ZombieGuiTestTests.m */; };
+		C27A1D6D160DB8940034AF45 /* Create_GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */; };
 		C27CB701160AF541002A22FC /* GPSCon.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FB160AF541002A22FC /* GPSCon.m */; };
 		C27CB702160AF541002A22FC /* GPSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FD160AF541002A22FC /* GPSLocation.m */; };
 		C27CB703160AF541002A22FC /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FF160AF541002A22FC /* Model.xcdatamodeld */; };
@@ -75,6 +76,8 @@
 		19786C701600B5730089F833 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		19786C721600B5730089F833 /* ZombieGuiTestTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZombieGuiTestTests.h; sourceTree = "<group>"; };
 		19786C731600B5730089F833 /* ZombieGuiTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZombieGuiTestTests.m; sourceTree = "<group>"; };
+		C27A1D6B160DB8940034AF45 /* Create_GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Create_GameViewController.h; path = ../Create_GameViewController.h; sourceTree = "<group>"; };
+		C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Create_GameViewController.m; path = ../Create_GameViewController.m; sourceTree = "<group>"; };
 		C27CB6FA160AF541002A22FC /* GPSCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSCon.h; sourceTree = "<group>"; };
 		C27CB6FB160AF541002A22FC /* GPSCon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSCon.m; sourceTree = "<group>"; };
 		C27CB6FC160AF541002A22FC /* GPSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSLocation.h; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 			children = (
 				C2AB89D9160B78E40075696F /* MDBufferedInputStream.h */,
 				C2AB89DA160B78E40075696F /* MDBufferedInputStream.m */,
+				C27A1D6B160DB8940034AF45 /* Create_GameViewController.h */,
+				C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */,
 				19786C571600B5730089F833 /* AppDelegate.h */,
 				19786C581600B5730089F833 /* AppDelegate.m */,
 				C27CB6FA160AF541002A22FC /* GPSCon.h */,
@@ -427,6 +432,7 @@
 				C2AB8A00160B8C2C0075696F /* SBJsonTokeniser.m in Sources */,
 				C2AB8A01160B8C2C0075696F /* SBJsonUTF8Stream.m in Sources */,
 				C2AB8A02160B8C2C0075696F /* SBJsonWriter.m in Sources */,
+				C27A1D6D160DB8940034AF45 /* Create_GameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

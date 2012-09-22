@@ -6,13 +6,16 @@
 //  Copyright (c) 2012 HTW Saarland. All rights reserved.
 //
 
-#import "Create_GameControllerViewController.h"
+#import "Create_GameViewController.h"
+#import "NetWorkCom.h"
 
-@interface Create_GameControllerViewController ()
+@interface Create_GameViewController ()
 
 @end
 
-@implementation Create_GameControllerViewController
+@implementation Create_GameViewController
+@synthesize edtGameName;
+@synthesize btnCreateGame;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +34,8 @@
 
 - (void)viewDidUnload
 {
+    [self setBtnCreateGame:nil];
+    [self setEdtGameName:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -40,4 +45,28 @@
 	return YES;
 }
 
+- (IBAction)btnCreateGameOnClick:(id)sender {
+    NSString* gamename = [edtGameName text];
+    if ([gamename length] != 0){
+        //TODO perform segue to game
+        //[self performSegueWithIdentifier: @"segLoginToMainMenu" sender: self];
+        
+        [[NetWorkCom getNetWorkCom] createNewGame: gamename];
+    } else { //Connection is ready but username is empty
+        NSLog(@"%@",@"GameName is empty");
+        [self showMessageNoGameName];
+    }
+    
+    
+}
+
+- (void) showMessageNoGameName{
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Information"
+                                                      message:@"Please enter a Gamename."
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    
+    [message show];
+}
 @end
