@@ -41,12 +41,13 @@
         case NSStreamEventHasBytesAvailable:   
         {
             
-            uint8_t buf[1024];
+            /*uint8_t buf[1024];
             unsigned int len = 0;
             len = [(NSInputStream *)stream read:buf maxLength:1024];
             if(len) {
                 NSLog(@"%@",[[NSString alloc] initWithBytes:buf length:1024 encoding:NSASCIIStringEncoding])  ;
-            }
+            }*/
+            NSLog(@"message from server: %@",inputStream.readLine);
             break;
         }
             
@@ -91,7 +92,7 @@
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSArray *id_array = [parser objectWithString:json];
     
-    NSMutableArray *gnameArray = [[NSMutableArray alloc] initWithCapacity:[id_array count]];
+    NSMutableArray *gameArray = [[NSMutableArray alloc] initWithCapacity:[id_array count]];
     
     for (int i = 0; i < [id_array count];i++) {
         NSDictionary *d = [id_array objectAtIndex:i];
@@ -104,11 +105,11 @@
         
         Socket_GameOverview *s = [[Socket_GameOverview alloc] initWithGameID:gameID name:name amountGamers:amount longitude:longi latitude:lati];
         
-        [gnameArray addObject:s];
+        [gameArray addObject:s];
         
     }
 
-    return gnameArray;
+    return gameArray;
     
 }
 
