@@ -6,8 +6,18 @@
 //  Copyright (c) 2012 HTW Saarland. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
-@interface MapViewController : NSObject
+#import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+
+
+NSInputStream *inputStream;
+NSOutputStream *outputStream;
+
+@interface MapViewController :  UIViewController <CLLocationManagerDelegate,MKMapViewDelegate>{
+    CLLocationManager *locationManager;}
+
+@property (weak, nonatomic) IBOutlet MKMapView *MapView;
+@property (strong, nonatomic) IBOutlet UILabel *LocationLabel;
 
 @end
