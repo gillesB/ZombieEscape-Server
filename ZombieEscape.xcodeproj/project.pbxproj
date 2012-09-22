@@ -203,14 +203,14 @@
 				C27CB6FD160AF541002A22FC /* GPSLocation.m */,
 				C27CB6FE160AF541002A22FC /* JsonSerializable.h */,
 				19786C5A1600B5730089F833 /* MainStoryboard.storyboard */,
+				3D919EA1160DF7D10006E88E /* PlayerLocation.h */,
+				3D919EA2160DF7D10006E88E /* PlayerLocation.m */,
 				C27A1D6F160DC2E80034AF45 /* Network */,
 				C2B5050D16051CAD00EA29F5 /* PlistHandler.h */,
 				C2B5050E16051CAD00EA29F5 /* PlistHandler.m */,
 				C2AB89DD160B8C2C0075696F /* SBJson (copied) */,
 				19786C4F1600B5730089F833 /* Supporting Files */,
 				C27A1D70160DC31D0034AF45 /* ViewControllers */,
-				3D919EA1160DF7D10006E88E /* PlayerLocation.h */,
-				3D919EA2160DF7D10006E88E /* PlayerLocation.m */,
 			);
 			name = ZombieEscape;
 			path = ZombieGuiTest;

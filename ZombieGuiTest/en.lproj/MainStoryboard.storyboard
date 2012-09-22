@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="11E53" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -251,7 +251,56 @@
             </objects>
             <point key="canvasLocation" x="1535" y="79"/>
         </scene>
+        <!--Map View Controller - MapViewController-->
+        <scene sceneID="Sxw-mV-o5V">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m5j-mJ-ba9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="MapViewController" title="MapViewController" id="ksl-lR-LfY" customClass="MapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hRS-xC-EY2">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="KxZ-Jd-IIU">
+                                <rect key="frame" x="20" y="20" width="728" height="964"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2521" y="459"/>
+        </scene>
     </scenes>
+    <classes>
+        <class className="Create_GameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Create_GameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnCreateGameOnClick:"/>
+                <relationship kind="outlet" name="btnCreateGame" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="edtGameName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="JoinGameViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JoinGameViewController.h"/>
+        </class>
+        <class className="Login_ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Login_ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="edtIPAddressChanged:"/>
+                <relationship kind="action" name="onBtnLoginClick:"/>
+                <relationship kind="outlet" name="edtIPAddress" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="edtUserName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="LocationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="MapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
