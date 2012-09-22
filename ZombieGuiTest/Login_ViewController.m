@@ -57,9 +57,9 @@
         NSLog(@"%@",@"Network connection is not ready");
         [self showMessageNoNetworkConnection];
     } else if ([[edtUserName text] length] != 0){
-        [self performSegueWithIdentifier: @"segLoginToMainMenu" sender: self];
         [[PlistHandler getPlistHandler] setUsername:[edtUserName text]];
         [[NetWorkCom getNetWorkCom] createNewPlayer: edtUserName.text];
+        [self performSegueWithIdentifier: @"segLoginToMainMenu" sender: self];
     } else { //Connection is ready but username is empty
         NSLog(@"%@",@"Username is empty");
         [self showMessageNoUserName];

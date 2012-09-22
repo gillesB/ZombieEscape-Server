@@ -134,7 +134,16 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
-    //TODO go to the game view
+    //get selected game
+    Socket_GameOverview *s = [self.gameList objectAtIndex:indexPath.row];
+    NSLog(@"Selected game: %d - %@", s.gameID, s.name);
+    
+    //add gamer to game
+    //TODO give MapView information if gamer is zombie or not
+    [[NetWorkCom getNetWorkCom] addPlayerToGame:s.gameID];
+    
+    
+    [self performSegueWithIdentifier: @"segJoinGameToMapView" sender: self];
     
 }
 
