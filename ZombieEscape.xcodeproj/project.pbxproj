@@ -68,28 +68,28 @@
 		19786C571600B5730089F833 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		19786C581600B5730089F833 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		19786C5B1600B5730089F833 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		19786C5D1600B5730089F833 /* Login_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Login_ViewController.h; sourceTree = "<group>"; };
-		19786C5E1600B5730089F833 /* Login_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Login_ViewController.m; sourceTree = "<group>"; };
+		19786C5D1600B5730089F833 /* Login_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Login_ViewController.h; path = ZombieGuiTest/Login_ViewController.h; sourceTree = "<group>"; };
+		19786C5E1600B5730089F833 /* Login_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Login_ViewController.m; path = ZombieGuiTest/Login_ViewController.m; sourceTree = "<group>"; };
 		19786C651600B5730089F833 /* ZombieEscapeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZombieEscapeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19786C661600B5730089F833 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		19786C6E1600B5730089F833 /* ZombieEscapeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZombieEscapeTests-Info.plist"; sourceTree = "<group>"; };
 		19786C701600B5730089F833 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		19786C721600B5730089F833 /* ZombieGuiTestTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZombieGuiTestTests.h; sourceTree = "<group>"; };
 		19786C731600B5730089F833 /* ZombieGuiTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZombieGuiTestTests.m; sourceTree = "<group>"; };
-		C27A1D6B160DB8940034AF45 /* Create_GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Create_GameViewController.h; path = ../Create_GameViewController.h; sourceTree = "<group>"; };
-		C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Create_GameViewController.m; path = ../Create_GameViewController.m; sourceTree = "<group>"; };
+		C27A1D6B160DB8940034AF45 /* Create_GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Create_GameViewController.h; sourceTree = "<group>"; };
+		C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Create_GameViewController.m; sourceTree = "<group>"; };
 		C27CB6FA160AF541002A22FC /* GPSCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSCon.h; sourceTree = "<group>"; };
 		C27CB6FB160AF541002A22FC /* GPSCon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSCon.m; sourceTree = "<group>"; };
 		C27CB6FC160AF541002A22FC /* GPSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSLocation.h; sourceTree = "<group>"; };
 		C27CB6FD160AF541002A22FC /* GPSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSLocation.m; sourceTree = "<group>"; };
 		C27CB6FE160AF541002A22FC /* JsonSerializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonSerializable.h; sourceTree = "<group>"; };
-		C27CB700160AF541002A22FC /* NetWorkCom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkCom.h; sourceTree = "<group>"; };
-		C27CB705160AF55F002A22FC /* NetWorkCom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkCom.m; sourceTree = "<group>"; };
-		C27CB706160AF55F002A22FC /* SocketMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketMessage.h; sourceTree = "<group>"; };
-		C27CB707160AF55F002A22FC /* SocketMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketMessage.m; sourceTree = "<group>"; };
+		C27CB700160AF541002A22FC /* NetWorkCom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetWorkCom.h; path = ZombieGuiTest/NetWorkCom.h; sourceTree = "<group>"; };
+		C27CB705160AF55F002A22FC /* NetWorkCom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetWorkCom.m; path = ZombieGuiTest/NetWorkCom.m; sourceTree = "<group>"; };
+		C27CB706160AF55F002A22FC /* SocketMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocketMessage.h; path = ZombieGuiTest/SocketMessage.h; sourceTree = "<group>"; };
+		C27CB707160AF55F002A22FC /* SocketMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocketMessage.m; path = ZombieGuiTest/SocketMessage.m; sourceTree = "<group>"; };
 		C27CB70E160AFE1F002A22FC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		C2AB89D9160B78E40075696F /* MDBufferedInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDBufferedInputStream.h; path = ../MDBufferedInputStream.h; sourceTree = "<group>"; };
-		C2AB89DA160B78E40075696F /* MDBufferedInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDBufferedInputStream.m; path = ../MDBufferedInputStream.m; sourceTree = "<group>"; };
+		C2AB89D9160B78E40075696F /* MDBufferedInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDBufferedInputStream.h; sourceTree = "<group>"; };
+		C2AB89DA160B78E40075696F /* MDBufferedInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDBufferedInputStream.m; sourceTree = "<group>"; };
 		C2AB89DE160B8C2C0075696F /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		C2AB89DF160B8C2C0075696F /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		C2AB89E0160B8C2C0075696F /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -116,10 +116,10 @@
 		C2AB89F5160B8C2C0075696F /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		C2AB89F6160B8C2C0075696F /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		C2B3ECC616074384005D3F16 /* ZombieGuiTest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ZombieGuiTest.plist; sourceTree = "<group>"; };
-		C2B3ECC816076A32005D3F16 /* Socket_GameOverview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Socket_GameOverview.h; sourceTree = "<group>"; };
-		C2B3ECC916076A32005D3F16 /* Socket_GameOverview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Socket_GameOverview.m; sourceTree = "<group>"; };
-		C2B3ECCB16077087005D3F16 /* JoinGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinGameViewController.h; sourceTree = "<group>"; };
-		C2B3ECCC16077088005D3F16 /* JoinGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinGameViewController.m; sourceTree = "<group>"; };
+		C2B3ECC816076A32005D3F16 /* Socket_GameOverview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Socket_GameOverview.h; path = ZombieGuiTest/Socket_GameOverview.h; sourceTree = "<group>"; };
+		C2B3ECC916076A32005D3F16 /* Socket_GameOverview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Socket_GameOverview.m; path = ZombieGuiTest/Socket_GameOverview.m; sourceTree = "<group>"; };
+		C2B3ECCB16077087005D3F16 /* JoinGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoinGameViewController.h; path = ZombieGuiTest/JoinGameViewController.h; sourceTree = "<group>"; };
+		C2B3ECCC16077088005D3F16 /* JoinGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoinGameViewController.m; path = ZombieGuiTest/JoinGameViewController.m; sourceTree = "<group>"; };
 		C2B5050D16051CAD00EA29F5 /* PlistHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlistHandler.h; sourceTree = "<group>"; };
 		C2B5050E16051CAD00EA29F5 /* PlistHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlistHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,7 +152,7 @@
 		19786C391600B5730089F833 = {
 			isa = PBXGroup;
 			children = (
-				19786C4E1600B5730089F833 /* ZombieGuiTest */,
+				19786C4E1600B5730089F833 /* ZombieEscape */,
 				19786C471600B5730089F833 /* Frameworks */,
 				C27CB6FF160AF541002A22FC /* Model.xcdatamodeld */,
 				19786C451600B5730089F833 /* Products */,
@@ -182,36 +182,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		19786C4E1600B5730089F833 /* ZombieGuiTest */ = {
+		19786C4E1600B5730089F833 /* ZombieEscape */ = {
 			isa = PBXGroup;
 			children = (
 				19786C571600B5730089F833 /* AppDelegate.h */,
 				19786C581600B5730089F833 /* AppDelegate.m */,
-				C2AB89DD160B8C2C0075696F /* Classes */,
-				C27A1D6B160DB8940034AF45 /* Create_GameViewController.h */,
-				C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */,
 				C27CB6FA160AF541002A22FC /* GPSCon.h */,
 				C27CB6FB160AF541002A22FC /* GPSCon.m */,
 				C27CB6FC160AF541002A22FC /* GPSLocation.h */,
 				C27CB6FD160AF541002A22FC /* GPSLocation.m */,
-				C2B3ECCB16077087005D3F16 /* JoinGameViewController.h */,
-				C2B3ECCC16077088005D3F16 /* JoinGameViewController.m */,
 				C27CB6FE160AF541002A22FC /* JsonSerializable.h */,
-				19786C5D1600B5730089F833 /* Login_ViewController.h */,
-				19786C5E1600B5730089F833 /* Login_ViewController.m */,
 				19786C5A1600B5730089F833 /* MainStoryboard.storyboard */,
-				C2AB89D9160B78E40075696F /* MDBufferedInputStream.h */,
-				C2AB89DA160B78E40075696F /* MDBufferedInputStream.m */,
-				C27CB700160AF541002A22FC /* NetWorkCom.h */,
-				C27CB705160AF55F002A22FC /* NetWorkCom.m */,
+				C27A1D6F160DC2E80034AF45 /* Network */,
 				C2B5050D16051CAD00EA29F5 /* PlistHandler.h */,
 				C2B5050E16051CAD00EA29F5 /* PlistHandler.m */,
-				C2B3ECC816076A32005D3F16 /* Socket_GameOverview.h */,
-				C2B3ECC916076A32005D3F16 /* Socket_GameOverview.m */,
-				C27CB706160AF55F002A22FC /* SocketMessage.h */,
-				C27CB707160AF55F002A22FC /* SocketMessage.m */,
+				C2AB89DD160B8C2C0075696F /* SBJson (copied) */,
 				19786C4F1600B5730089F833 /* Supporting Files */,
+				C27A1D70160DC31D0034AF45 /* ViewControllers */,
 			);
+			name = ZombieEscape;
 			path = ZombieGuiTest;
 			sourceTree = "<group>";
 		};
@@ -245,7 +234,45 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C2AB89DD160B8C2C0075696F /* Classes */ = {
+		C27A1D6F160DC2E80034AF45 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C27A1D71160DC4810034AF45 /* copied */,
+				C27CB700160AF541002A22FC /* NetWorkCom.h */,
+				C27CB705160AF55F002A22FC /* NetWorkCom.m */,
+				C2B3ECC816076A32005D3F16 /* Socket_GameOverview.h */,
+				C2B3ECC916076A32005D3F16 /* Socket_GameOverview.m */,
+				C27CB706160AF55F002A22FC /* SocketMessage.h */,
+				C27CB707160AF55F002A22FC /* SocketMessage.m */,
+			);
+			name = Network;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		C27A1D70160DC31D0034AF45 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C27A1D6B160DB8940034AF45 /* Create_GameViewController.h */,
+				C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */,
+				C2B3ECCB16077087005D3F16 /* JoinGameViewController.h */,
+				C2B3ECCC16077088005D3F16 /* JoinGameViewController.m */,
+				19786C5D1600B5730089F833 /* Login_ViewController.h */,
+				19786C5E1600B5730089F833 /* Login_ViewController.m */,
+			);
+			name = ViewControllers;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		C27A1D71160DC4810034AF45 /* copied */ = {
+			isa = PBXGroup;
+			children = (
+				C2AB89D9160B78E40075696F /* MDBufferedInputStream.h */,
+				C2AB89DA160B78E40075696F /* MDBufferedInputStream.m */,
+			);
+			name = copied;
+			sourceTree = "<group>";
+		};
+		C2AB89DD160B8C2C0075696F /* SBJson (copied) */ = {
 			isa = PBXGroup;
 			children = (
 				C2AB89DE160B8C2C0075696F /* NSObject+SBJson.h */,
@@ -274,6 +301,7 @@
 				C2AB89F5160B8C2C0075696F /* SBJsonWriter.h */,
 				C2AB89F6160B8C2C0075696F /* SBJsonWriter.m */,
 			);
+			name = "SBJson (copied)";
 			path = Classes;
 			sourceTree = "<group>";
 		};
