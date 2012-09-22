@@ -11,10 +11,12 @@
 #import "MDBufferedInputStream.h"
 
 
-MDBufferedInputStream *inputStream;
-NSOutputStream *outputStream;
 
-@interface NetWorkCom : NSObject
+
+@interface NetWorkCom : NSObject{
+    MDBufferedInputStream *inputStream;
+    NSOutputStream *outputStream;
+}
 
 -(void) createNewPlayer:(NSString*)playerName ;
 -(void) createNewGame:(NSString*)gameName ;

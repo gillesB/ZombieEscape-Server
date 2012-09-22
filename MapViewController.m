@@ -9,6 +9,7 @@
 #import "SocketMessage.h"
 #import "GPSLocation.h"
 #import "PlayerLocation.h"
+#import "NetWorkCom.h"
 
 @interface MapViewController ()
 
@@ -89,6 +90,14 @@
     [self setLocationLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [[NetWorkCom getNetWorkCom] removePlayer];
+    
 }
 
 

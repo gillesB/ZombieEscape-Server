@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-
+//!!! this should be replaced by NetWorCom
 NSInputStream *inputStream;
 NSOutputStream *outputStream;
 
