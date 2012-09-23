@@ -318,35 +318,6 @@
     <resources>
         <image name="btnLogIn_v1.png" width="394" height="342"/>
     </resources>
-    <classes>
-        <class className="Create_GameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Create_GameViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="btnCreateGameOnClick:"/>
-                <relationship kind="outlet" name="btnCreateGame" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="edtGameName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="JoinGameViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JoinGameViewController.h"/>
-        </class>
-        <class className="Login_ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Login_ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="edtIPAddressChanged:"/>
-                <relationship kind="action" name="onBtnLoginClick:"/>
-                <relationship kind="outlet" name="edtIPAddress" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="edtUserName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="LocationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="MapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
