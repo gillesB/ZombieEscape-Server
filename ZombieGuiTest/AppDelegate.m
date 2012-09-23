@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NetWorkCom.h"
+#import "LocationManager.h"
 
 
 @implementation AppDelegate
@@ -19,6 +20,7 @@
     
     //init NetWorkCom (a singleton responsible for thet Networkconnection and Communication)
     [NetWorkCom getNetWorkCom];
+    [LocationManager getLocationManager];
     
     return YES;
 }
