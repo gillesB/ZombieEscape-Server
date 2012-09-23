@@ -47,7 +47,7 @@
     
       
     [self drawPlayer];
-    _gameOrg = [GameOrganizer getGameOrganizer:YES];
+    _gameOrg = [GameOrganizer getGameOrganizer:NO];
     
 }
 
