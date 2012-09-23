@@ -25,6 +25,7 @@
 		3D919EA9160E0BF90006E88E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D919EA8160E0BF90006E88E /* MapKit.framework */; };
 		3DF56C71160F263E0089EDF0 /* GameOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF56C70160F263E0089EDF0 /* GameOrganizer.m */; };
 		C27951C8160F40D000E63970 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C27951C7160F40D000E63970 /* LocationManager.m */; };
+		C27951CB160F4F9600E63970 /* btnLogIn_v1.png in Resources */ = {isa = PBXBuildFile; fileRef = C27951CA160F4F9600E63970 /* btnLogIn_v1.png */; };
 		C27A1D6D160DB8940034AF45 /* Create_GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */; };
 		C27CB701160AF541002A22FC /* GPSCon.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FB160AF541002A22FC /* GPSCon.m */; };
 		C27CB702160AF541002A22FC /* GPSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FD160AF541002A22FC /* GPSLocation.m */; };
@@ -91,6 +92,7 @@
 		3DF56C70160F263E0089EDF0 /* GameOrganizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOrganizer.m; sourceTree = "<group>"; };
 		C27951C6160F40D000E63970 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		C27951C7160F40D000E63970 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		C27951CA160F4F9600E63970 /* btnLogIn_v1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnLogIn_v1.png; sourceTree = "<group>"; };
 		C27A1D6B160DB8940034AF45 /* Create_GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Create_GameViewController.h; sourceTree = "<group>"; };
 		C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Create_GameViewController.m; sourceTree = "<group>"; };
 		C27CB6FA160AF541002A22FC /* GPSCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSCon.h; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 		C2B3ECC516074298005D3F16 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C27951CA160F4F9600E63970 /* btnLogIn_v1.png */,
 				C27FF542160E4D0A002528AE /* login_v1.png */,
 				C2B3ECC616074384005D3F16 /* ZombieGuiTest.plist */,
 			);
@@ -417,6 +420,7 @@
 				19786C5C1600B5730089F833 /* MainStoryboard.storyboard in Resources */,
 				C2B3ECC716074384005D3F16 /* ZombieGuiTest.plist in Resources */,
 				C27FF543160E4D0A002528AE /* login_v1.png in Resources */,
+				C27951CB160F4F9600E63970 /* btnLogIn_v1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
