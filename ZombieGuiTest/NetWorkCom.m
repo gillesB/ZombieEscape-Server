@@ -68,9 +68,12 @@ bool read_Ready ;
 
 
 
--(void) createNewPlayer:(NSString*)playerName {
+-(int) createNewPlayer:(NSString*)playerName {
     SocketMessage* msg = [SocketMessage createSocketMessageWithCommand:@"newGamer" andValue:playerName];               
     [self writeJson:msg.toJson ToStream:outputStream];
+    int gamerID = [[inputStream readLine] intValue];
+    NSLog(@"new gamerID = %d", gamerID);
+    return gamerID;
 }
 
 -(int) createNewGame:(NSString*)gameName {
@@ -80,15 +83,20 @@ bool read_Ready ;
     return [[inputStream readLine] intValue];
 }
 
--(void) addPlayerToGame:(int)gameID{
+-(BOOL) addPlayerToGame:(int)gameID{
     NSString* str_id =[NSString stringWithFormat:@"%d",gameID];
     SocketMessage *msg = [SocketMessage createSocketMessageWithCommand:@"addGamer" andValue:str_id];               
     [self writeJson:msg.toJson ToStream:outputStream];
+    BOOL humanORzombie = [[inputStream readLine] boolValue];
+    NSLog(@"Gamer is human: %d", humanORzombie);
+    return humanORzombie;
 }
 
--(void) removePlayer{
+-(BOOL) removePlayer{
     SocketMessage *msg = [SocketMessage createSocketMessageWithCommand:@"removeGamer" andValue:nil];               
     [self writeJson:msg.toJson ToStream:outputStream];
+    BOOL successful = [[inputStream readLine] boolValue];
+    return successful;
 }
 
 -(void) setLocation:(GPSLocation*)loc{

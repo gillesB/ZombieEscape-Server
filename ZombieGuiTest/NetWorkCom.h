@@ -18,10 +18,10 @@
     NSOutputStream *outputStream;
 }
 
--(void) createNewPlayer:(NSString*)playerName ;
+-(int) createNewPlayer:(NSString*)playerName ;
 -(int) createNewGame:(NSString*)gameName ;
--(void) addPlayerToGame:(int)gameID;
--(void) removePlayer;
+-(BOOL) addPlayerToGame:(int)gameID;
+-(BOOL) removePlayer;
 -(void) setLocation:(GPSLocation*)loc;
 -(NSMutableArray*) getGamelist;
 
