@@ -31,6 +31,10 @@
 		C27951D4160F657500E63970 /* iconRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = C27951D3160F657500E63970 /* iconRetina.png */; };
 		C27951D6160F666C00E63970 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C27951D5160F666C00E63970 /* icon.png */; };
 		C27951D8160F66B300E63970 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C27951D7160F66B300E63970 /* icon.png */; };
+		C27951DB160F6DB100E63970 /* Launch.png in Resources */ = {isa = PBXBuildFile; fileRef = C27951D9160F6DB000E63970 /* Launch.png */; };
+		C27951DC160F6DB100E63970 /* LaunchRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = C27951DA160F6DB100E63970 /* LaunchRetina.png */; };
+		C27951DE160F6DC000E63970 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C27951DD160F6DC000E63970 /* Default-Portrait~ipad.png */; };
+		C27951E0160F6DC800E63970 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C27951DF160F6DC800E63970 /* Default-Portrait@2x~ipad.png */; };
 		C27A1D6D160DB8940034AF45 /* Create_GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */; };
 		C27CB701160AF541002A22FC /* GPSCon.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FB160AF541002A22FC /* GPSCon.m */; };
 		C27CB702160AF541002A22FC /* GPSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FD160AF541002A22FC /* GPSLocation.m */; };
@@ -102,6 +106,10 @@
 		C27951D3160F657500E63970 /* iconRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconRetina.png; sourceTree = "<group>"; };
 		C27951D5160F666C00E63970 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		C27951D7160F66B300E63970 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		C27951D9160F6DB000E63970 /* Launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launch.png; sourceTree = "<group>"; };
+		C27951DA160F6DB100E63970 /* LaunchRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchRetina.png; sourceTree = "<group>"; };
+		C27951DD160F6DC000E63970 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		C27951DF160F6DC800E63970 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		C27A1D6B160DB8940034AF45 /* Create_GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Create_GameViewController.h; sourceTree = "<group>"; };
 		C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Create_GameViewController.m; sourceTree = "<group>"; };
 		C27CB6FA160AF541002A22FC /* GPSCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSCon.h; sourceTree = "<group>"; };
@@ -179,6 +187,8 @@
 		19786C391600B5730089F833 = {
 			isa = PBXGroup;
 			children = (
+				C27951DF160F6DC800E63970 /* Default-Portrait@2x~ipad.png */,
+				C27951DD160F6DC000E63970 /* Default-Portrait~ipad.png */,
 				C27951D7160F66B300E63970 /* icon.png */,
 				C27951D3160F657500E63970 /* iconRetina.png */,
 				19786C4E1600B5730089F833 /* ZombieEscape */,
@@ -273,6 +283,8 @@
 		C27951CC160F655500E63970 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C27951D9160F6DB000E63970 /* Launch.png */,
+				C27951DA160F6DB100E63970 /* LaunchRetina.png */,
 				C27951D5160F666C00E63970 /* icon.png */,
 				C27951CD160F655500E63970 /* btnLogIn_v1.png */,
 				C27951CE160F655500E63970 /* iconRetina.png */,
@@ -445,6 +457,10 @@
 				C27951D4160F657500E63970 /* iconRetina.png in Resources */,
 				C27951D6160F666C00E63970 /* icon.png in Resources */,
 				C27951D8160F66B300E63970 /* icon.png in Resources */,
+				C27951DB160F6DB100E63970 /* Launch.png in Resources */,
+				C27951DC160F6DB100E63970 /* LaunchRetina.png in Resources */,
+				C27951DE160F6DC000E63970 /* Default-Portrait~ipad.png in Resources */,
+				C27951E0160F6DC800E63970 /* Default-Portrait@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
