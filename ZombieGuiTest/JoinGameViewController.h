@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface JoinGameViewController : UITableViewController{
     NSMutableArray *gameList;
+    CLLocation *myLocation;
+    
 }
 
 @property (nonatomic, retain) NSMutableArray *gameList;
+
 
 - (NSMutableArray*) createArrayToDisplay;
 

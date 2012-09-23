@@ -9,6 +9,7 @@
 #import "JoinGameViewController.h"
 #import "Socket_GameOverview.h"
 #import "NetWorkCom.h"
+#import "LocationManager.h"
 
 @interface JoinGameViewController ()
 
@@ -36,8 +37,8 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
     
-    self.gameList = [[NetWorkCom getNetWorkCom] getGamelist];
 }
 
 - (void)viewDidUnload
@@ -45,6 +46,13 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.gameList = [[NetWorkCom getNetWorkCom] getGamelist];
+    myLocation = [[LocationManager getLocationManager] myLocation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -77,7 +85,9 @@
     amountPlayers.text = [[NSString alloc] initWithFormat:@"%d",s.amountGamers];
     UILabel *distance = (UILabel *)[cell viewWithTag:102];
     //TODO calculate actual distance
-    distance.text = @"0";
+    CLLocation *gameLocation = [[CLLocation alloc] initWithLatitude:s.latitude longitude:s.longitude];
+    CLLocationDistance distanceIn_km = [myLocation distanceFromLocation:gameLocation]/1000;
+    distance.text = [NSString stringWithFormat:@"%f",distanceIn_km];
     
     
     return cell;
