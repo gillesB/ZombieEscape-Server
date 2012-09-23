@@ -9,15 +9,15 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "GameOrganizer.h"
 
-//!!! this should be replaced by NetWorCom
-NSInputStream *inputStream;
-NSOutputStream *outputStream;
+
 
 @interface MapViewController :  UIViewController <CLLocationManagerDelegate,MKMapViewDelegate>{
     CLLocationManager *locationManager;}
 
 @property (weak, nonatomic) IBOutlet MKMapView *MapView;
 @property (strong, nonatomic) IBOutlet UILabel *LocationLabel;
+@property (strong,nonatomic) GameOrganizer* gameOrg;
 
 @end

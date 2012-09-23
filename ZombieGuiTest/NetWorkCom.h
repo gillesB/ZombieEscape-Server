@@ -29,8 +29,11 @@
 -(void) closeConnection;
 -(void) reconnect;
 
-
 + (id)getNetWorkCom;
+
+-(void)startReadingInputStream;
+-(void)StopReadingInputStream;
+-(NSString*)readLineFromInputStream;
 
 
 

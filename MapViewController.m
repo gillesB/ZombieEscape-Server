@@ -11,13 +11,13 @@
 #import "PlayerLocation.h"
 #import "NetWorkCom.h"
 
-@interface MapViewController ()
-
-@end
 
 @implementation MapViewController
+
+
 @synthesize MapView =_MapView;
 @synthesize LocationLabel= _LocationLabel;
+@synthesize gameOrg = _gameOrg;
 
 
 - (void)drawPlayer {
@@ -33,22 +33,29 @@
 
 
 - (void)viewDidLoad{
+    
     self.MapView.mapType = MKMapTypeSatellite;
     _MapView.showsUserLocation = YES;
-    [self defineRegion];
+    
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     // locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
-    [locationManager startUpdatingLocation];    
+    [locationManager startUpdatingLocation]; 
+    
+    [self defineRegion];
+    
+      
     [self drawPlayer];
+    _gameOrg = [GameOrganizer getGameOrganizer:NO];
+    
 }
 
 
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation{
-
+    
     self.LocationLabel.text = newLocation.description;
 }
 
@@ -88,6 +95,7 @@
 {
     [self setMapView:nil];
     [self setLocationLabel:nil];
+    [_gameOrg stopLifeCicle];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     

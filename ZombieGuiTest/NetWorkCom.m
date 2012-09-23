@@ -29,8 +29,9 @@ bool read_Ready ;
 
 - (id)init {
     if (self = [super init]) {
-        [self initNetworkComm];
         [self StopReadingInputStream];
+        [self initNetworkComm];
+        
     }
     return self;
 }
@@ -51,12 +52,7 @@ bool read_Ready ;
         
             case NSStreamEventHasBytesAvailable:   
             {
-                /*uint8_t buf[1024];
-                unsigned int len = 0;
-                len = [(NSInputStream *)stream read:buf maxLength:1024];
-                if(len) {
-                    NSLog(@"%@",[[NSString alloc] initWithBytes:buf length:1024 encoding:NSASCIIStringEncoding])  ;
-                }*/
+                
                 NSLog(@"message from server: %@",inputStream.readLine);
                 break;
             }
@@ -64,6 +60,8 @@ bool read_Ready ;
         }
     }
 }
+
+
 
 
 
@@ -77,8 +75,8 @@ bool read_Ready ;
 }
 
 -(int) createNewGame:(NSString*)gameName {
-    SocketMessage *msg = [SocketMessage createSocketMessageWithCommand:@"newGame" andValue:gameName];               
-    [self writeJson:msg.toJson ToStream:outputStream];
+    SocketMessage* msg = [SocketMessage createSocketMessageWithCommand:@"newGame" andValue:gameName];               
+   [self writeJson:msg.toJson ToStream:outputStream];
     //return the gameID received from the server
     return [[inputStream readLine] intValue];
 }

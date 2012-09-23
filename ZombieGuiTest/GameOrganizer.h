@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MDBufferedInputStream.h"
+#import "NetWorkCom.h"
 
 
 @interface GameOrganizer : NSObject
 
+@property (strong ,nonatomic )NetWorkCom* netCom;
+
++(id)getGameOrganizer:(BOOL)pollingmode;
+-(void)stopLifeCicle;
 @end
