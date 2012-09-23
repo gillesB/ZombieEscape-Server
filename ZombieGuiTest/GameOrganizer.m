@@ -16,7 +16,7 @@
 bool pollingMode ;
 volatile bool run;
 
-+ (id)getGameOrganizer:(BOOL)pollingMode {
++ (id)getGameOrganizer:(bool)pollingMode {
     static GameOrganizer *gameOrg = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -30,8 +30,10 @@ volatile bool run;
         _netCom =[NetWorkCom getNetWorkCom] ;
         
         if(pollingMode){
-            [self pollingLifeCicle];
+            NSLog(@"Polling Mode");
+            [NSThread detachNewThreadSelector:@selector(pollingLifeCicle:) toTarget:[GameOrganizer class] withObject:nil];
         }else {
+            NSLog(@"Non Polling Mode, waiting for Networkevents");
             [_netCom startReadingInputStream];
         }
         
@@ -44,10 +46,9 @@ volatile bool run;
 }
 
 -(void) pollingLifeCicle{
-    
+    run =YES;
     while (run){
-        [_netCom readLineFromInputStream];
-        
+       NSLog(@" Von Server zu GameOrganizer : %@ ", [_netCom readLineFromInputStream]);
         
     }
 }

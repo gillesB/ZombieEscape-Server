@@ -33,15 +33,21 @@
 
 
 - (void)viewDidLoad{
+    
     self.MapView.mapType = MKMapTypeSatellite;
     _MapView.showsUserLocation = YES;
-    [self defineRegion];
+    
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     // locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
-    [locationManager startUpdatingLocation];    
+    [locationManager startUpdatingLocation]; 
+    
+    [self defineRegion];
+    
+      
     [self drawPlayer];
+    _gameOrg = [GameOrganizer getGameOrganizer:YES];
     
 }
 
@@ -89,7 +95,7 @@
 {
     [self setMapView:nil];
     [self setLocationLabel:nil];
-    
+    [_gameOrg stopLifeCicle];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     

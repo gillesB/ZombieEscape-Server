@@ -14,6 +14,6 @@
 
 @property (strong ,nonatomic )NetWorkCom* netCom;
 
-+(id)getGameOrganizer;
-
++(id)getGameOrganizer:(bool)pollingmode;
+-(void)stopLifeCicle;
 @end
