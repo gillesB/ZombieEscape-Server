@@ -24,6 +24,7 @@
 		3D919EA7160DF88A0006E88E /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D919EA6160DF88A0006E88E /* MapViewController.m */; };
 		3D919EA9160E0BF90006E88E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D919EA8160E0BF90006E88E /* MapKit.framework */; };
 		3DF56C71160F263E0089EDF0 /* GameOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF56C70160F263E0089EDF0 /* GameOrganizer.m */; };
+		C27951C8160F40D000E63970 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C27951C7160F40D000E63970 /* LocationManager.m */; };
 		C27A1D6D160DB8940034AF45 /* Create_GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */; };
 		C27CB701160AF541002A22FC /* GPSCon.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FB160AF541002A22FC /* GPSCon.m */; };
 		C27CB702160AF541002A22FC /* GPSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FD160AF541002A22FC /* GPSLocation.m */; };
@@ -88,6 +89,8 @@
 		3D919EA8160E0BF90006E88E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3DF56C6F160F263E0089EDF0 /* GameOrganizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOrganizer.h; sourceTree = "<group>"; };
 		3DF56C70160F263E0089EDF0 /* GameOrganizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOrganizer.m; sourceTree = "<group>"; };
+		C27951C6160F40D000E63970 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		C27951C7160F40D000E63970 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		C27A1D6B160DB8940034AF45 /* Create_GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Create_GameViewController.h; sourceTree = "<group>"; };
 		C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Create_GameViewController.m; sourceTree = "<group>"; };
 		C27CB6FA160AF541002A22FC /* GPSCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSCon.h; sourceTree = "<group>"; };
@@ -200,6 +203,8 @@
 		19786C4E1600B5730089F833 /* ZombieEscape */ = {
 			isa = PBXGroup;
 			children = (
+				C27951C6160F40D000E63970 /* LocationManager.h */,
+				C27951C7160F40D000E63970 /* LocationManager.m */,
 				19786C571600B5730089F833 /* AppDelegate.h */,
 				19786C581600B5730089F833 /* AppDelegate.m */,
 				C27CB6FA160AF541002A22FC /* GPSCon.h */,
@@ -487,6 +492,7 @@
 				3D919EA3160DF7D10006E88E /* PlayerLocation.m in Sources */,
 				3D919EA7160DF88A0006E88E /* MapViewController.m in Sources */,
 				3DF56C71160F263E0089EDF0 /* GameOrganizer.m in Sources */,
+				C27951C8160F40D000E63970 /* LocationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
