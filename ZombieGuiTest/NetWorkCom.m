@@ -15,6 +15,7 @@
 
 @implementation NetWorkCom
 
+bool read_Ready ;
 
 
 + (id)getNetWorkCom {
@@ -29,28 +30,38 @@
 - (id)init {
     if (self = [super init]) {
         [self initNetworkComm];
+        [self StopReadingInputStream];
     }
     return self;
+}
+
+-(void)startReadingInputStream{
+    read_Ready=YES;
+}
+
+-(void)StopReadingInputStream{
+    read_Ready=NO;
 }
 
 
 -(void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)eventCode {
     
-    switch(eventCode) {
+    if (read_Ready){
+        switch(eventCode) {
         
-        case NSStreamEventHasBytesAvailable:   
-        {
-            
-            /*uint8_t buf[1024];
-            unsigned int len = 0;
-            len = [(NSInputStream *)stream read:buf maxLength:1024];
-            if(len) {
-                NSLog(@"%@",[[NSString alloc] initWithBytes:buf length:1024 encoding:NSASCIIStringEncoding])  ;
-            }*/
-            NSLog(@"message from server: %@",inputStream.readLine);
-            break;
+            case NSStreamEventHasBytesAvailable:   
+            {
+                /*uint8_t buf[1024];
+                unsigned int len = 0;
+                len = [(NSInputStream *)stream read:buf maxLength:1024];
+                if(len) {
+                    NSLog(@"%@",[[NSString alloc] initWithBytes:buf length:1024 encoding:NSASCIIStringEncoding])  ;
+                }*/
+                NSLog(@"message from server: %@",inputStream.readLine);
+                break;
+            }
+                
         }
-            
     }
 }
 
@@ -150,7 +161,6 @@
     [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [inputStream open];
     [outputStream open];
-    
 }
 
 - (BOOL) isConnected {
