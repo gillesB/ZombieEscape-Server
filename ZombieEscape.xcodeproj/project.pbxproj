@@ -30,6 +30,7 @@
 		C27CB708160AF55F002A22FC /* NetWorkCom.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB705160AF55F002A22FC /* NetWorkCom.m */; };
 		C27CB709160AF55F002A22FC /* SocketMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB707160AF55F002A22FC /* SocketMessage.m */; };
 		C27CB70F160AFE1F002A22FC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27CB70E160AFE1F002A22FC /* CoreLocation.framework */; };
+		C27FF543160E4D0A002528AE /* login_v1.png in Resources */ = {isa = PBXBuildFile; fileRef = C27FF542160E4D0A002528AE /* login_v1.png */; };
 		C2AB89DB160B78E40075696F /* MDBufferedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AB89DA160B78E40075696F /* MDBufferedInputStream.m */; };
 		C2AB89F7160B8C2C0075696F /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AB89DF160B8C2C0075696F /* NSObject+SBJson.m */; };
 		C2AB89F8160B8C2C0075696F /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AB89E2160B8C2C0075696F /* SBJsonParser.m */; };
@@ -96,6 +97,7 @@
 		C27CB706160AF55F002A22FC /* SocketMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocketMessage.h; path = ZombieGuiTest/SocketMessage.h; sourceTree = "<group>"; };
 		C27CB707160AF55F002A22FC /* SocketMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocketMessage.m; path = ZombieGuiTest/SocketMessage.m; sourceTree = "<group>"; };
 		C27CB70E160AFE1F002A22FC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C27FF542160E4D0A002528AE /* login_v1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_v1.png; sourceTree = "<group>"; };
 		C2AB89D9160B78E40075696F /* MDBufferedInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDBufferedInputStream.h; sourceTree = "<group>"; };
 		C2AB89DA160B78E40075696F /* MDBufferedInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDBufferedInputStream.m; sourceTree = "<group>"; };
 		C2AB89DE160B8C2C0075696F /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 		C2B3ECC516074298005D3F16 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C27FF542160E4D0A002528AE /* login_v1.png */,
 				C2B3ECC616074384005D3F16 /* ZombieGuiTest.plist */,
 			);
 			name = Resources;
@@ -403,6 +406,7 @@
 				19786C531600B5730089F833 /* InfoPlist.strings in Resources */,
 				19786C5C1600B5730089F833 /* MainStoryboard.storyboard in Resources */,
 				C2B3ECC716074384005D3F16 /* ZombieGuiTest.plist in Resources */,
+				C27FF543160E4D0A002528AE /* login_v1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

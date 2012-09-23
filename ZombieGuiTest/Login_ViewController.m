@@ -35,6 +35,9 @@
     
     //self.edtIPAddress.delegate = self;
     
+    //??? this can not be the right way to set a background image. But found no other solution. (Gilles)
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"login_v1.png"]];
+    
 
 }
 
