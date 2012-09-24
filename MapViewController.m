@@ -17,48 +17,48 @@
 @implementation MapViewController
 
 
-@synthesize MapView =_MapView;
-@synthesize LocationLabel= _LocationLabel;
+@synthesize mapView =_mapView;
+@synthesize locationLabel= _locationLabel;
 GameOrganizer* gameOrg;
+int zoomlvl;
 
 
 - (void)drawPlayer {
-    for (id<MKAnnotation> annotation in _MapView.annotations) {
-        [_MapView removeAnnotation:annotation];
+    for (id<MKAnnotation> annotation in _mapView.annotations) {
+        [_mapView removeAnnotation:annotation];
     }
     CLLocationCoordinate2D coordinate;
     coordinate.latitude = 49.23393;
     coordinate.longitude = 6.980;            
     PlayerLocation *annotation = [[PlayerLocation alloc] initWithName:@"Zombie" address:@"BRAIN!" coordinate:coordinate] ;
-    [_MapView addAnnotation:annotation];    
+    [_mapView addAnnotation:annotation];    
 }
 
 -(void)drawGamers:(NSMutableArray*)locations{
-    for (id<MKAnnotation> annotation in _MapView.annotations) {
-        [_MapView removeAnnotation:annotation];
+    for (id<MKAnnotation> annotation in _mapView.annotations) {
+        [_mapView removeAnnotation:annotation];
     }
    
+   
     for(PlayerLocation* loc in locations ){
-        [_MapView addAnnotation:loc];  
+        NSLog(@" Spieler : %@ /  %f  / %f ",  loc.name, loc.coordinate.longitude, loc.coordinate.latitude);
+        [_mapView addAnnotation:loc];  
     }
 
 }
 
 - (void)viewDidLoad{
     
-    self.MapView.mapType = MKMapTypeSatellite;
-    _MapView.showsUserLocation = YES;
+    _mapView.mapType = MKMapTypeStandard;
+   // _MapView.showsUserLocation = YES;
     
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     // locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
     [locationManager startUpdatingLocation]; 
-    
-    [self defineRegion];
-    
-      
-    [self drawPlayer];
+    //[self defineRegion];
+    //[self drawPlayer];
     gameOrg = [GameOrganizer getGameOrganizer];
     [gameOrg startWithpollingMode:NO andDelegate:self];
     
@@ -69,7 +69,8 @@ GameOrganizer* gameOrg;
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation{
     
-    self.LocationLabel.text = newLocation.description;
+    self.locationLabel.text = newLocation.description;
+   // [gameOrg updateMyLocation:newLocation];
 }
 
 
@@ -78,7 +79,7 @@ GameOrganizer* gameOrg;
     static NSString *identifier = @"MyLocation";   
     if ([annotation isKindOfClass:[PlayerLocation class]]) {
         
-        MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [_MapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
             annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
         } else {
@@ -100,7 +101,7 @@ GameOrganizer* gameOrg;
     region.span.latitudeDelta =0.005;
     region.span.longitudeDelta =0.005;
     
-    [self.MapView setRegion:region animated:NO];
+    [_mapView setRegion:region animated:NO];
 }
 
 
@@ -122,6 +123,25 @@ GameOrganizer* gameOrg;
     
 }
 
+- (void)mapView:(MKMapView *)MapView regionDidChangeAnimated:(BOOL)animated {
+           NSLog(@"did ");
+        MKCoordinateRegion region;
+        region.center.latitude = 49.23700;
+        region.center.longitude = 6.98000;
+        region.span.latitudeDelta =0.005;
+        region.span.longitudeDelta =0.005;
+        [MapView setRegion:region animated:YES];
+}
+
+- (void)mapView:(MKMapView *)MapView regionWillChangeAnimated:(BOOL)animated {
+    NSLog(@"will ");
+    MKCoordinateRegion region;
+    region.center.latitude = 49.23700;
+    region.center.longitude = 6.98000;
+    region.span.latitudeDelta =0.005;
+    region.span.longitudeDelta =0.005;
+    [MapView setRegion:region animated:YES];
+}
 
 -(void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];

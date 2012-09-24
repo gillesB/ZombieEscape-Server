@@ -12,6 +12,8 @@
 
 
 @interface GameOrganizer : NSObject
+@property (strong,nonatomic) NSString* gamerName;
+@property BOOL gamerStatus;
 
 +(id)getGameOrganizer;
 -(void)reset;
@@ -19,4 +21,6 @@
 -(void)stop;
 -(void)createAnotioansFromString:(NSString*)stream;
 -(void)handleInputFromNetwork:(NSString*)stream;
+-(void)updateMyLocation:(CLLocation*)newLocation;
+
 @end

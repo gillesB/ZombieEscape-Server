@@ -9,9 +9,13 @@
 #import "GameOrganizer.h"
 #import "SBJsonParser.h"
 #import "PlayerLocation.h"
+#import "PlistHandler.h"
 
 
 @implementation GameOrganizer
+
+@synthesize gamerName = _gamerName;
+@synthesize gamerStatus = _gamerStatus;
 
 NetWorkCom* netCom;
 MapViewController* delegate;
@@ -36,14 +40,19 @@ volatile bool run;
     return self;
 }
 
+
+-(void)updateMyLocation:(CLLocation*)newLocation{
+    [netCom setLocation:[[GPSLocation alloc]initWithLong:[newLocation coordinate].longitude AndLat:[newLocation coordinate].latitude ]];
+}
+
 -(void)startWithpollingMode:(BOOL)poll andDelegate:(MapViewController*)cont{
     pollMode=poll;
     netCom =[NetWorkCom getNetWorkCom] ;
+    _gamerName = [[PlistHandler getPlistHandler] getUsername];
     
     if(poll){
-        NSLog(@"Polling Mode");
+        NSLog(@"Polling Mode....");
         [self pollingLifeCicle];
-        //[NSThread detachNewThreadSelector:@selector(pollingLifeCicle:) toTarget:[GameOrganizer class] withObject:nil];
     }else {
         NSLog(@"Non Polling Mode, waiting for Networkevents");
         [self setdelegate:cont];
@@ -69,66 +78,47 @@ volatile bool run;
     run =true;
     while (run){
        NSLog(@" Von Server zu GameOrganizer : %@ ", [netCom readLineFromInputStream]);
-        
     }
 }
-
 
 -(void) setdelegate:(MapViewController*)viewController {
     delegate = viewController;
 }
 
-
-
 -(void)handleInputFromNetwork:(NSString*)stream{
-   
     
     // Create SBJSON object to parse JSON
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSDictionary *dic = [parser objectWithString:stream];
    
-       
-    
     NSString* commandString = [ dic objectForKey:@"command"];
+    NSMutableArray* gamerLocations = [[NSMutableArray alloc] initWithCapacity:1];
     
-   
     if ([commandString compare:@"listGamers"] ==0){
         
-        NSMutableArray *gamerLocations = [[NSMutableArray alloc] initWithCapacity:1];
         NSArray* gamerDescription = [dic valueForKey:@"value"];
-        for (NSDictionary* dict in gamerDescription ){
+        for (NSDictionary* dictionary in gamerDescription ){
             CLLocationCoordinate2D location = [[[CLLocation alloc] init ] coordinate];
                         
-            double longi = [[dic valueForKey:@"longitude"]doubleValue ];
-            double lat = [[dic valueForKey:@"latiude"]doubleValue ];
+            double longi = [[dictionary valueForKey:@"longitude"]doubleValue ];
+            double lat = [[dictionary valueForKey:@"latitude"]doubleValue ];
             location.longitude = longi ;
             location.latitude =lat;
             
-            NSString* gamerName =[dic valueForKey:@"gamername"];
-            PlayerLocation* gamerloc = [[PlayerLocation alloc] initWithName:gamerName address:@"BRAIN" coordinate:location];
-            [gamerLocations addObject:gamerloc];
+            NSString* gamerName =[dictionary valueForKey:@"gamername"];
+            if( ! [gamerName compare:_gamerName]==0){
+                PlayerLocation* gamerloc = [[PlayerLocation alloc] initWithName:gamerName address:@"BRAIN" coordinate:location];
+                [gamerLocations addObject:gamerloc];
+            }
         }
         [delegate drawGamers:gamerLocations];
         
     }else if ([commandString compare:@"fight"]==0){
-        NSLog (@" ATTACKE !!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        NSLog (@" ATTACKE !! !! ! !!");
     }
     else {
         NSLog(@"unbekanntes commando : %@", commandString);
     }
-    
-    /*        
-            for (int i = 0; i < [id_array count];i++) {
-        NSDictionary *d = [id_array objectAtIndex:i];
-        int gameID = [[d objectForKey:@"gameID"] intValue];
-        NSString* name = [d objectForKey:@"name"];
-        double amount = [[d objectForKey:@"amountGamers"] doubleValue];
-        double longi = [[d objectForKey:@"longitude"] doubleValue];
-        double lati = [[d objectForKey:@"latitude"] doubleValue];
-         */     
-    
-    
-  
      
 }
 

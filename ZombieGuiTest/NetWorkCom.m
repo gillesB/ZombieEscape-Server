@@ -80,7 +80,7 @@ bool read_Ready ;
                 event = @"Unknown"; break;
                 
         }
-      //  NSLog(@"Event : %@",event);
+        NSLog(@"Event : %@",event);
     }
 }
 
@@ -170,9 +170,7 @@ bool read_Ready ;
     
     if (![NSJSONSerialization isValidJSONObject:dict])
         @throw [NSException exceptionWithName:@"NotJsonConfirm" reason:@"NotJsonConfirm" userInfo:nil];
-    
-    //NSLog( [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding] );     
-    
+       
     NSInteger err = [NSJSONSerialization writeJSONObject: dict toStream:stream options:kNilOptions  error:&error];
     
     // sendinge newline 

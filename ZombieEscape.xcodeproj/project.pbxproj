@@ -36,7 +36,6 @@
 		C27951DE160F6DC000E63970 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C27951DD160F6DC000E63970 /* Default-Portrait~ipad.png */; };
 		C27951E0160F6DC800E63970 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C27951DF160F6DC800E63970 /* Default-Portrait@2x~ipad.png */; };
 		C27A1D6D160DB8940034AF45 /* Create_GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */; };
-		C27CB701160AF541002A22FC /* GPSCon.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FB160AF541002A22FC /* GPSCon.m */; };
 		C27CB702160AF541002A22FC /* GPSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FD160AF541002A22FC /* GPSLocation.m */; };
 		C27CB703160AF541002A22FC /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C27CB6FF160AF541002A22FC /* Model.xcdatamodeld */; };
 		C27CB708160AF55F002A22FC /* NetWorkCom.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CB705160AF55F002A22FC /* NetWorkCom.m */; };
@@ -112,8 +111,6 @@
 		C27951DF160F6DC800E63970 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		C27A1D6B160DB8940034AF45 /* Create_GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Create_GameViewController.h; sourceTree = "<group>"; };
 		C27A1D6C160DB8940034AF45 /* Create_GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Create_GameViewController.m; sourceTree = "<group>"; };
-		C27CB6FA160AF541002A22FC /* GPSCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSCon.h; sourceTree = "<group>"; };
-		C27CB6FB160AF541002A22FC /* GPSCon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSCon.m; sourceTree = "<group>"; };
 		C27CB6FC160AF541002A22FC /* GPSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSLocation.h; sourceTree = "<group>"; };
 		C27CB6FD160AF541002A22FC /* GPSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSLocation.m; sourceTree = "<group>"; };
 		C27CB6FE160AF541002A22FC /* JsonSerializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonSerializable.h; sourceTree = "<group>"; };
@@ -229,8 +226,6 @@
 				C27951C7160F40D000E63970 /* LocationManager.m */,
 				19786C571600B5730089F833 /* AppDelegate.h */,
 				19786C581600B5730089F833 /* AppDelegate.m */,
-				C27CB6FA160AF541002A22FC /* GPSCon.h */,
-				C27CB6FB160AF541002A22FC /* GPSCon.m */,
 				C27CB6FC160AF541002A22FC /* GPSLocation.h */,
 				C27CB6FD160AF541002A22FC /* GPSLocation.m */,
 				C27CB6FE160AF541002A22FC /* JsonSerializable.h */,
@@ -514,7 +509,6 @@
 				C2B5050F16051CAD00EA29F5 /* PlistHandler.m in Sources */,
 				C2B3ECCA16076A32005D3F16 /* Socket_GameOverview.m in Sources */,
 				C2B3ECCD16077088005D3F16 /* JoinGameViewController.m in Sources */,
-				C27CB701160AF541002A22FC /* GPSCon.m in Sources */,
 				C27CB702160AF541002A22FC /* GPSLocation.m in Sources */,
 				C27CB703160AF541002A22FC /* Model.xcdatamodeld in Sources */,
 				C27CB708160AF55F002A22FC /* NetWorkCom.m in Sources */,

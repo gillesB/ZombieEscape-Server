@@ -16,8 +16,8 @@
 @interface MapViewController :  UIViewController <CLLocationManagerDelegate,MKMapViewDelegate>{
     CLLocationManager *locationManager;}
 
-@property (weak, nonatomic) IBOutlet MKMapView *MapView;
-@property (strong, nonatomic) IBOutlet UILabel *LocationLabel;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) IBOutlet UILabel *locationLabel;
 
 -(void)drawGamers:(NSMutableArray*)PlayerLocation;
 
