@@ -96,7 +96,7 @@ public class Game implements Runnable {
 				s.zombie = g.isZombie();
 				overview.add(s);
 			}
-			
+			System.err.println("amount gamers: "+gamersClone.size());
 			for(Gamer g : gamersClone){
 				g.getProviderTask().listGamers(overview);
 			}			

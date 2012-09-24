@@ -1,6 +1,7 @@
 package test;
 
 import java.io.IOException;
+import java.util.Random;
 
 import server.GPS_location;
 import socket.Socket_GameOverview;
@@ -20,7 +21,8 @@ public class PatrolBot extends AutoNetworkConnection {
 		GPS_location walkTo = new GPS_location(49.233895, 6.979941);
 		try {
 			b.openConnection("127.0.0.1");
-			b.newGamer("bot"+botID);
+			Random r = new Random();
+			b.newGamer("bot"+r.nextInt(1000));
 			b.joinGameBotnet();
 			
 			b.patrolBetween(walkFrom, walkTo);

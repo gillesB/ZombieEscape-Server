@@ -50,10 +50,10 @@ public class ProviderTask implements Runnable {
 				SocketMessage message;
 				do {
 					String line  =input.readLine();
-					System.out.println(line);
+					//System.out.println(line);
 					message = gson.fromJson(line, SocketMessage.class);
 					
-					System.out.println("client>" + message.command);
+					System.out.println(gamer.getName()+"> " + message.command + " - " + message.value);
 
 					parseMessage(message);
 
@@ -127,7 +127,7 @@ public class ProviderTask implements Runnable {
 			String json = gson.toJson(obj);
 			output.write(json + "\n");
 			output.flush();
-			System.out.println("server>" + json);
+			System.out.println("server to " + gamer.getName() + ": " + json);
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
 		}
@@ -184,6 +184,9 @@ public class ProviderTask implements Runnable {
 	}
 	
 	public void listGamers(ArrayList<Socket_GamerOverview> overview){
+		if(overview.size() == 0){
+			System.err.println("no gamers!");
+		}
 		sendJSONObject(new SocketMessage("listGamers", overview));
 		
 	}
