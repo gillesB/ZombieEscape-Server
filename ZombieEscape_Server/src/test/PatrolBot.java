@@ -1,6 +1,14 @@
 package test;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Random;
 
 import server.GPS_location;
@@ -22,14 +30,11 @@ public class PatrolBot extends AutoNetworkConnection {
 		try {
 			b.openConnection("127.0.0.1");
 			Random r = new Random();
-			b.newGamer("bot"+r.nextInt(1000));
+			b.newGamer("bot" + r.nextInt(1000));
 			b.joinGameBotnet();
-			
+
 			b.patrolBetween(walkFrom, walkTo);
-			
-			
-			
-			
+
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,7 +45,6 @@ public class PatrolBot extends AutoNetworkConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	private void joinGameBotnet() throws IOException {
@@ -59,17 +63,18 @@ public class PatrolBot extends AutoNetworkConnection {
 		joinGame(botnetGameID);
 	}
 
-	private void patrolBetween(GPS_location from, GPS_location to) {
+	private void patrolBetween(GPS_location from, GPS_location to) throws IOException {
 		setLocation(from);
 		double x = from.longitude;
 		double direction = from.longitude < to.longitude ? 1 : -1;
 
-		//equation of a line (Geradengleichung)
+		// equation of a line (Geradengleichung)
 		double numerator1 = to.latitude - from.latitude;
-		double numerator2 = to.longitude * from.latitude - from.longitude * to.latitude;
-		//TODO avoid division by zero
+		double numerator2 = to.longitude * from.latitude - from.longitude
+				* to.latitude;
+		// TODO avoid division by zero
 		double denominator = to.longitude - from.longitude;
-
+		
 		while (true) {
 			try {
 				Thread.sleep(1000);
@@ -77,12 +82,12 @@ public class PatrolBot extends AutoNetworkConnection {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			x += (0.00001 * direction);
 			double y = numerator1 / denominator * x + numerator2 / denominator;
-			setLocation(x,y);
-			if((to.longitude-x)*direction < 0 ){
-				//swap from and to
+			setLocation(x, y);
+			if ((to.longitude - x) * direction < 0) {
+				// swap from and to
 				GPS_location temp = to;
 				to = from;
 				from = temp;
@@ -90,7 +95,10 @@ public class PatrolBot extends AutoNetworkConnection {
 				direction = from.longitude < to.longitude ? 1 : -1;
 				System.out.println("changed direction");
 			}
+			//dump the input
+			socketIn.readLine();
 		}
 
 	}
+
 }

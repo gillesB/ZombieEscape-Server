@@ -18,14 +18,14 @@ import socket.SocketMessage;
 import socket.Socket_GameOverview;
 
 public abstract class AutoNetworkConnection {
-	
+
 	int portNumber = 2004;
 	Socket socket;
 	BufferedWriter socketOut;
-    BufferedReader socketIn;
+	BufferedReader socketIn;
 
 	static Gson gson = new Gson();
-	
+
 	boolean openConnectionSuccess;
 	private Boolean loggedIn;
 
@@ -40,10 +40,14 @@ public abstract class AutoNetworkConnection {
 					System.out.println("Create Socket");
 
 					socket = new Socket();
-					socket.connect(new InetSocketAddress(serverAddr, portNumber));
+					socket
+							.connect(new InetSocketAddress(serverAddr,
+									portNumber));
 
-					socketOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-					socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+					socketOut = new BufferedWriter(new OutputStreamWriter(
+							socket.getOutputStream()));
+					socketIn = new BufferedReader(new InputStreamReader(socket
+							.getInputStream()));
 					openConnectionSuccess = true;
 				} catch (UnknownHostException e) {
 					System.out.println(e);
@@ -56,25 +60,24 @@ public abstract class AutoNetworkConnection {
 		t.start();
 		t.join();
 	}
-	
-	int newGamer(String gamerName) throws JsonSyntaxException, IOException{
-		//create a new gamer on the server, this step has to be done everytime, as the gamers are not saved
-		this.sendJSONObject(new SocketMessage("newGamer",gamerName));
-		
-		//get the gamerID till now it is not needed, but could be usefull in the future
+
+	int newGamer(String gamerName) throws JsonSyntaxException, IOException {
+		// create a new gamer on the server, this step has to be done everytime,
+		// as the gamers are not saved
+		this.sendJSONObject(new SocketMessage("newGamer", gamerName));
+
+		// get the gamerID till now it is not needed, but could be usefull in
+		// the future
 		int gamerID = gson.fromJson(socketIn.readLine(), Integer.class);
 		System.out.println(gamerID);
 		return gamerID;
 	}
-	
-	int newGame(String gamename) throws JsonSyntaxException, IOException{
-		sendJSONObject(new SocketMessage("newGame",gamename));
+
+	int newGame(String gamename) throws JsonSyntaxException, IOException {
+		sendJSONObject(new SocketMessage("newGame", gamename));
 		int gameID = gson.fromJson(socketIn.readLine(), Integer.class);
 		return gameID;
 	}
-	
-
-
 
 	void closeConnection() {
 		Thread t = new Thread() {
@@ -98,14 +101,14 @@ public abstract class AutoNetworkConnection {
 		};
 		t.start();
 	}
-	
+
 	/**
 	 * @param msg
 	 */
 	void sendJSONObject(Object obj) {
 		try {
 			String json = gson.toJson(obj);
-			socketOut.write(json+"\n");
+			socketOut.write(json + "\n");
 			socketOut.flush();
 			System.out.println("client>" + json);
 		} catch (IOException ioException) {
@@ -123,35 +126,36 @@ public abstract class AutoNetworkConnection {
 		}
 	}
 
-	
-	Socket_GameOverview[] getGameList() throws IOException{
+	Socket_GameOverview[] getGameList() throws IOException {
 		sendJSONObject(new SocketMessage("listGames"));
-		String gamelist =  socketIn.readLine();
-		Socket_GameOverview[] gameArray = gson.fromJson(gamelist, Socket_GameOverview[].class);
+		String gamelist = socketIn.readLine();
+		Socket_GameOverview[] gameArray = gson.fromJson(gamelist,
+				Socket_GameOverview[].class);
 		return gameArray;
 	}
-	
-	void joinGame(int gameID) throws JsonSyntaxException, IOException{
-		sendJSONObject(new SocketMessage("addGamer", ((Integer)gameID).toString() ));
+
+	void joinGame(int gameID) throws JsonSyntaxException, IOException {
+		sendJSONObject(new SocketMessage("addGamer", ((Integer) gameID)
+				.toString()));
 		boolean human = gson.fromJson(socketIn.readLine(), Boolean.class);
 		printJoinedGameMessage(human);
 	}
-	
-	void printJoinedGameMessage(boolean human){
-		if(human){
+
+	void printJoinedGameMessage(boolean human) {
+		if (human) {
 			System.out.println("I am a human.");
 		} else {
 			System.out.println("BRAAAIIIINNNNZZZZZ!!!!");
 		}
 	}
-	
-	void setLocation(GPS_location loc){
+
+	void setLocation(GPS_location loc) {
 		setLocation(loc.longitude, loc.latitude);
 	}
-	
-	void setLocation(double longitude, double latitude){
+
+	void setLocation(double longitude, double latitude) {
 		GPS_location location = new GPS_location(longitude, latitude);
-		sendJSONObject(new SocketMessage("setLocation", location));	
+		sendJSONObject(new SocketMessage("setLocation", location));
 	}
 
 }

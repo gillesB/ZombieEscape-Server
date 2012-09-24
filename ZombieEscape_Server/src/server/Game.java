@@ -83,9 +83,9 @@ public class Game implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			//TODO change this back
 			ArrayList<Gamer> gamersClone = getGamersClone();
 			findCollision(gamersClone);
-			
 			ArrayList<Socket_GamerOverview> overview = new ArrayList<Socket_GamerOverview>(gamersClone.size());
 			for(Gamer g : gamersClone){
 				Socket_GamerOverview s = new Socket_GamerOverview();
@@ -96,7 +96,6 @@ public class Game implements Runnable {
 				s.zombie = g.isZombie();
 				overview.add(s);
 			}
-			System.err.println("amount gamers: "+gamersClone.size());
 			for(Gamer g : gamersClone){
 				g.getProviderTask().listGamers(overview);
 			}			

@@ -41,26 +41,25 @@ public class ProviderTask implements Runnable {
 	public void run() {
 		try {
 			// 3. get Input and Output streams
-			input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-			output = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+			input = new BufferedReader(new InputStreamReader(clientSocket
+					.getInputStream()));
+			output = new BufferedWriter(new OutputStreamWriter(clientSocket
+					.getOutputStream()));
 
 			newGamer(input.readLine());
 
-			try {
-				SocketMessage message;
-				do {
-					String line  =input.readLine();
-					//System.out.println(line);
-					message = gson.fromJson(line, SocketMessage.class);
-					
-					System.out.println(gamer.getName()+"> " + message.command + " - " + message.value);
+			SocketMessage message;
+			do {
+				String line = input.readLine();
+				// System.out.println(line);
+				message = gson.fromJson(line, SocketMessage.class);
 
-					parseMessage(message);
+				System.out.println(gamer.getName() + "> " + message.command
+						+ " - " + message.value);
 
-				} while (!message.command.equals("bye"));
-			} catch (EOFException e) {// occures when client stalls
-				e.printStackTrace();
-			}
+				parseMessage(message);
+
+			} while (!message.command.equals("bye"));
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -96,25 +95,19 @@ public class ProviderTask implements Runnable {
 	 */
 	private void parseMessage(SocketMessage message) {
 
-		if ("newGame".equals(message.command)){
+		if ("newGame".equals(message.command)) {
 			newGame(message.value);
-			}
-		else if ("listGames".equals(message.command)){
+		} else if ("listGames".equals(message.command)) {
 			listGames();
-	}
-		else if ("addGamer".equals(message.command)){
+		} else if ("addGamer".equals(message.command)) {
 			addGamer(message.value);
-}
-		else if ("removeGamer".equals(message.command)){
+		} else if ("removeGamer".equals(message.command)) {
 			removeGamer();
-		}
-		else if ("setLocation".equals(message.command)){
+		} else if ("setLocation".equals(message.command)) {
 			setLocation(message.value);
-		}
-		else if ("bye".equals(message.command)){
+		} else if ("bye".equals(message.command)) {
 			// do nothing, is handled in run()
-		}
-		else {
+		} else {
 			System.err.println("Unkown Command: " + message.command);
 		}
 	}
@@ -127,9 +120,10 @@ public class ProviderTask implements Runnable {
 			String json = gson.toJson(obj);
 			output.write(json + "\n");
 			output.flush();
-			System.out.println("server to " + gamer.getName() + ": " + json);
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
+		} catch (Exception e){
+			e.printStackTrace();
 		}
 	}
 
@@ -141,7 +135,8 @@ public class ProviderTask implements Runnable {
 
 	private void listGames() {
 		ArrayList<Game> currentGames = gameManager.getGamesClone();
-		ArrayList<Socket_GameOverview> gameList = new ArrayList<Socket_GameOverview>(currentGames.size());
+		ArrayList<Socket_GameOverview> gameList = new ArrayList<Socket_GameOverview>(
+				currentGames.size());
 		for (Game g : currentGames) {
 			Socket_GameOverview go = new Socket_GameOverview();
 			go.amountGamers = g.getActiveGamersCount();
@@ -167,28 +162,26 @@ public class ProviderTask implements Runnable {
 	}
 
 	private void setLocation(Object json) {
-		GPS_location location = gson.fromJson(json.toString(), GPS_location.class);
+		GPS_location location = gson.fromJson(json.toString(),
+				GPS_location.class);
 		gamer.setLocation(location);
 
 	}
 
-	
-	//commands send to the client	
-	
-	public void fight(){
+	// commands send to the client
+
+	public void fight() {
 		sendJSONObject(new SocketMessage("fight"));
 	}
-	
+
 	public void fightOver(boolean b) {
-		sendJSONObject(new SocketMessage("fightOver", b));		
+		sendJSONObject(new SocketMessage("fightOver", b));
 	}
-	
-	public void listGamers(ArrayList<Socket_GamerOverview> overview){
-		if(overview.size() == 0){
-			System.err.println("no gamers!");
-		}
+
+	public void listGamers(ArrayList<Socket_GamerOverview> overview) {
+		System.out.println("send lsgamers to " + gamer.getName() );
 		sendJSONObject(new SocketMessage("listGamers", overview));
-		
+
 	}
 
 }

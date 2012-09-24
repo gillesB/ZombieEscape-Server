@@ -60,6 +60,7 @@ public class TestNetwork extends AutoNetworkConnection {
 			tn.sendJSONObject(new SocketMessage("setLocation", location));			
 			tn.getGameList();
 			
+			
 			//remove from game
 			tn.sendJSONObject(new SocketMessage("removeGamer"));
 			boolean removed = tn.gson.fromJson(tn.socketIn.readLine(), Boolean.class);
