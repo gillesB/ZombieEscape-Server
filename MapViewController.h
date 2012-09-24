@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "GameOrganizer.h"
-
+#import "NetWorkCom.h"
 
 
 @interface MapViewController :  UIViewController <CLLocationManagerDelegate,MKMapViewDelegate>{
@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *MapView;
 @property (strong, nonatomic) IBOutlet UILabel *LocationLabel;
-@property (strong,nonatomic) GameOrganizer* gameOrg;
+
+-(void)drawGamers:(NSMutableArray*)PlayerLocation;
 
 @end

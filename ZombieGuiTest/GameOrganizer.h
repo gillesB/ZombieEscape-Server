@@ -7,13 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NetWorkCom.h"
+#import "MapViewController.h"
+
 
 
 @interface GameOrganizer : NSObject
 
-@property (strong ,nonatomic )NetWorkCom* netCom;
-
-+(id)getGameOrganizer:(BOOL)pollingmode;
--(void)stopLifeCicle;
++(id)getGameOrganizer;
+-(void)reset;
+-(void)startWithpollingMode:(BOOL)pol andDelegate:(UIViewController*)cont;
+-(void)stop;
+-(void)createAnotioansFromString:(NSString*)stream;
+-(void)handleInputFromNetwork:(NSString*)stream;
 @end

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "GPSLocation.h"
 #import "MDBufferedInputStream.h"
+#import "MapViewController.h"
+
 
 
 
@@ -17,6 +19,7 @@
     MDBufferedInputStream *inputStream;
     NSOutputStream *outputStream;
 }
+
 
 -(int) createNewPlayer:(NSString*)playerName ;
 -(int) createNewGame:(NSString*)gameName ;
@@ -34,6 +37,7 @@
 -(void)startReadingInputStream;
 -(void)StopReadingInputStream;
 -(NSString*)readLineFromInputStream;
+-(void)setDelegate:(id)gameOrg;
 
 
 

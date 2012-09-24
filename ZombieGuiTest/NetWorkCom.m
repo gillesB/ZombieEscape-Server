@@ -13,7 +13,11 @@
 #import "Socket_GameOverview.h"
 
 
+
 @implementation NetWorkCom
+
+GameOrganizer* gameOrganizer;
+int x ;
 
 bool read_Ready ;
 
@@ -44,26 +48,47 @@ bool read_Ready ;
     read_Ready=NO;
 }
 
+-(void)setDelegate:(id)gameOrg{
+    gameOrganizer=gameOrg;
+}
 
 -(void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)eventCode {
-    
-    if (read_Ready){
+   // NSLog(@"Ready : %i",x++);
+    NSString *event;
+    if (read_Ready && gameOrganizer != nil){
         switch(eventCode) {
         
             case NSStreamEventHasBytesAvailable:   
-            {
-                
-                NSLog(@"message from server: %@",inputStream.readLine);
+                event = @"Lese...";
+               [gameOrganizer handleInputFromNetwork:inputStream.readLine];
                 break;
-            }
+            case NSStreamEventNone:
+                event = @"NSStreamEventNone";
+                break;
+            case NSStreamEventOpenCompleted:
+                event = @"NSStreamEventOpenCompleted";
+                break;
+            case NSStreamEventHasSpaceAvailable:
+                event = @"NSStreamEventHasSpaceAvailable";
+               break;
+          case NSStreamEventErrorOccurred:
+                event = @"NSStreamEventErrorOccurred"; 
+                break;
+            case NSStreamEventEndEncountered:
+                event = @"NSStreamEventEndEncountered";break; 
+            default:
+                event = @"Unknown"; break;
                 
         }
+      //  NSLog(@"Event : %@",event);
     }
 }
 
 
 
-
+-(NSString*)readLineFromInputStream{
+    return inputStream.readLine;
+}
 
 
 -(int) createNewPlayer:(NSString*)playerName {
@@ -133,6 +158,11 @@ bool read_Ready ;
     
 }
 
+-(NSMutableArray*) getGamerlist{
+        
+}
+
+
 
 -(void)writeJson:(NSDictionary*)dict ToStream:(NSOutputStream*)stream{
     
@@ -163,8 +193,9 @@ bool read_Ready ;
     outputStream = (__bridge NSOutputStream *)writeStream;
     [inputStream.stream setDelegate:self];
     [outputStream setDelegate:self];
-    [inputStream.stream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    //??? Output mode changed from NSDefaultRunLoopMode to NSRunLoopCommonModes
+    [inputStream.stream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+    [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
     [inputStream open];
     [outputStream open];
 }

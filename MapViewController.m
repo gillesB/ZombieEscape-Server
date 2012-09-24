@@ -12,12 +12,14 @@
 #import "NetWorkCom.h"
 
 
+
+
 @implementation MapViewController
 
 
 @synthesize MapView =_MapView;
 @synthesize LocationLabel= _LocationLabel;
-@synthesize gameOrg = _gameOrg;
+GameOrganizer* gameOrg;
 
 
 - (void)drawPlayer {
@@ -31,6 +33,16 @@
     [_MapView addAnnotation:annotation];    
 }
 
+-(void)drawGamers:(NSMutableArray*)locations{
+    for (id<MKAnnotation> annotation in _MapView.annotations) {
+        [_MapView removeAnnotation:annotation];
+    }
+   
+    for(PlayerLocation* loc in locations ){
+        [_MapView addAnnotation:loc];  
+    }
+
+}
 
 - (void)viewDidLoad{
     
@@ -47,7 +59,8 @@
     
       
     [self drawPlayer];
-    _gameOrg = [GameOrganizer getGameOrganizer:NO];
+    gameOrg = [GameOrganizer getGameOrganizer];
+    [gameOrg startWithpollingMode:NO andDelegate:self];
     
 }
 
@@ -95,7 +108,6 @@
 {
     [self setMapView:nil];
     [self setLocationLabel:nil];
-    [_gameOrg stopLifeCicle];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     
@@ -105,6 +117,8 @@
     [super viewWillDisappear:animated];
     
     [[NetWorkCom getNetWorkCom] removePlayer];
+    NSLog(@"Reset GameOrganizer");
+    [gameOrg stop];
     
 }
 
