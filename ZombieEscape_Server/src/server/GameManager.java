@@ -6,7 +6,7 @@ import socket.ParallelProvider;
 
 public class GameManager {
 
-	private ArrayList<Game> games = new ArrayList<>();
+	private ArrayList<Game> games = new ArrayList<Game>();
 
 	public GameManager() {
 		super();

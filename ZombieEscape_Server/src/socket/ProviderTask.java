@@ -49,9 +49,10 @@ public class ProviderTask implements Runnable {
 			try {
 				SocketMessage message;
 				do {
-
-					message = gson.fromJson(input.readLine(), SocketMessage.class);
-
+					String line  =input.readLine();
+					System.out.println(line);
+					message = gson.fromJson(line, SocketMessage.class);
+					
 					System.out.println("client>" + message.command);
 
 					parseMessage(message);
@@ -78,6 +79,7 @@ public class ProviderTask implements Runnable {
 
 	private void newGamer(String message) {
 		System.out.println("newGamer() entered");
+		System.out.println("client>" + message);
 		SocketMessage newGamer = gson.fromJson(message, SocketMessage.class);
 		int gamerID;
 		if (newGamer.command.equals("newGamer")) {
@@ -93,26 +95,26 @@ public class ProviderTask implements Runnable {
 	 * @param message
 	 */
 	private void parseMessage(SocketMessage message) {
-		switch (message.command) {
-		case ("newGame"):
+
+		if ("newGame".equals(message.command)){
 			newGame(message.value);
-			break;
-		case ("listGames"):
+			}
+		else if ("listGames".equals(message.command)){
 			listGames();
-			break;
-		case ("addGamer"):
+	}
+		else if ("addGamer".equals(message.command)){
 			addGamer(message.value);
-			break;
-		case ("removeGamer"):
+}
+		else if ("removeGamer".equals(message.command)){
 			removeGamer();
-			break;
-		case ("setLocation"):
+		}
+		else if ("setLocation".equals(message.command)){
 			setLocation(message.value);
-			break;
-		case ("bye"):
+		}
+		else if ("bye".equals(message.command)){
 			// do nothing, is handled in run()
-			break;
-		default:
+		}
+		else {
 			System.err.println("Unkown Command: " + message.command);
 		}
 	}
@@ -139,7 +141,7 @@ public class ProviderTask implements Runnable {
 
 	private void listGames() {
 		ArrayList<Game> currentGames = gameManager.getGamesClone();
-		ArrayList<Socket_GameOverview> gameList = new ArrayList<>(currentGames.size());
+		ArrayList<Socket_GameOverview> gameList = new ArrayList<Socket_GameOverview>(currentGames.size());
 		for (Game g : currentGames) {
 			Socket_GameOverview go = new Socket_GameOverview();
 			go.amountGamers = g.getActiveGamersCount();

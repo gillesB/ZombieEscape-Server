@@ -1,9 +1,9 @@
 package socket;
 
 public class Socket_GameOverview {
-	int gameID;
-	String name;
-	int amountGamers;
-	double longitude;
-	double latitude;
+	public int gameID;
+	public String name;
+	public int amountGamers;
+	public double longitude;
+	public double latitude;
 }

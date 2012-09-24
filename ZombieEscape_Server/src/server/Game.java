@@ -86,7 +86,7 @@ public class Game implements Runnable {
 			ArrayList<Gamer> gamersClone = getGamersClone();
 			findCollision(gamersClone);
 			
-			ArrayList<Socket_GamerOverview> overview = new ArrayList<>(gamersClone.size());
+			ArrayList<Socket_GamerOverview> overview = new ArrayList<Socket_GamerOverview>(gamersClone.size());
 			for(Gamer g : gamersClone){
 				Socket_GamerOverview s = new Socket_GamerOverview();
 				s.gamername = g.getName();
