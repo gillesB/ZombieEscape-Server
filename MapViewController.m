@@ -35,17 +35,30 @@ int zoomlvl;
 }
 
 -(void)drawGamers:(NSMutableArray*)locations{
-    for (id<MKAnnotation> annotation in _mapView.annotations) {
-        [_mapView removeAnnotation:annotation];
-    }
-   
-   
+    
     for(PlayerLocation* loc in locations ){
-        NSLog(@" Spieler : %@ /  %f  / %f ",  loc.name, loc.coordinate.longitude, loc.coordinate.latitude);
-        [_mapView addAnnotation:loc];  
+        [ self replacePin:loc.name withLocation:loc.coordinate];
     }
 
 }
+
+-(void)replacePin:(NSString *)gamerName  withLocation:(CLLocationCoordinate2D)location {
+    //Find and "decommission" the old pin... (basically flags it for deletion later)
+    for (PlayerLocation* annotation in _mapView.annotations) 
+    {
+        if (![annotation isKindOfClass:[PlayerLocation class]])
+        {
+            if ([annotation.title isEqualToString:gamerName])
+                annotation.decomission = YES;
+        }
+    }
+    
+    //add the new pin...
+    PlayerLocation *stationPin = nil;
+    stationPin = [[PlayerLocation alloc] initWithName:gamerName address:nil coordinate:location];
+    [_mapView addAnnotation:stationPin];
+}
+
 
 - (void)viewDidLoad{
     
@@ -70,9 +83,45 @@ int zoomlvl;
            fromLocation:(CLLocation *)oldLocation{
     
     self.locationLabel.text = newLocation.description;
-   // [gameOrg updateMyLocation:newLocation];
+    [gameOrg updateMyLocation:newLocation];
 }
 
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    MKAnnotationView* annotationView = nil;
+    
+    if (![annotation isKindOfClass:[PlayerLocation class]])
+    {
+        PlayerLocation* annotation = (PlayerLocation*)annotation;
+        
+        //your own details...
+        
+        //delete any decommissioned pins...
+        [self performSelectorOnMainThread:@selector(deletePin:) withObject:annotation.name waitUntilDone:NO];
+    }
+    return annotationView;
+    
+}
+
+-(void)deletePin:(NSString *)stationCode
+{
+    for (PlayerLocation *annotation in _mapView.annotations) 
+    {
+        if (![annotation isKindOfClass:[PlayerLocation class]])
+        {
+            if ([annotation.name isEqualToString:stationCode])
+            {  
+                if (annotation.decomission)
+                    [_mapView removeAnnotation:annotation];
+            }
+        }
+    }
+}
+
+
+
+/*  ALTER VERSION 
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
@@ -92,7 +141,7 @@ int zoomlvl;
     }
     return nil;    
 }
-
+*/
 
 -(void)defineRegion{
     MKCoordinateRegion region;

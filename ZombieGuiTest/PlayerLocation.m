@@ -13,12 +13,14 @@
 @synthesize name = _name;
 @synthesize address = _address;
 @synthesize coordinate = _coordinate;
+@synthesize decomission=_decomission;
 
 - (id)initWithName:(NSString*)name address:(NSString*)address coordinate:(CLLocationCoordinate2D)coordinate {
     if ((self = [super init])) {
         _name = [name copy];
         _address = [address copy];
         _coordinate = coordinate;
+        _decomission=NO;
     }
     return self;
 }

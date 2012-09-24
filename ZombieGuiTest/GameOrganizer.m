@@ -91,6 +91,7 @@ volatile bool run;
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSDictionary *dic = [parser objectWithString:stream];
    
+    NSLog(@"Von Server : %@",[dic description]);
     NSString* commandString = [ dic objectForKey:@"command"];
     NSMutableArray* gamerLocations = [[NSMutableArray alloc] initWithCapacity:1];
     
@@ -106,10 +107,10 @@ volatile bool run;
             location.latitude =lat;
             
             NSString* gamerName =[dictionary valueForKey:@"gamername"];
-            if( ! [gamerName compare:_gamerName]==0){
+          //  if( ! [gamerName compare:_gamerName]==0){
                 PlayerLocation* gamerloc = [[PlayerLocation alloc] initWithName:gamerName address:@"BRAIN" coordinate:location];
                 [gamerLocations addObject:gamerloc];
-            }
+           // }
         }
         [delegate drawGamers:gamerLocations];
         
