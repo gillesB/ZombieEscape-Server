@@ -17,8 +17,8 @@ public class PatrolBot extends AutoNetworkConnection {
 	 */
 	public static void main(String[] args) {
 		PatrolBot b = new PatrolBot();
-		GPS_location walkFrom = new GPS_location(49.233993, 6.982645);
-		GPS_location walkTo = new GPS_location(49.233895, 6.979941);
+		GPS_location walkFrom = new GPS_location(49.233895, 6.979941);
+		GPS_location walkTo = new GPS_location(49.233993, 6.982645);
 		try {
 			b.openConnection("127.0.0.1");
 			Random r = new Random();
@@ -61,6 +61,7 @@ public class PatrolBot extends AutoNetworkConnection {
 	 */
 	private void patrolBetween(GPS_location from, GPS_location to) throws IOException {
 		setLocation(from);
+		GPS_location target = to;
 		while (true) {
 			try {
 				Thread.sleep(1000);
@@ -69,12 +70,14 @@ public class PatrolBot extends AutoNetworkConnection {
 				e.printStackTrace();
 			}
 			
-			goInDirection(to, 0.00001);
+			goInDirection(target, 0.001);
 			
-			if (myLocation.latitude <= from.latitude || to.latitude >= myLocation.latitude) {
-				GPS_location temp = to;
-				to = from;
-				from = temp;
+			if (myLocation.longitude <= from.longitude || to.longitude <= myLocation.longitude) {
+				if(target == to){
+					target = from;
+				} else {
+					target = to;
+				}
 				System.out.println("changed direction");
 			}
 			

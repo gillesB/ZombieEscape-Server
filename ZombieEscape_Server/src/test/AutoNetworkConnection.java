@@ -195,15 +195,15 @@ public abstract class AutoNetworkConnection {
 
 	void goInDirection(GPS_location target, double stepSize) {
 		
-		double direction = myLocation.latitude < target.latitude ? 1 : -1;
+		double direction = myLocation.longitude < target.longitude ? 1 : -1;
 
 		// equation of a line (Geradengleichung)
-		double numerator1 = myLocation.longitude - target.longitude;
-		double numerator2 = target.latitude * myLocation.longitude - myLocation.latitude * target.longitude;
+		double numerator1 = target.latitude - myLocation.latitude;
+		double numerator2 = target.longitude * myLocation.latitude - myLocation.longitude * target.latitude;
 		// TODO avoid division by zero
-		double denominator = target.latitude - myLocation.latitude;
+		double denominator = target.longitude - myLocation.longitude;
 
-		double x = myLocation.latitude + (stepSize * direction);
+		double x = myLocation.longitude + (stepSize * direction);
 		double y = numerator1 / denominator * x + numerator2 / denominator;
 		setLocation(x, y);
 
