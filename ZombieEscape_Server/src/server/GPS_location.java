@@ -5,7 +5,7 @@ public class GPS_location {
 	public GPS_location() {
 		super();
 	}
-	public GPS_location(double longitude, double latitude) {
+	public GPS_location(double latitude, double longitude) {
 		super();
 		this.longitude = longitude;
 		this.latitude = latitude;

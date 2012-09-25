@@ -23,6 +23,7 @@ public abstract class AutoNetworkConnection {
 	Socket socket;
 	BufferedWriter socketOut;
 	BufferedReader socketIn;
+	GPS_location myLocation;
 
 	static Gson gson = new Gson();
 
@@ -40,14 +41,10 @@ public abstract class AutoNetworkConnection {
 					System.out.println("Create Socket");
 
 					socket = new Socket();
-					socket
-							.connect(new InetSocketAddress(serverAddr,
-									portNumber));
+					socket.connect(new InetSocketAddress(serverAddr, portNumber));
 
-					socketOut = new BufferedWriter(new OutputStreamWriter(
-							socket.getOutputStream()));
-					socketIn = new BufferedReader(new InputStreamReader(socket
-							.getInputStream()));
+					socketOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+					socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 					openConnectionSuccess = true;
 				} catch (UnknownHostException e) {
 					System.out.println(e);
@@ -129,16 +126,15 @@ public abstract class AutoNetworkConnection {
 	Socket_GameOverview[] getGameList() throws IOException {
 		sendJSONObject(new SocketMessage("listGames"));
 		String gamelist = socketIn.readLine();
-		Socket_GameOverview[] gameArray = gson.fromJson(gamelist,
-				Socket_GameOverview[].class);
+		Socket_GameOverview[] gameArray = gson.fromJson(gamelist, Socket_GameOverview[].class);
 		return gameArray;
 	}
 
-	void joinGame(int gameID) throws JsonSyntaxException, IOException {
-		sendJSONObject(new SocketMessage("addGamer", ((Integer) gameID)
-				.toString()));
+	boolean joinGame(int gameID) throws JsonSyntaxException, IOException {
+		sendJSONObject(new SocketMessage("addGamer", ((Integer) gameID).toString()));
 		boolean human = gson.fromJson(socketIn.readLine(), Boolean.class);
 		printJoinedGameMessage(human);
+		return human;
 	}
 
 	void printJoinedGameMessage(boolean human) {
@@ -154,8 +150,63 @@ public abstract class AutoNetworkConnection {
 	}
 
 	void setLocation(double longitude, double latitude) {
-		GPS_location location = new GPS_location(longitude, latitude);
-		sendJSONObject(new SocketMessage("setLocation", location));
+		myLocation = new GPS_location(latitude, longitude);
+		sendJSONObject(new SocketMessage("setLocation", myLocation));
+	}
+
+	boolean joinGameBotnet() throws IOException {
+		Socket_GameOverview[] games = getGameList();
+		boolean gameBotnetExists = false;
+		int botnetGameID = -1;
+		for (Socket_GameOverview g : games) {
+			if (g.name.equals("Botnet")) {
+				botnetGameID = g.gameID;
+				gameBotnetExists = true;
+			}
+		}
+		if (!gameBotnetExists) {
+			botnetGameID = this.newGame("Botnet");
+		}
+		return joinGame(botnetGameID);
+	}
+
+	SocketMessage getMessageFromServer() throws IOException {
+		String gamelist = socketIn.readLine();
+		return gson.fromJson(gamelist, SocketMessage.class);
+	}
+
+	double distanceTo(GPS_location locationOfGamer) {
+		return haversine_km(myLocation.latitude, myLocation.longitude, locationOfGamer.latitude,
+		locationOfGamer.longitude);
+	}
+
+	private double haversine_km(double lat1, double long1, double lat2, double long2) {
+		double toRad = 0.0174532925199433; // pi / 180
+		double dlong = (long2 - long1) * toRad;
+		double dlat = (lat2 - lat1) * toRad;
+		double a =
+		Math.pow(Math.sin(dlat / 2.0), 2) + Math.cos(lat1 * toRad) * Math.cos(lat2 * toRad)
+		* Math.pow(Math.sin(dlong / 2.0), 2);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		double d = 6367 * c;
+
+		return d;
+	}
+
+	void goInDirection(GPS_location target, double stepSize) {
+		
+		double direction = myLocation.latitude < target.latitude ? 1 : -1;
+
+		// equation of a line (Geradengleichung)
+		double numerator1 = myLocation.longitude - target.longitude;
+		double numerator2 = target.latitude * myLocation.longitude - myLocation.latitude * target.longitude;
+		// TODO avoid division by zero
+		double denominator = target.latitude - myLocation.latitude;
+
+		double x = myLocation.latitude + (stepSize * direction);
+		double y = numerator1 / denominator * x + numerator2 / denominator;
+		setLocation(x, y);
+
 	}
 
 }

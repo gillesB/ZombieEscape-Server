@@ -93,7 +93,7 @@ public class Game implements Runnable {
 				GPS_location gps = g.getLocation();
 				s.latitude = gps.latitude;
 				s.longitude = gps.longitude;
-				s.zombie = g.isZombie();
+				s.isZombie = g.isZombie();
 				overview.add(s);
 			}
 			for(Gamer g : gamersClone){
