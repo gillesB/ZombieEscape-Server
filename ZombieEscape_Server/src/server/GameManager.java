@@ -6,12 +6,14 @@ import socket.ParallelProvider;
 
 public class GameManager {
 
-	private ArrayList<Game> games = new ArrayList<>();
+	private ArrayList<Game> games = new ArrayList<Game>();
 
 	public GameManager() {
 		super();
 		ParallelProvider parallelProvider = new ParallelProvider(this);
-		new Thread(parallelProvider).start();
+		Thread t= new Thread(parallelProvider);
+		t.setName("parallelProvider");
+		t.start();
 	}
 
 	public int createGame(String gamename) {
@@ -19,7 +21,9 @@ public class GameManager {
 		synchronized (games) {
 			games.add(newGame);
 		}
-		new Thread(newGame).start();
+		Thread t = new Thread(newGame);
+		t.setName(gamename);
+		t.start();
 		return newGame.getGameID();
 
 	}
