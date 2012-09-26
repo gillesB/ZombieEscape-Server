@@ -16,7 +16,9 @@ public class GPS_location {
 	public double latitude = 0;
 
 	public double getDistanceTo_km(GPS_location loc) {
-		// distance between two points
+		if(loc == null){
+			return 0;
+		}
 		return haversine_km(this.latitude, this.longitude, loc.latitude, loc.longitude);
 	}
 	
