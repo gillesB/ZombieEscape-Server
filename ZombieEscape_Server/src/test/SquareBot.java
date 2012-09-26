@@ -1,6 +1,7 @@
 package test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import server.GPS_location;
@@ -8,6 +9,7 @@ import socket.SocketMessage;
 import socket.Socket_GamerOverview;
 
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.internal.StringMap;
 
 public class SquareBot extends AutoNetworkConnection {
 
@@ -78,10 +80,11 @@ public class SquareBot extends AutoNetworkConnection {
 	 * @param gamers
 	 * @return
 	 */
-	private GPS_location getLocationOfNearestHuman(Socket_GamerOverview[] gamers) {
+	private GPS_location getLocationOfNearestHuman(ArrayList<StringMap<Socket_GamerOverview>> gamers) {
 		double smallestDistance = Double.MAX_VALUE;
 		Socket_GamerOverview nearestGamer = null;
-		for (Socket_GamerOverview gamer : gamers) {
+		for (StringMap<Socket_GamerOverview> str_gamer : gamers) {
+			Socket_GamerOverview gamer = gson.fromJson(str_gamer.toString(), Socket_GamerOverview.class);
 			if (!gamer.isZombie) { // gamer is human
 				GPS_location locationOfGamer = new GPS_location(gamer.latitude, gamer.longitude);
 				double distance = distanceTo(locationOfGamer);
@@ -97,11 +100,11 @@ public class SquareBot extends AutoNetworkConnection {
 	private void huntHumans() throws IOException {
 		SocketMessage message = getMessageFromServer();
 		if (message.command.equals("listGamers")) {
-			Socket_GamerOverview[] gamers = (Socket_GamerOverview[]) message.value;
+			ArrayList<StringMap<Socket_GamerOverview>> gamers = (ArrayList<StringMap<Socket_GamerOverview>>) message.value;
 			GPS_location nearestHuman = getLocationOfNearestHuman(gamers);
-			
+			goInDirection(nearestHuman, 0.001);
 		} else {
-			System.out.println("got command " + message.value + ", but I ignore it");
+			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value );
 		}
 
 	}
