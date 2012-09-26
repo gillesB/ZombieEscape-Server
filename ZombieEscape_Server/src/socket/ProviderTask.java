@@ -128,7 +128,7 @@ public class ProviderTask implements Runnable {
 	}
 
 	private void addGamer(Object json) {
-		Socket_addGamer gamerInfo = gson.fromJson(json.toString(), Socket_addGamer.class);
+		Socket_AddGamer gamerInfo = gson.fromJson(json.toString(), Socket_AddGamer.class);
 		gameManager.addGamerToGame(gamer, gamerInfo.gameID, gamerInfo.state);
 		sendJSONObject(!gamer.isZombie());
 	}

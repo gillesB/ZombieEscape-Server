@@ -16,6 +16,7 @@ import com.google.gson.JsonSyntaxException;
 import server.GPS_location;
 import socket.SocketMessage;
 import socket.Socket_GameOverview;
+import socket.Socket_AddGamer;
 
 public abstract class AutoNetworkConnection {
 
@@ -130,7 +131,8 @@ public abstract class AutoNetworkConnection {
 	}
 
 	boolean joinGame(int gameID) throws JsonSyntaxException, IOException {
-		sendJSONObject(new SocketMessage("addGamer", ((Integer) gameID).toString()));
+		Socket_AddGamer socketAddGamer = new Socket_AddGamer(((Integer) gameID).toString(),0); 
+		sendJSONObject(new SocketMessage("addGamer", socketAddGamer));
 		boolean human = gson.fromJson(socketIn.readLine(), Boolean.class);
 		printJoinedGameMessage(human);
 		return human;
