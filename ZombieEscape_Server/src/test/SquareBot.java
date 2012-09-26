@@ -85,7 +85,9 @@ public class SquareBot extends AutoNetworkConnection {
 		GPS_location nearestGamerLocation = null;
 		for (StringMap<Socket_GamerOverview> str_gamer : gamers) {
 			Socket_GamerOverview gamer = gson.fromJson(str_gamer.toString(), Socket_GamerOverview.class);
-			if (!(gamer.isZombie ^ lookingForZombie)) { //both values must be true or both must false
+			if (!(gamer.isZombie ^ lookingForZombie)) { // both values must be
+														// true or both must
+														// false
 				GPS_location locationOfGamer = new GPS_location(gamer.latitude, gamer.longitude);
 				double distance = myLocation.getDistanceTo_km(locationOfGamer);
 				if (distance < smallestDistance) {
@@ -110,7 +112,7 @@ public class SquareBot extends AutoNetworkConnection {
 		if (message.command.equals("listGamers")) {
 			ArrayList<StringMap<Socket_GamerOverview>> gamers = (ArrayList<StringMap<Socket_GamerOverview>>) message.value;
 			GPS_location nearestHuman = getLocationOfNearestHuman(gamers);
-			System.out.println("next human in: " + nearestHuman);
+			System.out.println("next human in " + myLocation.getDistanceTo_km(nearestHuman) + " km. (" + nearestHuman + ")");
 			setLocation(goInDirection(nearestHuman, 0.001));
 		} else {
 			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value);
@@ -123,7 +125,7 @@ public class SquareBot extends AutoNetworkConnection {
 		if (message.command.equals("listGamers")) {
 			ArrayList<StringMap<Socket_GamerOverview>> gamers = (ArrayList<StringMap<Socket_GamerOverview>>) message.value;
 			GPS_location nearestZombie = getLocationOfNearestZombie(gamers);
-			System.out.println("next zombie in: " + nearestZombie);
+			System.out.println("next human in " + myLocation.getDistanceTo_km(nearestZombie) + " km. (" + nearestZombie + ")");
 			setLocation(goInDirection(nearestZombie, -0.001));
 		} else {
 			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value);
