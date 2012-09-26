@@ -77,4 +77,10 @@ public class Gamer {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+
 }

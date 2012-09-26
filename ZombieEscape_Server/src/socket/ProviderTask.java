@@ -41,23 +41,18 @@ public class ProviderTask implements Runnable {
 	public void run() {
 		try {
 			// 3. get Input and Output streams
-			input = new BufferedReader(new InputStreamReader(clientSocket
-					.getInputStream()));
-			output = new BufferedWriter(new OutputStreamWriter(clientSocket
-					.getOutputStream()));
-
-			newGamer(input.readLine());
+			input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+			output = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 
 			SocketMessage message;
 			do {
 				String line = input.readLine();
-				// System.out.println(line);
+
 				message = gson.fromJson(line, SocketMessage.class);
 
-				System.out.println(gamer.getName() + "> " + message.command
-						+ " - " + message.value);
-
 				parseMessage(message);
+				
+				System.out.println(gamer.getName() + "> " + message.command + " - " + message.value);
 
 			} while (!message.command.equals("bye"));
 
@@ -76,26 +71,14 @@ public class ProviderTask implements Runnable {
 		}
 	}
 
-	private void newGamer(String message) {
-		System.out.println("newGamer() entered");
-		System.out.println("client>" + message);
-		SocketMessage newGamer = gson.fromJson(message, SocketMessage.class);
-		int gamerID;
-		if (newGamer.command.equals("newGamer")) {
-			gamer = new Gamer((String) newGamer.value, this);
-			gamerID = gamer.getGamerID();
-		} else {
-			gamerID = -1;
-		}
-		sendJSONObject(gamerID);
-	}
 
 	/**
 	 * @param message
 	 */
 	private void parseMessage(SocketMessage message) {
-
-		if ("newGame".equals(message.command)) {
+		if ("newGamer".equals(message.command)) {
+			newGamer(message.value.toString());
+		} else if ("newGame".equals(message.command)) {
 			newGame(message.value);
 		} else if ("listGames".equals(message.command)) {
 			listGames();
@@ -110,6 +93,22 @@ public class ProviderTask implements Runnable {
 		} else {
 			System.err.println("Unkown Command: " + message.command);
 		}
+	}	
+
+	/**
+	 * if gamer already exists, only change the gamername. Otherwise create a new one. In both cases send gamerID back to client.
+	 * @param gamername
+	 */
+	private void newGamer(String gamername) {
+		int gamerID;
+		if(gamer == null){
+			gamer = new Gamer(gamername, this);
+			gamerID = gamer.getGamerID();
+		} else {
+			gamerID = gamer.getGamerID();
+			gamer.setName(gamername);
+		}
+		sendJSONObject(gamerID);
 	}
 
 	/**
@@ -122,7 +121,7 @@ public class ProviderTask implements Runnable {
 			output.flush();
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
-		} catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -135,8 +134,7 @@ public class ProviderTask implements Runnable {
 
 	private void listGames() {
 		ArrayList<Game> currentGames = gameManager.getGamesClone();
-		ArrayList<Socket_GameOverview> gameList = new ArrayList<Socket_GameOverview>(
-				currentGames.size());
+		ArrayList<Socket_GameOverview> gameList = new ArrayList<Socket_GameOverview>(currentGames.size());
 		for (Game g : currentGames) {
 			Socket_GameOverview go = new Socket_GameOverview();
 			go.amountGamers = g.getActiveGamersCount();
@@ -162,8 +160,7 @@ public class ProviderTask implements Runnable {
 	}
 
 	private void setLocation(Object json) {
-		GPS_location location = gson.fromJson(json.toString(),
-				GPS_location.class);
+		GPS_location location = gson.fromJson(json.toString(), GPS_location.class);
 		gamer.setLocation(location);
 
 	}
@@ -179,7 +176,7 @@ public class ProviderTask implements Runnable {
 	}
 
 	public void listGamers(ArrayList<Socket_GamerOverview> overview) {
-		System.out.println("send lsgamers to " + gamer.getName() );
+		System.out.println("send lsgamers to " + gamer.getName());
 		sendJSONObject(new SocketMessage("listGamers", overview));
 
 	}

@@ -60,11 +60,11 @@ public abstract class AutoNetworkConnection {
 	}
 
 	int newGamer(String gamerName) throws JsonSyntaxException, IOException {
-		// create a new gamer on the server, this step has to be done everytime,
+		// create a new gamer on the server, this step has to be done every time,
 		// as the gamers are not saved
 		this.sendJSONObject(new SocketMessage("newGamer", gamerName));
 
-		// get the gamerID till now it is not needed, but could be usefull in
+		// get the gamerID till now it is not needed, but could be useful in
 		// the future
 		int gamerID = gson.fromJson(socketIn.readLine(), Integer.class);
 		System.out.println(gamerID);
