@@ -27,7 +27,7 @@ public class GPS_location {
 		if(obj instanceof GPS_location){
 			GPS_location loc = (GPS_location) obj;
 			if(this.latitude == loc.latitude && this.longitude == loc.longitude){
-				return false;
+				return true;
 			}
 		} else {
 			return false;

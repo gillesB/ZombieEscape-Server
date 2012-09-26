@@ -52,25 +52,25 @@ public class SquareBot extends AutoNetworkConnection {
 
 	private void setRandomLocation() {
 		Random r = new Random();
-		
+
 		double diffLat = uppertopCorner.latitude - lowerleftCorner.latitude;
 		double latitude = lowerleftCorner.latitude + (diffLat * r.nextDouble());
-		
+
 		double diffLong = uppertopCorner.longitude - lowerleftCorner.longitude;
 		double longitude = lowerleftCorner.longitude + (diffLong * r.nextDouble());
-		
+
 		setLocation(longitude, latitude);
-		
+
 	}
 
 	private void playZombieEscape() throws IOException {
 		while (true) {
 			System.out.println("loop");
-			if (zombie) {
-				huntHumans();
-			} else {
-				escapeZombies();
-			}
+			// if (zombie) {
+			huntHumans();
+			/*
+			 * } else { escapeZombies(); }
+			 */
 		}
 
 	}
@@ -81,12 +81,12 @@ public class SquareBot extends AutoNetworkConnection {
 	 * @param gamers
 	 * @return
 	 */
-	private GPS_location getLocationOfNearestHuman(ArrayList<StringMap<Socket_GamerOverview>> gamers) {
+	private GPS_location getLocationOfNearest(Boolean lookingForZombie, ArrayList<StringMap<Socket_GamerOverview>> gamers) {
 		double smallestDistance = Double.MAX_VALUE;
 		GPS_location nearestGamerLocation = null;
 		for (StringMap<Socket_GamerOverview> str_gamer : gamers) {
 			Socket_GamerOverview gamer = gson.fromJson(str_gamer.toString(), Socket_GamerOverview.class);
-			if (!gamer.isZombie) { // gamer is human
+			if (gamer.isZombie && lookingForZombie || !gamer.isZombie && !lookingForZombie ) { // gamer is human
 				GPS_location locationOfGamer = new GPS_location(gamer.latitude, gamer.longitude);
 				double distance = distanceTo(locationOfGamer);
 				if (distance < smallestDistance) {
@@ -97,6 +97,15 @@ public class SquareBot extends AutoNetworkConnection {
 		}
 		return nearestGamerLocation;
 	}
+	
+	private GPS_location getLocationOfNearestHuman(ArrayList<StringMap<Socket_GamerOverview>> gamers) {
+		return getLocationOfNearest(false, gamers);
+	}
+	
+
+	private GPS_location getLocationOfNearestZombie(ArrayList<StringMap<Socket_GamerOverview>> gamers) {
+		return getLocationOfNearest(true, gamers);
+	}
 
 	private void huntHumans() throws IOException {
 		SocketMessage message = getMessageFromServer();
@@ -105,20 +114,26 @@ public class SquareBot extends AutoNetworkConnection {
 			GPS_location nearestHuman = getLocationOfNearestHuman(gamers);
 			setLocation(goInDirection(nearestHuman, 0.001));
 		} else {
-			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value );
+			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value);
 		}
 
 	}
-	
 
 	private void escapeZombies() throws IOException {
-		
-
+		SocketMessage message = getMessageFromServer();
+		if (message.command.equals("listGamers")) {
+			ArrayList<StringMap<Socket_GamerOverview>> gamers = (ArrayList<StringMap<Socket_GamerOverview>>) message.value;
+			GPS_location nearestZombie = getLocationOfNearestZombie(gamers);
+			setLocation(goInDirection(nearestZombie, -0.001));
+		} else {
+			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value);
+		}
 	}
+
 
 	private void checkCoordinates() {
 		if (lowerleftCorner.longitude >= uppertopCorner.longitude
-		|| lowerleftCorner.latitude >= uppertopCorner.latitude) {
+				|| lowerleftCorner.latitude >= uppertopCorner.latitude) {
 			System.err.println("Coordinates notin right order!");
 			System.exit(1);
 		}
