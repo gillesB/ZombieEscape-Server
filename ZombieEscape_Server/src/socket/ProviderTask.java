@@ -51,7 +51,7 @@ public class ProviderTask implements Runnable {
 				message = gson.fromJson(line, SocketMessage.class);
 
 				parseMessage(message);
-				
+
 				System.out.println(gamer.getName() + "> " + message.command + " - " + message.value);
 
 			} while (!message.command.equals("bye"));
@@ -70,7 +70,6 @@ public class ProviderTask implements Runnable {
 			}
 		}
 	}
-
 
 	/**
 	 * @param message
@@ -93,15 +92,17 @@ public class ProviderTask implements Runnable {
 		} else {
 			System.err.println("Unkown Command: " + message.command);
 		}
-	}	
+	}
 
 	/**
-	 * if gamer already exists, only change the gamername. Otherwise create a new one. In both cases send gamerID back to client.
+	 * if gamer already exists, only change the gamername. Otherwise create a
+	 * new one. In both cases send gamerID back to client.
+	 * 
 	 * @param gamername
 	 */
 	private void newGamer(String gamername) {
 		int gamerID;
-		if(gamer == null){
+		if (gamer == null) {
 			gamer = new Gamer(gamername, this);
 			gamerID = gamer.getGamerID();
 		} else {
