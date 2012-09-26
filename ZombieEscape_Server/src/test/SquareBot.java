@@ -110,7 +110,7 @@ public class SquareBot extends AutoNetworkConnection {
 		if (message.command.equals("listGamers")) {
 			ArrayList<StringMap<Socket_GamerOverview>> gamers = (ArrayList<StringMap<Socket_GamerOverview>>) message.value;
 			GPS_location nearestHuman = getLocationOfNearestHuman(gamers);
-			System.err.println("next human in: " + nearestHuman);
+			System.out.println("next human in: " + nearestHuman);
 			setLocation(goInDirection(nearestHuman, 0.001));
 		} else {
 			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value);
@@ -123,7 +123,7 @@ public class SquareBot extends AutoNetworkConnection {
 		if (message.command.equals("listGamers")) {
 			ArrayList<StringMap<Socket_GamerOverview>> gamers = (ArrayList<StringMap<Socket_GamerOverview>>) message.value;
 			GPS_location nearestZombie = getLocationOfNearestZombie(gamers);
-			System.err.println("next zombie in: " + nearestZombie);
+			System.out.println("next zombie in: " + nearestZombie);
 			setLocation(goInDirection(nearestZombie, -0.001));
 		} else {
 			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value);

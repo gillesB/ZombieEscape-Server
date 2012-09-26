@@ -111,8 +111,7 @@ public class Game implements Runnable {
 			Gamer g1 = gamersClone.get(i);
 			for (int j = i + 1; j < gamersClone.size(); j++) {
 				Gamer g2 = gamersClone.get(j);
-				//TODO I have no idea how big the distance has to be
-				if ((g1.isZombie() ^ g2.isZombie()) && g1.getLocation().getDistanceTo_km(g2.getLocation()) < 0.5) { // only one of the gamers is a zombie and they are near to each other
+				if ((g1.isZombie() ^ g2.isZombie()) && g1.getLocation().getDistanceTo_km(g2.getLocation()) < 0.005) { // only one of the gamers is a zombie and they are near to each other
 					fight(g1, g2);
 				}
 			}
