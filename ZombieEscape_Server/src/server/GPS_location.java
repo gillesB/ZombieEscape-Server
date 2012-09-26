@@ -40,6 +40,8 @@ public class GPS_location {
 		}
 		return super.equals(obj);
 	}
+	
+	
 
 	private static double haversine_km(double lat1, double long1, double lat2, double long2) {
 		double toRad = 0.0174532925199433; // pi / 180
@@ -51,6 +53,11 @@ public class GPS_location {
 		double d = 6367 * c;
 
 		return d;
+	}
+
+	@Override
+	public String toString() {
+		return "GPS_location [latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
 
 }
