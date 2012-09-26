@@ -65,14 +65,12 @@ public class SquareBot extends AutoNetworkConnection {
 
 	private void playZombieEscape() throws IOException {
 		while (true) {
-			System.out.println("loop");
-			// if (zombie) {
-			huntHumans();
-			/*
-			 * } else { escapeZombies(); }
-			 */
+			if (zombie) {
+				huntHumans();
+			} else {
+				escapeZombies();
+			}
 		}
-
 	}
 
 	/**
@@ -81,14 +79,15 @@ public class SquareBot extends AutoNetworkConnection {
 	 * @param gamers
 	 * @return
 	 */
-	private GPS_location getLocationOfNearest(Boolean lookingForZombie, ArrayList<StringMap<Socket_GamerOverview>> gamers) {
+	private GPS_location getLocationOfNearest(Boolean lookingForZombie,
+			ArrayList<StringMap<Socket_GamerOverview>> gamers) {
 		double smallestDistance = Double.MAX_VALUE;
 		GPS_location nearestGamerLocation = null;
 		for (StringMap<Socket_GamerOverview> str_gamer : gamers) {
 			Socket_GamerOverview gamer = gson.fromJson(str_gamer.toString(), Socket_GamerOverview.class);
-			if (gamer.isZombie && lookingForZombie || !gamer.isZombie && !lookingForZombie ) { // gamer is human
+			if (!(gamer.isZombie ^ lookingForZombie)) { //both values must be true or both must false
 				GPS_location locationOfGamer = new GPS_location(gamer.latitude, gamer.longitude);
-				double distance = distanceTo(locationOfGamer);
+				double distance = myLocation.getDistanceTo_km(locationOfGamer);
 				if (distance < smallestDistance) {
 					smallestDistance = distance;
 					nearestGamerLocation = locationOfGamer;
@@ -97,11 +96,10 @@ public class SquareBot extends AutoNetworkConnection {
 		}
 		return nearestGamerLocation;
 	}
-	
+
 	private GPS_location getLocationOfNearestHuman(ArrayList<StringMap<Socket_GamerOverview>> gamers) {
 		return getLocationOfNearest(false, gamers);
 	}
-	
 
 	private GPS_location getLocationOfNearestZombie(ArrayList<StringMap<Socket_GamerOverview>> gamers) {
 		return getLocationOfNearest(true, gamers);
@@ -129,7 +127,6 @@ public class SquareBot extends AutoNetworkConnection {
 			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value);
 		}
 	}
-
 
 	private void checkCoordinates() {
 		if (lowerleftCorner.longitude >= uppertopCorner.longitude

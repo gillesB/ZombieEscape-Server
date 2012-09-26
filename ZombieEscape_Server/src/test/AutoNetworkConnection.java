@@ -175,24 +175,6 @@ public abstract class AutoNetworkConnection {
 		return gson.fromJson(gamelist, SocketMessage.class);
 	}
 
-	double distanceTo(GPS_location locationOfGamer) {
-		return haversine_km(myLocation.latitude, myLocation.longitude, locationOfGamer.latitude,
-		locationOfGamer.longitude);
-	}
-
-	private double haversine_km(double lat1, double long1, double lat2, double long2) {
-		double toRad = 0.0174532925199433; // pi / 180
-		double dlong = (long2 - long1) * toRad;
-		double dlat = (lat2 - lat1) * toRad;
-		double a =
-		Math.pow(Math.sin(dlat / 2.0), 2) + Math.cos(lat1 * toRad) * Math.cos(lat2 * toRad)
-		* Math.pow(Math.sin(dlong / 2.0), 2);
-		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-		double d = 6367 * c;
-
-		return d;
-	}
-
 	GPS_location goInDirection(GPS_location target, double stepSize) {
 		
 		if(target == null){
