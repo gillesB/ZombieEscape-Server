@@ -10,8 +10,8 @@ public class Game implements Runnable {
 
 	private int gameID;
 	private static AtomicInteger gameIDcounter = new AtomicInteger(0);
-	private static AtomicInteger zombieCount= new AtomicInteger(0);
-	private static AtomicInteger humanCount= new AtomicInteger(0);
+	private static AtomicInteger zombieCount = new AtomicInteger(0);
+	private static AtomicInteger humanCount = new AtomicInteger(0);
 	private String name;
 	private ArrayList<Gamer> gamers;
 
@@ -42,20 +42,26 @@ public class Game implements Runnable {
 		return location;
 	}
 
-	public void addGamer(Gamer gamer) {
+	public void addGamer(Gamer gamer, int state) {
 		synchronized (gamers) {
 			gamers.add(gamer);
 		}
 		synchronized (gamer) {
-			//does the gamer become a zombie or a human?
-			if(zombieCount.get() < humanCount.get()){
-				gamer.setZombie(true);
-				zombieCount.getAndIncrement();
-			} else {
+			if (state == 0) {
+				// does the gamer become a zombie or a human?
+				if (zombieCount.get() < humanCount.get()) {
+					gamer.setZombie(true);
+					zombieCount.getAndIncrement();
+				} else {
+					gamer.setZombie(false);
+					humanCount.getAndIncrement();
+				}
+			} else if (state == 1) { // gamer becomes human
 				gamer.setZombie(false);
-				humanCount.getAndIncrement();
+			} else { // gamer becomes zombie
+				gamer.setZombie(true);
 			}
-			
+
 			gamer.setGame(this);
 		}
 	}
@@ -63,9 +69,9 @@ public class Game implements Runnable {
 	public void removeGamer(Gamer gamer) {
 		synchronized (gamers) {
 			gamers.remove(gamer);
-		}		
+		}
 		synchronized (gamer) {
-			if(gamer.isZombie()){
+			if (gamer.isZombie()) {
 				zombieCount.getAndDecrement();
 			} else {
 				humanCount.getAndDecrement();
@@ -83,11 +89,11 @@ public class Game implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//TODO change this back
+			// TODO change this back
 			ArrayList<Gamer> gamersClone = getGamersClone();
 			findCollision(gamersClone);
 			ArrayList<Socket_GamerOverview> overview = new ArrayList<Socket_GamerOverview>(gamersClone.size());
-			for(Gamer g : gamersClone){
+			for (Gamer g : gamersClone) {
 				Socket_GamerOverview s = new Socket_GamerOverview();
 				s.gamername = g.getName();
 				GPS_location gps = g.getLocation();
@@ -96,9 +102,9 @@ public class Game implements Runnable {
 				s.isZombie = g.isZombie();
 				overview.add(s);
 			}
-			for(Gamer g : gamersClone){
+			for (Gamer g : gamersClone) {
 				g.getProviderTask().listGamers(overview);
-			}			
+			}
 		}
 	}
 
@@ -111,7 +117,21 @@ public class Game implements Runnable {
 			Gamer g1 = gamersClone.get(i);
 			for (int j = i + 1; j < gamersClone.size(); j++) {
 				Gamer g2 = gamersClone.get(j);
-				if ((g1.isZombie() ^ g2.isZombie()) && g1.getLocation().getDistanceTo_km(g2.getLocation()) < 0.005) { // only one of the gamers is a zombie and they are near to each other
+				if ((g1.isZombie() ^ g2.isZombie()) && g1.getLocation().getDistanceTo_km(g2.getLocation()) < 0.005) { // only
+					// one
+					// of
+					// the
+					// gamers
+					// is
+					// a
+					// zombie
+					// and
+					// they
+					// are
+					// near
+					// to
+					// each
+					// other
 					fight(g1, g2);
 				}
 			}
@@ -119,20 +139,20 @@ public class Game implements Runnable {
 	}
 
 	public void fight(Gamer g1, Gamer g2) {
-		//very simple version to begin
+		// very simple version to begin
 		g1.getProviderTask().fight();
 		g2.getProviderTask().fight();
-		
+
 		Random r = new Random();
 		boolean zombieWins = (r.nextInt() % 2 == 0) ? true : false;
-		if(g1.isZombie() && zombieWins || !g1.isZombie() && !zombieWins){
-				g1.fightOutcome(true);
-				g2.fightOutcome(false);			
-		} else{
+		if (g1.isZombie() && zombieWins || !g1.isZombie() && !zombieWins) {
+			g1.fightOutcome(true);
+			g2.fightOutcome(false);
+		} else {
 			g1.fightOutcome(false);
 			g2.fightOutcome(true);
 		}
-		
+
 	}
 
 	public int getGameID() {

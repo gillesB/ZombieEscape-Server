@@ -38,13 +38,13 @@ public class GameManager {
 
 	}
 
-	public void addGamerToGame(Gamer gamer, String gameID) {
+	public void addGamerToGame(Gamer gamer, String gameID, int state) {
 		Game oldGame = gamer.getGame();
 		if (oldGame != null) {
 			oldGame.removeGamer(gamer);
 		}
 		Game game = getGameByID(gameID);
-		game.addGamer(gamer);
+		game.addGamer(gamer, state);
 	}
 
 	private Game getGameByID(String gameID) {
