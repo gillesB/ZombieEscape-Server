@@ -199,6 +199,10 @@ public abstract class AutoNetworkConnection {
 			return myLocation;
 		}
 		
+		if(target.equals(myLocation)){
+			return myLocation;
+		}
+		
 		double direction = myLocation.longitude < target.longitude ? 1 : -1;
 
 		// equation of a line (Geradengleichung)

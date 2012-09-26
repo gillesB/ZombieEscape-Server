@@ -65,6 +65,7 @@ public class SquareBot extends AutoNetworkConnection {
 
 	private void playZombieEscape() throws IOException {
 		while (true) {
+			System.out.println("loop");
 			if (zombie) {
 				huntHumans();
 			} else {
@@ -82,7 +83,7 @@ public class SquareBot extends AutoNetworkConnection {
 	 */
 	private GPS_location getLocationOfNearestHuman(ArrayList<StringMap<Socket_GamerOverview>> gamers) {
 		double smallestDistance = Double.MAX_VALUE;
-		Socket_GamerOverview nearestGamer = null;
+		GPS_location nearestGamerLocation = null;
 		for (StringMap<Socket_GamerOverview> str_gamer : gamers) {
 			Socket_GamerOverview gamer = gson.fromJson(str_gamer.toString(), Socket_GamerOverview.class);
 			if (!gamer.isZombie) { // gamer is human
@@ -90,11 +91,11 @@ public class SquareBot extends AutoNetworkConnection {
 				double distance = distanceTo(locationOfGamer);
 				if (distance < smallestDistance) {
 					smallestDistance = distance;
-					nearestGamer = gamer;
+					nearestGamerLocation = locationOfGamer;
 				}
 			}
 		}
-		return new GPS_location(nearestGamer.latitude, nearestGamer.longitude);
+		return nearestGamerLocation;
 	}
 
 	private void huntHumans() throws IOException {
@@ -102,7 +103,7 @@ public class SquareBot extends AutoNetworkConnection {
 		if (message.command.equals("listGamers")) {
 			ArrayList<StringMap<Socket_GamerOverview>> gamers = (ArrayList<StringMap<Socket_GamerOverview>>) message.value;
 			GPS_location nearestHuman = getLocationOfNearestHuman(gamers);
-			goInDirection(nearestHuman, 0.001);
+			setLocation(goInDirection(nearestHuman, 0.001));
 		} else {
 			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value );
 		}
