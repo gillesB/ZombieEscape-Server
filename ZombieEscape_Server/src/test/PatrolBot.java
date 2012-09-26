@@ -70,7 +70,7 @@ public class PatrolBot extends AutoNetworkConnection {
 				e.printStackTrace();
 			}
 			
-			goInDirection(target, 0.001);
+			setLocation(goInDirection(target, 0.001));
 			
 			if (myLocation.longitude <= from.longitude || to.longitude <= myLocation.longitude) {
 				if(target == to){

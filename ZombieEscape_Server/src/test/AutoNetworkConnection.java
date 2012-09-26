@@ -193,7 +193,11 @@ public abstract class AutoNetworkConnection {
 		return d;
 	}
 
-	void goInDirection(GPS_location target, double stepSize) {
+	GPS_location goInDirection(GPS_location target, double stepSize) {
+		
+		if(target == null){
+			return myLocation;
+		}
 		
 		double direction = myLocation.longitude < target.longitude ? 1 : -1;
 
@@ -205,7 +209,7 @@ public abstract class AutoNetworkConnection {
 
 		double x = myLocation.longitude + (stepSize * direction);
 		double y = numerator1 / denominator * x + numerator2 / denominator;
-		setLocation(x, y);
+		return new GPS_location(y, x);
 
 	}
 
