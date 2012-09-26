@@ -11,32 +11,30 @@ import socket.Socket_GamerOverview;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.internal.StringMap;
 
-public class SquareBot extends AutoNetworkConnection {
+public class SquareBot extends AutoNetworkConnection implements Runnable {
 
 	private GPS_location lowerleftCorner;
 	private GPS_location uppertopCorner;
 	private boolean zombie;
+	private String botname;
 
 	public SquareBot(GPS_location lowerleftCorner, GPS_location uppertopCorner) {
 		super();
 		this.lowerleftCorner = lowerleftCorner;
 		this.uppertopCorner = uppertopCorner;
 		checkCoordinates();
+		Random r = new Random();
+		botname = "bot" + r.nextInt(1000);
 	}
 
-	public static void main(String[] args) {
-		GPS_location ll_corner = new GPS_location(49.233716, 6.975642);
-		GPS_location ut_corner = new GPS_location(49.234802, 6.977476);
-
-		SquareBot b = new SquareBot(ll_corner, ut_corner);
-
+	@Override
+	public void run() {
 		try {
-			b.openConnection("127.0.0.1");
-			Random r = new Random();
-			b.newGamer("bot" + r.nextInt(1000));
-			b.zombie = !b.joinGameBotnet();
-			b.setRandomLocation();
-			b.playZombieEscape();
+			this.openConnection("127.0.0.1");
+			this.newGamer(botname);
+			this.zombie = !this.joinGameBotnet();
+			this.setRandomLocation();
+			this.playZombieEscape();
 
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -48,6 +46,23 @@ public class SquareBot extends AutoNetworkConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+	}
+
+	public static void main(String[] args) {
+		GPS_location ll_corner = new GPS_location(49.233716, 6.975642);
+		GPS_location ut_corner = new GPS_location(49.234802, 6.977476);
+
+		SquareBot b = new SquareBot(ll_corner, ut_corner);
+		Thread t = new Thread(b);
+		t.setName(b.getBotname());
+		t.start();
+
+		b = new SquareBot(ll_corner, ut_corner);
+		t = new Thread(b);
+		t.setName(b.getBotname());
+		t.start();
+
 	}
 
 	private void setRandomLocation() {
@@ -86,8 +101,8 @@ public class SquareBot extends AutoNetworkConnection {
 		for (StringMap<Socket_GamerOverview> str_gamer : gamers) {
 			Socket_GamerOverview gamer = gson.fromJson(str_gamer.toString(), Socket_GamerOverview.class);
 			if (!(gamer.isZombie ^ lookingForZombie)) { // both values must be
-														// true or both must
-														// false
+				// true or both must
+				// false
 				GPS_location locationOfGamer = new GPS_location(gamer.latitude, gamer.longitude);
 				double distance = myLocation.getDistanceTo_km(locationOfGamer);
 				if (distance < smallestDistance) {
@@ -112,7 +127,8 @@ public class SquareBot extends AutoNetworkConnection {
 		if (message.command.equals("listGamers")) {
 			ArrayList<StringMap<Socket_GamerOverview>> gamers = (ArrayList<StringMap<Socket_GamerOverview>>) message.value;
 			GPS_location nearestHuman = getLocationOfNearestHuman(gamers);
-			System.out.println("next human in " + myLocation.getDistanceTo_km(nearestHuman) + " km. (" + nearestHuman + ")");
+			System.out.println("next human in " + myLocation.getDistanceTo_km(nearestHuman) + " km. (" + nearestHuman
+					+ ")");
 			setLocation(goInDirection(nearestHuman, 0.00001));
 		} else {
 			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value);
@@ -125,11 +141,64 @@ public class SquareBot extends AutoNetworkConnection {
 		if (message.command.equals("listGamers")) {
 			ArrayList<StringMap<Socket_GamerOverview>> gamers = (ArrayList<StringMap<Socket_GamerOverview>>) message.value;
 			GPS_location nearestZombie = getLocationOfNearestZombie(gamers);
-			System.out.println("next zombie in " + myLocation.getDistanceTo_km(nearestZombie) + " km. (" + nearestZombie + ")");
-			setLocation(goInDirection(nearestZombie, -0.00001));
+			System.out.println("next zombie in " + myLocation.getDistanceTo_km(nearestZombie) + " km. ("
+					+ nearestZombie + ")");
+			GPS_location step = goInDirection(nearestZombie, -0.00001);
+			if (!inBoundaries(step)) {
+				step = findValidStepWhichIsInBoundaries(nearestZombie, 0.00001);
+			}
+			setLocation(step);
+
 		} else {
 			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value);
 		}
+	}
+
+	private boolean inBoundaries(GPS_location step) {
+		if (myLocation.latitude >= lowerleftCorner.latitude && myLocation.longitude >= lowerleftCorner.longitude
+				&& myLocation.latitude <= uppertopCorner.latitude && myLocation.longitude <= uppertopCorner.longitude) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	// TODO very ugly
+	private GPS_location findValidStepWhichIsInBoundaries(GPS_location nearestZombie, double stepSize) {
+		double maxDistanceToZombie = 0;
+		GPS_location makeStep = myLocation;
+
+		// check north
+		GPS_location reachableLocation = new GPS_location(myLocation.latitude + stepSize, myLocation.longitude);
+		if (inBoundaries(reachableLocation)) {
+			maxDistanceToZombie = nearestZombie.getDistanceTo_km(reachableLocation);
+		}
+
+		// check south
+		reachableLocation = new GPS_location(myLocation.latitude - stepSize, myLocation.longitude);
+		double distanceToZombie = nearestZombie.getDistanceTo_km(reachableLocation);
+		if (maxDistanceToZombie < distanceToZombie && inBoundaries(reachableLocation)) {
+			maxDistanceToZombie = distanceToZombie;
+			makeStep = reachableLocation.copy();
+		}
+
+		// check east
+		reachableLocation = new GPS_location(myLocation.latitude, myLocation.longitude + stepSize);
+		distanceToZombie = nearestZombie.getDistanceTo_km(reachableLocation);
+		if (maxDistanceToZombie < distanceToZombie && inBoundaries(reachableLocation)) {
+			maxDistanceToZombie = distanceToZombie;
+			makeStep = reachableLocation.copy();
+		}
+
+		// check west
+		reachableLocation = new GPS_location(myLocation.latitude, myLocation.longitude - stepSize);
+		distanceToZombie = nearestZombie.getDistanceTo_km(reachableLocation);
+		if (maxDistanceToZombie < distanceToZombie && inBoundaries(reachableLocation)) {
+			maxDistanceToZombie = distanceToZombie;
+			makeStep = reachableLocation.copy();
+		}
+
+		return makeStep;
 	}
 
 	private void checkCoordinates() {
@@ -138,6 +207,10 @@ public class SquareBot extends AutoNetworkConnection {
 			System.err.println("Coordinates notin right order!");
 			System.exit(1);
 		}
+	}
+
+	public String getBotname() {
+		return botname;
 	}
 
 }

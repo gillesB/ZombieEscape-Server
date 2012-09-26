@@ -176,15 +176,15 @@ public abstract class AutoNetworkConnection {
 	}
 
 	GPS_location goInDirection(GPS_location target, double stepSize) {
-		
-		if(target == null){
+
+		if (target == null) {
 			return myLocation;
 		}
-		
-		if(target.equals(myLocation)){
+
+		if (target.equals(myLocation)) {
 			return myLocation;
 		}
-		
+
 		double direction = myLocation.longitude < target.longitude ? 1 : -1;
 
 		// equation of a line (Geradengleichung)

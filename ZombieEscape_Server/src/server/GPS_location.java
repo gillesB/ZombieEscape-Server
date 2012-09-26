@@ -62,4 +62,10 @@ public class GPS_location {
 		return "GPS_location [latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
 
+	public GPS_location copy(){
+		return new GPS_location(this.latitude, this.longitude);
+	}
+	
+	
+
 }
