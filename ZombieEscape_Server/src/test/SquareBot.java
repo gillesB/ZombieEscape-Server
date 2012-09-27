@@ -163,8 +163,8 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 	}
 
 	private boolean inBoundaries(GPS_location step) {
-		if (myLocation.latitude >= lowerleftCorner.latitude && myLocation.longitude >= lowerleftCorner.longitude
-		&& myLocation.latitude <= uppertopCorner.latitude && myLocation.longitude <= uppertopCorner.longitude) {
+		if (step.latitude >= lowerleftCorner.latitude && step.longitude >= lowerleftCorner.longitude
+		&& step.latitude <= uppertopCorner.latitude && step.longitude <= uppertopCorner.longitude) {
 			return true;
 		} else {
 			return false;
@@ -174,7 +174,7 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 	// TODO very ugly
 	private GPS_location findValidStepWhichIsInBoundaries(GPS_location nearestZombie, double stepSize) {
 		double maxDistanceToZombie = 0;
-		GPS_location makeStep = null;
+		GPS_location makeStep = myLocation;
 
 		// check north
 		GPS_location reachableLocation = new GPS_location(myLocation.latitude + stepSize, myLocation.longitude);
