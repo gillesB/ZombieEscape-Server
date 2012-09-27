@@ -58,10 +58,10 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 		t.setName(b.getBotname());
 		t.start();
 
-		b = new SquareBot(ll_corner, ut_corner);
-		t = new Thread(b);
-		t.setName(b.getBotname());
-		t.start();
+		// b = new SquareBot(ll_corner, ut_corner);
+		// t = new Thread(b);
+		// t.setName(b.getBotname());
+		// t.start();
 
 	}
 
@@ -95,7 +95,7 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 	 * @return
 	 */
 	private GPS_location getLocationOfNearest(Boolean lookingForZombie,
-			ArrayList<StringMap<Socket_GamerOverview>> gamers) {
+	ArrayList<StringMap<Socket_GamerOverview>> gamers) {
 		double smallestDistance = Double.MAX_VALUE;
 		GPS_location nearestGamerLocation = null;
 		for (StringMap<Socket_GamerOverview> str_gamer : gamers) {
@@ -125,10 +125,11 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 	private void huntHumans() throws IOException {
 		SocketMessage message = getMessageFromServer();
 		if (message.command.equals("listGamers")) {
-			ArrayList<StringMap<Socket_GamerOverview>> gamers = (ArrayList<StringMap<Socket_GamerOverview>>) message.value;
+			ArrayList<StringMap<Socket_GamerOverview>> gamers =
+			(ArrayList<StringMap<Socket_GamerOverview>>) message.value;
 			GPS_location nearestHuman = getLocationOfNearestHuman(gamers);
 			System.out.println("next human in " + myLocation.getDistanceTo_km(nearestHuman) + " km. (" + nearestHuman
-					+ ")");
+			+ ")");
 			setLocation(goInDirection(nearestHuman, 0.00001));
 		} else {
 			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value);
@@ -139,16 +140,23 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 	private void escapeZombies() throws IOException {
 		SocketMessage message = getMessageFromServer();
 		if (message.command.equals("listGamers")) {
-			ArrayList<StringMap<Socket_GamerOverview>> gamers = (ArrayList<StringMap<Socket_GamerOverview>>) message.value;
+			ArrayList<StringMap<Socket_GamerOverview>> gamers =
+			(ArrayList<StringMap<Socket_GamerOverview>>) message.value;
 			GPS_location nearestZombie = getLocationOfNearestZombie(gamers);
 			System.out.println("next zombie in " + myLocation.getDistanceTo_km(nearestZombie) + " km. ("
-					+ nearestZombie + ")");
+			+ nearestZombie + ")");
 			GPS_location step = goInDirection(nearestZombie, -0.00001);
 			if (!inBoundaries(step)) {
 				step = findValidStepWhichIsInBoundaries(nearestZombie, 0.00001);
 			}
 			setLocation(step);
 
+		} else if (message.command.equals("fightOver")) {
+			boolean wonFight = gson.fromJson(message.value.toString(), Boolean.class);
+			if(!wonFight){
+				System.out.println("A Zombie caught me. I turn into a zombie.");
+				zombie = true;
+			}
 		} else {
 			System.out.println("got command " + message.command + ", but I ignore it. Value was: " + message.value);
 		}
@@ -156,7 +164,7 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 
 	private boolean inBoundaries(GPS_location step) {
 		if (myLocation.latitude >= lowerleftCorner.latitude && myLocation.longitude >= lowerleftCorner.longitude
-				&& myLocation.latitude <= uppertopCorner.latitude && myLocation.longitude <= uppertopCorner.longitude) {
+		&& myLocation.latitude <= uppertopCorner.latitude && myLocation.longitude <= uppertopCorner.longitude) {
 			return true;
 		} else {
 			return false;
@@ -166,7 +174,7 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 	// TODO very ugly
 	private GPS_location findValidStepWhichIsInBoundaries(GPS_location nearestZombie, double stepSize) {
 		double maxDistanceToZombie = 0;
-		GPS_location makeStep = myLocation;
+		GPS_location makeStep = null;
 
 		// check north
 		GPS_location reachableLocation = new GPS_location(myLocation.latitude + stepSize, myLocation.longitude);
@@ -203,8 +211,8 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 
 	private void checkCoordinates() {
 		if (lowerleftCorner.longitude >= uppertopCorner.longitude
-				|| lowerleftCorner.latitude >= uppertopCorner.latitude) {
-			System.err.println("Coordinates notin right order!");
+		|| lowerleftCorner.latitude >= uppertopCorner.latitude) {
+			System.err.println("Coordinates not in right order!");
 			System.exit(1);
 		}
 	}

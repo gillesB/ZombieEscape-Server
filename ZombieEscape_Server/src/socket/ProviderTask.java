@@ -88,7 +88,7 @@ public class ProviderTask implements Runnable {
 		} else if ("setLocation".equals(message.command)) {
 			setLocation(message.value);
 		} else if ("bye".equals(message.command)) {
-			// do nothing, is handled in run()
+			System.out.println("received a bye");
 		} else {
 			System.err.println("Unkown Command: " + message.command);
 		}
