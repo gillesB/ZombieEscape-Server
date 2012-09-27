@@ -11,7 +11,7 @@ public class Gamer {
 	private boolean zombie;
 	private final int gamerID;
 	private Game game;
-	private static AtomicInteger gamerIDcounter = new AtomicInteger(0);
+	private static AtomicInteger gamerIDcounter = new AtomicInteger(1);
 	private ProviderTask providerTask;
 
 	public Gamer(String name, GPS_location location, boolean zombie, ProviderTask providerTask) {

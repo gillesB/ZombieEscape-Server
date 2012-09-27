@@ -9,7 +9,7 @@ import socket.Socket_GamerOverview;
 public class Game implements Runnable {
 
 	private int gameID;
-	private static AtomicInteger gameIDcounter = new AtomicInteger(0);
+	private static AtomicInteger gameIDcounter = new AtomicInteger(1);
 	private static AtomicInteger zombieCount = new AtomicInteger(0);
 	private static AtomicInteger humanCount = new AtomicInteger(0);
 	private String name;
