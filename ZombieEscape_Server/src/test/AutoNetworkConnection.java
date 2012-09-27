@@ -130,8 +130,8 @@ public abstract class AutoNetworkConnection {
 		return gameArray;
 	}
 
-	boolean joinGame(int gameID) throws JsonSyntaxException, IOException {
-		Socket_AddGamer socketAddGamer = new Socket_AddGamer(((Integer) gameID).toString(),0); 
+	boolean joinGame(int gameID, int state) throws JsonSyntaxException, IOException {
+		Socket_AddGamer socketAddGamer = new Socket_AddGamer(((Integer) gameID).toString(),state); 
 		sendJSONObject(new SocketMessage("addGamer", socketAddGamer));
 		boolean human = gson.fromJson(socketIn.readLine(), Boolean.class);
 		printJoinedGameMessage(human);
@@ -156,7 +156,7 @@ public abstract class AutoNetworkConnection {
 		sendJSONObject(new SocketMessage("setLocation", myLocation));
 	}
 
-	boolean joinGameBotnet() throws IOException {
+	boolean joinGameBotnet(int state) throws IOException {
 		Socket_GameOverview[] games = getGameList();
 		boolean gameBotnetExists = false;
 		int botnetGameID = -1;
@@ -169,7 +169,7 @@ public abstract class AutoNetworkConnection {
 		if (!gameBotnetExists) {
 			botnetGameID = this.newGame("Botnet");
 		}
-		return joinGame(botnetGameID);
+		return joinGame(botnetGameID,state);
 	}
 
 	SocketMessage getMessageFromServer() throws IOException {

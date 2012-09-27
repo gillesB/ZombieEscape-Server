@@ -47,7 +47,11 @@ public class Game implements Runnable {
 			gamers.add(gamer);
 		}
 		synchronized (gamer) {
-			if (state == 0) {
+			if (state == 1) { // gamer becomes human
+				gamer.setZombie(false);
+			} else if (state == 2) { // gamer becomes zombie
+				gamer.setZombie(true);
+			} else {
 				// does the gamer become a zombie or a human?
 				if (zombieCount.get() < humanCount.get()) {
 					gamer.setZombie(true);
@@ -56,12 +60,10 @@ public class Game implements Runnable {
 					gamer.setZombie(false);
 					humanCount.getAndIncrement();
 				}
-			} else if (state == 1) { // gamer becomes human
-				gamer.setZombie(false);
-			} else { // gamer becomes zombie
-				gamer.setZombie(true);
+				if(state != 0){
+					System.err.println("Invalid state in addGamer(): " + state);
+				}
 			}
-
 			gamer.setGame(this);
 		}
 	}

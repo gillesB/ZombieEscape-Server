@@ -23,7 +23,7 @@ public class PatrolBot extends AutoNetworkConnection {
 			b.openConnection("127.0.0.1");
 			Random r = new Random();
 			b.newGamer("bot" + r.nextInt(1000));
-			b.joinGameBotnet();
+			b.joinGameBotnet(0);
 
 			b.patrolBetween(walkFrom, walkTo);
 
