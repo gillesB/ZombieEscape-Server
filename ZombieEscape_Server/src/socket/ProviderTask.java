@@ -2,7 +2,6 @@ package socket;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -180,6 +179,20 @@ public class ProviderTask implements Runnable {
 		System.out.println("send lsgamers to " + gamer.getName());
 		sendJSONObject(new SocketMessage("listGamers", overview));
 
+	}
+
+	public Socket_AttackGamer listOpponents(ArrayList<Socket_GamerOverview> opponents) {
+		System.out.println("send lsOpponents to " + gamer.getName());
+		sendJSONObject(new SocketMessage("listOpponents", opponents));
+		String line = null;
+		try {
+			line = input.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Socket_AttackGamer attack = gson.fromJson(line, Socket_AttackGamer.class);
+		return attack;
 	}
 
 }
