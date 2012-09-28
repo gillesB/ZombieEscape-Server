@@ -9,12 +9,14 @@ import socket.Socket_Utils;
 
 public class Fight implements Runnable {
 
-	HashMap<String, Gamer> zombies;
-	HashMap<String, Gamer> humans;
-	HashMap<String, Gamer> queue;
+	private HashMap<String, Gamer> zombies;
+	private HashMap<String, Gamer> humans;
+	private ArrayList<Gamer> queue;
 
-	void addGamer(Gamer gamer) {
-
+	public void addGamer(Gamer gamer) {
+		synchronized (queue) {
+			queue.add(gamer);
+		}
 	}
 
 	@Override
@@ -64,8 +66,17 @@ public class Fight implements Runnable {
 	}
 
 	private void addQueuedGamerToFight() {
-		// TODO Auto-generated method stub
-
+		synchronized (queue) {
+			for (Gamer g : queue) {
+				String ID = new Integer(g.getGamerID()).toString();
+				if (g.isZombie()) {
+					zombies.put(ID, g);
+				} else {
+					humans.put(ID, g);
+				}
+			}
+			queue.clear();
+		}
 	}
 
 }
