@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import socket.Socket_GamerOverview;
+import socket.Socket_Utils;
 
 public class Game implements Runnable {
 
@@ -94,16 +95,7 @@ public class Game implements Runnable {
 			// TODO change this back
 			ArrayList<Gamer> gamersClone = getGamersClone();
 			findCollision(gamersClone);
-			ArrayList<Socket_GamerOverview> overview = new ArrayList<Socket_GamerOverview>(gamersClone.size());
-			for (Gamer g : gamersClone) {
-				Socket_GamerOverview s = new Socket_GamerOverview();
-				s.gamername = g.getName();
-				GPS_location gps = g.getLocation();
-				s.latitude = gps.latitude;
-				s.longitude = gps.longitude;
-				s.isZombie = g.isZombie();
-				overview.add(s);
-			}
+			ArrayList<Socket_GamerOverview> overview = Socket_Utils.transformGamerslistToSocket_GamerOverviewList(gamersClone);
 			for (Gamer g : gamersClone) {
 				g.getProviderTask().listGamers(overview);
 			}
