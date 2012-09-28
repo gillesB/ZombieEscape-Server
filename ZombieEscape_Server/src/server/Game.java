@@ -61,7 +61,7 @@ public class Game implements Runnable {
 					gamer.setZombie(false);
 					humanCount.getAndIncrement();
 				}
-				if(state != 0){
+				if (state != 0) {
 					System.err.println("Invalid state in addGamer(): " + state);
 				}
 			}
@@ -112,19 +112,7 @@ public class Game implements Runnable {
 			for (int j = i + 1; j < gamersClone.size(); j++) {
 				Gamer g2 = gamersClone.get(j);
 				if ((g1.isZombie() ^ g2.isZombie()) && g1.getLocation().getDistanceTo_km(g2.getLocation()) < 0.005) { // only
-					// one
-					// of
-					// the
-					// gamers
-					// is
-					// a
-					// zombie
-					// and
-					// they
-					// are
-					// near
-					// to
-					// each
+					// one of the gamers is a zombie and they are near to each
 					// other
 					fight(g1, g2);
 				}
@@ -136,6 +124,8 @@ public class Game implements Runnable {
 		// very simple version to begin
 		g1.getProviderTask().fight();
 		g2.getProviderTask().fight();
+		
+		//TODO add class Fight somehow
 
 		Random r = new Random();
 		boolean zombieWins = (r.nextInt() % 2 == 0) ? true : false;
