@@ -1,77 +1,71 @@
 package server;
 
 import java.util.ArrayList;
-
-import com.sun.org.apache.xml.internal.serializer.utils.Utils;
+import java.util.HashMap;
 
 import socket.Socket_AttackGamer;
 import socket.Socket_GamerOverview;
 import socket.Socket_Utils;
 
-public class Fight implements Runnable{
-	
-	ArrayList<Gamer> zombies;
-	ArrayList<Gamer> humans;
-	ArrayList<Gamer> queue;
-	
-	void addGamer(Gamer gamer){
-		
+public class Fight implements Runnable {
+
+	HashMap<String, Gamer> zombies;
+	HashMap<String, Gamer> humans;
+	HashMap<String, Gamer> queue;
+
+	void addGamer(Gamer gamer) {
+
 	}
 
 	@Override
 	public void run() {
-		while(!(zombies.isEmpty() || humans.isEmpty() && queue.isEmpty())){ //breaks if all zombies or all humans are dead, and there are no queued gamers left
+		while (!(zombies.isEmpty() || humans.isEmpty() && queue.isEmpty())) {
+			// breaks if all zombies or all humans are dead, and there are no
+			// queued gamers left
 			makeARound();
-		}		
+		}
 	}
 
 	private void makeARound() {
 		addQueuedGamerToFight();
-		//Order does not matter at the moment
+		// Order does not matter at the moment
 		letZombiesAttack();
 		letHumansAttack();
-		
+
 		removeDeadZombies();
 		removeDeadHumans();
 	}
 
-	private void letZombiesAttack() {
-		ArrayList<Socket_GamerOverview> opponents = Socket_Utils.transformGamerslistToSocket_GamerOverviewList(humans);
-		for(Gamer g : zombies){
-			Socket_AttackGamer attack = g.getProviderTask().listOpponents(opponents);
-			Gamer underAttack = getGamerWithID(attack.gamerID);
+	private void letAttack(HashMap<String, Gamer> attackers, HashMap<String, Gamer> opponents) {
+		ArrayList<Socket_GamerOverview> sock_opponents = Socket_Utils.transformGamerslistToSocket_GamerOverviewList(opponents.values());
+		for (Gamer g : zombies.values()) {
+			Socket_AttackGamer attack = g.getProviderTask().listOpponents(sock_opponents);
+			Gamer underAttack = opponents.get(attack.IDofAttackedGamer);
 			underAttack.getsDamage(attack.strength);
-		}		
+		}
+	}
+
+	private void letZombiesAttack() {
+		letAttack(zombies, humans);
 	}
 
 	private void letHumansAttack() {
-		ArrayList<Socket_GamerOverview> opponents = Socket_Utils.transformGamerslistToSocket_GamerOverviewList(zombies);
-		for(Gamer g : humans){
-			Socket_AttackGamer attack = g.getProviderTask().listOpponents(opponents);
-			Gamer underAttack = getGamerWithID(attack.gamerID);
-			underAttack.getsDamage(attack.strength);
-		}		
-	}
-
-	private Gamer getGamerWithID(Object gamerID) {
-		// TODO Auto-generated method stub
-		return null;
+		letAttack(humans, zombies);
 	}
 
 	private void removeDeadZombies() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void removeDeadHumans() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void addQueuedGamerToFight() {
 		// TODO Auto-generated method stub
-		
-	}	
-	
+
+	}
 
 }
