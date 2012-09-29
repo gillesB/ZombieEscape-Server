@@ -95,9 +95,14 @@ public class Game implements Runnable {
 			// TODO change this back
 			ArrayList<Gamer> gamersClone = getGamersClone();
 			findCollision(gamersClone);
-			ArrayList<Socket_GamerOverview> overview = Socket_Utils.transformGamerslistToSocket_GamerOverviewList(gamersClone);
+			ArrayList<Socket_GamerOverview> overview = Socket_Utils
+					.transformGamerslistToSocket_GamerOverviewList(gamersClone);
 			for (Gamer g : gamersClone) {
-				g.getProviderTask().listGamers(overview);
+				// only set the gamer a list where the other gamers are if he is
+				// not fighting
+				if (g.getFight() == null) {
+					g.getProviderTask().listGamers(overview);
+				}
 			}
 		}
 	}
@@ -121,42 +126,23 @@ public class Game implements Runnable {
 	}
 
 	public void fight(Gamer g1, Gamer g2) {
-		
+
 		Fight f1 = g1.getFight();
 		Fight f2 = g2.getFight();
-		
-		if(f1 == null && f2 == null){
+
+		if (f1 == null && f2 == null) {
 			Fight newFight = new Fight();
 			newFight.addGamer(g1);
 			newFight.addGamer(g2);
-		} else if(f1 == f2){
-			//do nothing
-		} else if(f1 != null && f2 == null){
+		} else if (f1 == f2) {
+			// do nothing
+		} else if (f1 != null && f2 == null) {
 			f1.addGamer(g2);
-		} else if(f1 == null && f2 != null){
+		} else if (f1 == null && f2 != null) {
 			f2.addGamer(g1);
 		} else {
 			System.err.println("This should not happen: f1 != null and f2 != null and f1 != f2");
 		}
-		
-		
-		
-		
-		/*// very simple version to begin
-		g1.getProviderTask().fight();
-		g2.getProviderTask().fight();
-		
-		//TODO add class Fight somehow
-
-		Random r = new Random();
-		boolean zombieWins = (r.nextInt() % 2 == 0) ? true : false;
-		if (g1.isZombie() && zombieWins || !g1.isZombie() && !zombieWins) {
-			g1.fightOutcome(true);
-			g2.fightOutcome(false);
-		} else {
-			g1.fightOutcome(false);
-			g2.fightOutcome(true);
-		}*/
 
 	}
 
