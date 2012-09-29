@@ -13,7 +13,7 @@ public class Gamer {
 	private Game game;
 	private static AtomicInteger gamerIDcounter = new AtomicInteger(1);
 	private ProviderTask providerTask;
-	private int health;
+	private int health = 100;
 	private Fight fight;
 
 	public Gamer(String name, GPS_location location, boolean zombie, ProviderTask providerTask) {
@@ -22,8 +22,6 @@ public class Gamer {
 		this.location = location;
 		this.gamerID = gamerIDcounter.getAndIncrement();
 		this.providerTask = providerTask;
-		
-		this.health = 100;
 	}
 
 	public Gamer(String name, ProviderTask providerTask) {

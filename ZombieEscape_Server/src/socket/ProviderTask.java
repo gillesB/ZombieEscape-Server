@@ -55,7 +55,7 @@ public class ProviderTask implements Runnable {
 				message = gson.fromJson(line, SocketMessage.class);
 
 				parseMessage(message);
-				System.out.println("received line from " + gamer.getName() + " " + line);
+				//System.out.println("received line from " + gamer.getName() + " " + line);
 				System.out.println(Thread.currentThread().getName() + " received json from " + gamer.getName() + " " + message.command
 				+ " - " + message.value);
 
