@@ -14,6 +14,7 @@ public class Gamer {
 	private static AtomicInteger gamerIDcounter = new AtomicInteger(1);
 	private ProviderTask providerTask;
 	private int health;
+	private Fight fight;
 
 	public Gamer(String name, GPS_location location, boolean zombie, ProviderTask providerTask) {
 		super();
@@ -87,6 +88,29 @@ public class Gamer {
 	public void getsDamage(int strength) {
 		health -= strength;		
 	}
+
+	public Fight getFight() {
+		return fight;
+	}
+
+	void setFight(Fight fight) {
+		this.fight = fight;
+		if(fight == null){
+			boolean stillAlive = health > 0 ? true : false;
+			this.providerTask.fightOver(stillAlive);
+		} else {
+			this.providerTask.fight();
+		}
+		
+	}
+
+	public int getHealth() {
+		return health;
+	}
+	
+	
+	
+	
 	
 	
 

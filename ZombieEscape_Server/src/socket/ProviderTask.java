@@ -167,18 +167,14 @@ public class ProviderTask implements Runnable {
 
 	// commands send to the client
 
-	public void fight() {
-		sendJSONObject(new SocketMessage("fight"));
-	}
-
-	public void fightOver(boolean b) {
-		sendJSONObject(new SocketMessage("fightOver", b));
-	}
-
 	public void listGamers(ArrayList<Socket_GamerOverview> overview) {
 		System.out.println("send lsgamers to " + gamer.getName());
 		sendJSONObject(new SocketMessage("listGamers", overview));
+	
+	}
 
+	public void fight() {
+		sendJSONObject(new SocketMessage("fight"));
 	}
 
 	public Socket_AttackGamer listOpponents(ArrayList<Socket_GamerOverview> opponents) {
@@ -193,6 +189,10 @@ public class ProviderTask implements Runnable {
 		}
 		Socket_AttackGamer attack = gson.fromJson(line, Socket_AttackGamer.class);
 		return attack;
+	}
+
+	public void fightOver(boolean b) {
+		sendJSONObject(new SocketMessage("fightOver", b));
 	}
 
 }
