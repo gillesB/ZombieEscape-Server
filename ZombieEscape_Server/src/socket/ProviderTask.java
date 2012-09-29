@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 
 import server.GPS_location;
 import server.Game;
@@ -26,8 +27,11 @@ public class ProviderTask implements Runnable {
 	BufferedWriter output;
 	Gson gson = new Gson();
 	GameManager gameManager;
-
 	Gamer gamer;
+	
+	private final Semaphore gamerToAttackAvailable = new Semaphore(1, true);
+	private Socket_AttackGamer gamerToAttack;
+	
 
 	// RecommenderSystem recommender;
 
@@ -45,24 +49,26 @@ public class ProviderTask implements Runnable {
 
 			SocketMessage message;
 			do {
-				String line = input.readLine();
-				System.out.println("received line from " + gamer.getName() + " " + line);
+				String line;
+				line = input.readLine();
+
 				message = gson.fromJson(line, SocketMessage.class);
 
 				parseMessage(message);
-
-				System.out.println("received json from " + gamer.getName() + " " + message.command + " - " + message.value);
+				System.out.println("received line from " + gamer.getName() + " " + line);
+				System.out.println(Thread.currentThread().getName() + " received json from " + gamer.getName() + " " + message.command
+				+ " - " + message.value);
 
 			} while (!message.command.equals("bye"));
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
+			gamer.quitGame();
 			try {
 				output.close();
 				input.close();
 				clientSocket.close();
-				gamer.quitGame();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -86,6 +92,8 @@ public class ProviderTask implements Runnable {
 			removeGamer();
 		} else if ("setLocation".equals(message.command)) {
 			setLocation(message.value);
+		} else if ("attack".equals(message.command)) {
+			receiveGamerToAttack(message.value);
 		} else if ("bye".equals(message.command)) {
 			System.out.println("received a bye");
 		} else {
@@ -177,20 +185,34 @@ public class ProviderTask implements Runnable {
 		sendJSONObject(new SocketMessage("fight"));
 	}
 
-	public Socket_AttackGamer listOpponents(ArrayList<Socket_Opponent> opponents) {
-		synchronized (input) {
-			System.out.println("send lsOpponents to " + gamer.getName());
-			sendJSONObject(new SocketMessage("listOpponents", opponents));
-			String line = null;
-			try {
-				line = input.readLine();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Socket_AttackGamer attack = gson.fromJson(line, Socket_AttackGamer.class);
-			return attack;
+	public void listOpponents(ArrayList<Socket_Opponent> opponents) {
+		System.out.println("send lsOpponents to " + gamer.getName() + " " + Thread.currentThread().getName());
+		sendJSONObject(new SocketMessage("listOpponents", opponents));
+		
+		try {
+			gamerToAttackAvailable.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	}
+	
+	public void receiveGamerToAttack(Object json){
+		gamerToAttack = gson.fromJson(json.toString(), Socket_AttackGamer.class);
+		gamerToAttackAvailable.release();
+	}
+	
+	public Socket_AttackGamer getGamerToAttack(){
+		Socket_AttackGamer gamer_clone = null;
+		try {
+			gamerToAttackAvailable.acquire();
+			gamer_clone = gamerToAttack.copy();
+			gamerToAttackAvailable.release();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return gamer_clone;
 	}
 
 	public void fightOver(boolean b) {

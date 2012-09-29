@@ -183,11 +183,12 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 				attackGamer.strength = r.nextInt(25);
 				System.out.println(botname + ": I attack " + attackGamer.IDofAttackedGamer + " with strength: "
 						+ attackGamer.strength);
-
-				sendJSONObject(attackOpponent);
+				
+				sendJSONObject(new SocketMessage("attack", attackGamer));
 			} else if (message.command.equals("fightOver")) {
 				boolean stillAlive = gson.fromJson(message.value.toString(), Boolean.class);
 				if (!stillAlive) {
+					sendJSONObject(new SocketMessage("bye"));
 					System.out.println("I am dead.");
 					System.exit(1);
 				} else {

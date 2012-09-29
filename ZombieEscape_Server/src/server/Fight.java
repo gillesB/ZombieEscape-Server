@@ -33,7 +33,7 @@ public class Fight implements Runnable {
 	@Override
 	public void run() {
 		System.out.println("started fight");
-		while (  !zombies.isEmpty() || !humans.isEmpty() || !queue.isEmpty()) {
+		while (!zombies.isEmpty() || !humans.isEmpty() || !queue.isEmpty()) {
 			// breaks if all zombies or all humans are dead, and there are no
 			// queued gamers left
 			makeARound();
@@ -47,6 +47,9 @@ public class Fight implements Runnable {
 		// Order does not matter at the moment
 		letZombiesAttack();
 		letHumansAttack();
+		
+		getZombiesAttackResults();
+		getHumansAttackResults();
 
 		removeDeadZombies();
 		removeDeadHumans();
@@ -84,12 +87,9 @@ public class Fight implements Runnable {
 	}
 
 	private void letAttack(HashMap<String, Gamer> attackers, HashMap<String, Gamer> opponents) {
-		ArrayList<Socket_Opponent> sock_opponents = Socket_Utils.transformGamerslistToSocket_OpponentList(opponents
-				.values());
+		ArrayList<Socket_Opponent> sock_opponents = Socket_Utils.transformGamerslistToSocket_OpponentList(opponents.values());
 		for (Gamer g : attackers.values()) {
-			Socket_AttackGamer attack = g.getProviderTask().listOpponents(sock_opponents);
-			Gamer underAttack = opponents.get(attack.IDofAttackedGamer);
-			underAttack.getsDamage(attack.strength);
+			g.getProviderTask().listOpponents(sock_opponents);
 		}
 	}
 
@@ -99,6 +99,22 @@ public class Fight implements Runnable {
 
 	private void letHumansAttack() {
 		letAttack(humans, zombies);
+	}
+
+	private void getAttackResults(HashMap<String, Gamer> attackers, HashMap<String, Gamer> opponents) {
+		for (Gamer g : attackers.values()) {
+			Socket_AttackGamer attack = g.getProviderTask().getGamerToAttack();
+			Gamer underAttack = opponents.get(attack.IDofAttackedGamer);
+			underAttack.getsDamage(attack.strength);
+		}
+	}
+	
+	private void getZombiesAttackResults(){
+		getAttackResults(zombies, humans);
+	}
+	
+	private void getHumansAttackResults(){
+		getAttackResults(humans, zombies);
 	}
 
 	private void removeDeadGamers(HashMap<String, Gamer> gamers) {

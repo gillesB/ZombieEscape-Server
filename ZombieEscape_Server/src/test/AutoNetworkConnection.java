@@ -66,7 +66,9 @@ public abstract class AutoNetworkConnection {
 
 		// get the gamerID till now it is not needed, but could be useful in
 		// the future
-		int gamerID = gson.fromJson(socketIn.readLine(), Integer.class);
+		String line = socketIn.readLine();
+		System.out.println(line);
+		int gamerID = gson.fromJson(line, Integer.class);
 		System.out.println(gamerID);
 		return gamerID;
 	}
