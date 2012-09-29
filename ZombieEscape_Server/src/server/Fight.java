@@ -14,7 +14,16 @@ public class Fight implements Runnable {
 	private ArrayList<Gamer> queue;
 	private ArrayList<Gamer> deadGamers;
 
+	public Fight() {
+		zombies = new HashMap<String, Gamer>();
+		humans = new HashMap<String, Gamer>();
+		queue = new ArrayList<Gamer>();
+		deadGamers = new ArrayList<Gamer>();
+		System.out.println("created new fight");
+	}
+
 	public void addGamer(Gamer gamer) {
+		System.out.println("add gamer to fight: " + gamer.getName());
 		synchronized (queue) {
 			queue.add(gamer);
 		}
@@ -23,6 +32,7 @@ public class Fight implements Runnable {
 
 	@Override
 	public void run() {
+		System.out.println("started fight");
 		while (!(zombies.isEmpty() || humans.isEmpty() && queue.isEmpty())) {
 			// breaks if all zombies or all humans are dead, and there are no
 			// queued gamers left
@@ -32,6 +42,7 @@ public class Fight implements Runnable {
 	}
 
 	private void makeARound() {
+		System.out.println("entered round");
 		addQueuedGamerToFight();
 		// Order does not matter at the moment
 		letZombiesAttack();

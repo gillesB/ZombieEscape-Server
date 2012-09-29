@@ -134,6 +134,7 @@ public class Game implements Runnable {
 			Fight newFight = new Fight();
 			newFight.addGamer(g1);
 			newFight.addGamer(g2);
+			new Thread(newFight).start();
 		} else if (f1 == f2) {
 			// do nothing
 		} else if (f1 != null && f2 == null) {

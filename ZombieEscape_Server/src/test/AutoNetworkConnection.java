@@ -152,7 +152,7 @@ public abstract class AutoNetworkConnection {
 
 	void setLocation(double longitude, double latitude) {
 		myLocation = new GPS_location(latitude, longitude);
-		System.out.println("new location set: " + myLocation);
+		//System.out.println("new location set: " + myLocation);
 		sendJSONObject(new SocketMessage("setLocation", myLocation));
 	}
 

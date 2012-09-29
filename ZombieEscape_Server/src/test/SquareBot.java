@@ -57,17 +57,17 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 		SquareBot bh = new SquareBot(ll_corner, ut_corner);
 		bh.openConnection("127.0.0.1");
 		bh.newGamer(bh.getBotname());
-		bh.zombie = !bh.joinGameBotnet(1);
+		bh.zombie = !bh.joinGameBotnet(0);
 		bh.setLocation(0.5, 0.5);
 		new Thread(bh).start();
 
-		SquareBot bz = new SquareBot(ll_corner, ut_corner);
+		/*SquareBot bz = new SquareBot(ll_corner, ut_corner);
 		bz.openConnection("127.0.0.1");
 		bz.newGamer(bz.getBotname());
-		bz.zombie = !bz.joinGameBotnet(2);
+		bz.zombie = !bz.joinGameBotnet(0);
 		bz.setLocation(0.5, 0.5);
 		bz.playZombieEscape();
-		new Thread(bz).start();
+		new Thread(bz).start();*/
 
 	}
 
@@ -152,12 +152,13 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 			System.out.println("next zombie in " + myLocation.getDistanceTo_km(nearestZombie) + " km. ("
 					+ nearestZombie + ")");
 			GPS_location step = goInDirection(nearestZombie, -0.0001);
-			
-			//do not run away. Fight for your life!			
-			/*if (!inBoundaries(step)) {
-				step = findValidStepWhichIsInBoundaries(nearestZombie, 0.0001);
-			}
-			setLocation(step);*/
+
+			// do not run away. Fight for your life!
+			/*
+			 * if (!inBoundaries(step)) { step =
+			 * findValidStepWhichIsInBoundaries(nearestZombie, 0.0001); }
+			 * setLocation(step);
+			 */
 
 		} else if (message.command.equals("fight")) {
 			fight();
@@ -169,6 +170,7 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 	private void fight() throws IOException {
 		while (true) {
 			SocketMessage message = getMessageFromServer();
+			System.out.println(botname + ": got message " + message.command);
 			if (message.command.equals("listOpponents")) {
 				ArrayList<StringMap<Socket_Opponent>> opponents = (ArrayList<StringMap<Socket_Opponent>>) message.value;
 				Socket_AttackGamer attackGamer = new Socket_AttackGamer();
@@ -179,6 +181,8 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 
 				attackGamer.IDofAttackedGamer = attackOpponent.gamerID;
 				attackGamer.strength = r.nextInt(25);
+				System.out.println(botname + ": I attack " + attackGamer.IDofAttackedGamer + " with strength: "
+						+ attackGamer.strength);
 
 				sendJSONObject(attackOpponent);
 			} else if (message.command.equals("fightOver")) {
@@ -188,6 +192,7 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 					System.exit(1);
 				} else {
 					System.out.println("I am still alive.");
+					break;
 				}
 			} else {
 				System.err.println("in fight: got command " + message.command + ", but I ignore it. Value was: "
