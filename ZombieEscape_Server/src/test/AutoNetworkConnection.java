@@ -106,6 +106,7 @@ public abstract class AutoNetworkConnection {
 	void sendJSONObject(Object obj) {
 		try {
 			String json = gson.toJson(obj);
+			System.out.println("I send to the server: " + json);
 			socketOut.write(json + "\n");
 			socketOut.flush();
 		} catch (IOException ioException) {

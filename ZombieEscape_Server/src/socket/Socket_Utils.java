@@ -31,6 +31,7 @@ public class Socket_Utils {
 			o.gamerName = g.getName();
 			o.health = g.getHealth();
 			o.isZombie = g.isZombie();
+			opponents.add(o);
 		}
 		return opponents;
 	}

@@ -61,13 +61,12 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 		bh.setLocation(0.5, 0.5);
 		new Thread(bh).start();
 
-		/*SquareBot bz = new SquareBot(ll_corner, ut_corner);
-		bz.openConnection("127.0.0.1");
-		bz.newGamer(bz.getBotname());
-		bz.zombie = !bz.joinGameBotnet(0);
-		bz.setLocation(0.5, 0.5);
-		bz.playZombieEscape();
-		new Thread(bz).start();*/
+		/*
+		 * SquareBot bz = new SquareBot(ll_corner, ut_corner);
+		 * bz.openConnection("127.0.0.1"); bz.newGamer(bz.getBotname());
+		 * bz.zombie = !bz.joinGameBotnet(0); bz.setLocation(0.5, 0.5);
+		 * bz.playZombieEscape(); new Thread(bz).start();
+		 */
 
 	}
 
@@ -172,6 +171,7 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 			SocketMessage message = getMessageFromServer();
 			System.out.println(botname + ": got message " + message.command);
 			if (message.command.equals("listOpponents")) {
+				System.out.println("with value " + message.value);
 				ArrayList<StringMap<Socket_Opponent>> opponents = (ArrayList<StringMap<Socket_Opponent>>) message.value;
 				Socket_AttackGamer attackGamer = new Socket_AttackGamer();
 				Random r = new Random();

@@ -33,7 +33,7 @@ public class Fight implements Runnable {
 	@Override
 	public void run() {
 		System.out.println("started fight");
-		while (!(zombies.isEmpty() || humans.isEmpty() && queue.isEmpty())) {
+		while (  !zombies.isEmpty() || !humans.isEmpty() || !queue.isEmpty()) {
 			// breaks if all zombies or all humans are dead, and there are no
 			// queued gamers left
 			makeARound();
