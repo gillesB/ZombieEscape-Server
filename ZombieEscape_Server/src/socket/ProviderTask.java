@@ -177,7 +177,7 @@ public class ProviderTask implements Runnable {
 		sendJSONObject(new SocketMessage("fight"));
 	}
 
-	public Socket_AttackGamer listOpponents(ArrayList<Socket_GamerOverview> opponents) {
+	public Socket_AttackGamer listOpponents(ArrayList<Socket_Opponent> opponents) {
 		System.out.println("send lsOpponents to " + gamer.getName());
 		sendJSONObject(new SocketMessage("listOpponents", opponents));
 		String line = null;

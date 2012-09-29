@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import socket.Socket_AttackGamer;
-import socket.Socket_GamerOverview;
+import socket.Socket_Opponent;
 import socket.Socket_Utils;
 
 public class Fight implements Runnable {
@@ -48,7 +48,7 @@ public class Fight implements Runnable {
 		for (Gamer g : humans.values()) {
 			g.setFight(null);
 		}
-		for(Gamer g: deadGamers){
+		for (Gamer g : deadGamers) {
 			g.setFight(null);
 		}
 		synchronized (queue) {
@@ -73,8 +73,8 @@ public class Fight implements Runnable {
 	}
 
 	private void letAttack(HashMap<String, Gamer> attackers, HashMap<String, Gamer> opponents) {
-		ArrayList<Socket_GamerOverview> sock_opponents = Socket_Utils
-				.transformGamerslistToSocket_GamerOverviewList(opponents.values());
+		ArrayList<Socket_Opponent> sock_opponents = Socket_Utils.transformGamerslistToSocket_OpponentList(opponents
+				.values());
 		for (Gamer g : attackers.values()) {
 			Socket_AttackGamer attack = g.getProviderTask().listOpponents(sock_opponents);
 			Gamer underAttack = opponents.get(attack.IDofAttackedGamer);

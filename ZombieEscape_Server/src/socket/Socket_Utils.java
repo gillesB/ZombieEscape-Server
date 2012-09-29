@@ -23,4 +23,16 @@ public class Socket_Utils {
 		return overview;
 	}
 	
+	public static ArrayList<Socket_Opponent> transformGamerslistToSocket_OpponentList(Collection<Gamer> collection){
+		ArrayList<Socket_Opponent> opponents = new ArrayList<Socket_Opponent>(collection.size());
+		for (Gamer g : collection) {
+			Socket_Opponent o = new Socket_Opponent();
+			o.gamerID = new Integer(g.getGamerID()).toString();
+			o.gamerName = g.getName();
+			o.health = g.getHealth();
+			o.isZombie = g.isZombie();
+		}
+		return opponents;
+	}
+	
 }
