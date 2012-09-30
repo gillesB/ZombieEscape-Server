@@ -50,10 +50,10 @@ public class Game implements Runnable {
 		synchronized (gamer) {
 			if (state == 1) { // gamer becomes human
 				gamer.setZombie(false);
-				zombieCount.getAndIncrement();
+				humanCount.getAndIncrement();
 			} else if (state == 2) { // gamer becomes zombie
 				gamer.setZombie(true);
-				humanCount.getAndIncrement();
+				zombieCount.getAndIncrement();
 			} else {
 				// does the gamer become a zombie or a human?
 				System.out.println("zombieCount.get() < humanCount.get() " + zombieCount.get() + " < " + humanCount.get());

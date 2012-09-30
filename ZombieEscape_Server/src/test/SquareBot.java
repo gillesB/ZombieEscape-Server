@@ -45,20 +45,19 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 	}
 
 	public static void main(String[] args) throws InterruptedException, JsonSyntaxException, IOException {
-		// GPS_location ll_corner = new GPS_location(49.233716, 6.975642);
-		// GPS_location ut_corner = new GPS_location(49.234802, 6.977476);
-		GPS_location ll_corner = new GPS_location(0, 0);
-		GPS_location ut_corner = new GPS_location(1, 1);
+		 GPS_location ll_corner = new GPS_location(49.233716, 6.975642);
+		 GPS_location ut_corner = new GPS_location(49.234802, 6.977476);
+		//GPS_location ll_corner = new GPS_location(0, 0);
+		//GPS_location ut_corner = new GPS_location(1, 1);
 		// SquareBot b = new SquareBot(ll_corner, ut_corner);
 		// Thread t = new Thread(b);
 		// t.setName(b.getBotname());
 		// t.start();
-
 		SquareBot bh = new SquareBot(ll_corner, ut_corner);
 		bh.openConnection("127.0.0.1");
 		bh.newGamer(bh.getBotname());
-		bh.zombie = !bh.joinGameBotnet(0);
-		bh.setLocation(0.5, 0.5);
+		bh.zombie = !bh.joinGameBotnet(2);
+		bh.setLocation( 6.980006, 49.233909);
 		new Thread(bh).start();
 
 		/*
