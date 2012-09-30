@@ -45,7 +45,9 @@ public class Gamer {
 	}
 
 	public void quitGame() {
-		game.removeGamer(this);
+		if (game != null) {
+			game.removeGamer(this);
+		}
 	}
 
 	public Game getGame() {
@@ -84,7 +86,7 @@ public class Gamer {
 	}
 
 	public void getsDamage(int strength) {
-		health -= strength;		
+		health -= strength;
 	}
 
 	public Fight getFight() {
@@ -93,23 +95,17 @@ public class Gamer {
 
 	void setFight(Fight fight) {
 		this.fight = fight;
-		if(fight == null){
+		if (fight == null) {
 			boolean stillAlive = health > 0 ? true : false;
 			this.providerTask.fightOver(stillAlive);
 		} else {
 			this.providerTask.fight();
 		}
-		
+
 	}
 
 	public int getHealth() {
 		return health;
 	}
-	
-	
-	
-	
-	
-	
 
 }

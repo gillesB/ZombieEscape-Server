@@ -57,7 +57,7 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 		bh.openConnection("127.0.0.1");
 		bh.newGamer(bh.getBotname());
 		bh.zombie = !bh.joinGameBotnet(2);
-		bh.setLocation( 6.980006, 49.233909);
+		bh.setLocation( 7.048262, 49.2673);
 		new Thread(bh).start();
 
 		/*

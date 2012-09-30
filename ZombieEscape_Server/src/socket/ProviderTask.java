@@ -116,6 +116,7 @@ public class ProviderTask implements Runnable {
 			gamerID = gamer.getGamerID();
 			gamer.setName(gamername);
 		}
+		System.out.println("new Gamer created with name: " + gamer.getName());
 		sendJSONObject(gamerID);
 	}
 
