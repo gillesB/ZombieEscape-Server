@@ -176,7 +176,7 @@ public class ProviderTask implements Runnable {
 	// commands send to the client
 
 	public void listGamers(ArrayList<Socket_GamerOverview> overview) {
-		System.out.println("send lsgamers to " + gamer.getName());
+		//System.out.println("send lsgamers to " + gamer.getName());
 		sendJSONObject(new SocketMessage("listGamers", overview));
 
 	}

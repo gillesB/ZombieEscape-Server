@@ -105,6 +105,11 @@ public class Gamer {
 	public int getHealth() {
 		return health;
 	}
+
+	public void resetHealth() {
+		health = 100;
+		
+	}
 	
 	
 	
