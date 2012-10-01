@@ -69,7 +69,7 @@ public class Fight implements Runnable {
 		}
 		for (Gamer g : deadGamers) {
 			g.setFight(null);
-			g.getGame().removeGamer(g);
+			g.quitGame();
 		}
 		synchronized (queue) {
 			for (Gamer g : queue) {
