@@ -17,6 +17,7 @@ public class Socket_Utils {
 			GPS_location gps = g.getLocation();
 			s.latitude = gps.latitude;
 			s.longitude = gps.longitude;
+			s.health = g.getHealth();
 			s.isZombie = g.isZombie();
 			overview.add(s);
 		}
