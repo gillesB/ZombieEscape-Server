@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import socket.Socket_AttackGamer;
-import socket.Socket_Opponent;
+import socket.Socket_GamerInFight;
 import socket.Socket_Utils;
 
 public class Fight implements Runnable {
@@ -93,9 +93,11 @@ public class Fight implements Runnable {
 	}
 
 	private void letAttack(HashMap<String, Gamer> attackers, HashMap<String, Gamer> opponents) {
-		ArrayList<Socket_Opponent> sock_opponents = Socket_Utils.transformGamerslistToSocket_OpponentList(opponents
+		ArrayList<Socket_GamerInFight> sock_opponents = Socket_Utils.transformGamerslistToSocket_GamerInFight(opponents
 				.values());
+		ArrayList<Socket_GamerInFight> sock_allies = Socket_Utils.transformGamerslistToSocket_GamerInFight(attackers.values());
 		for (Gamer g : attackers.values()) {
+			g.getProviderTask().listAllies(sock_allies);
 			g.getProviderTask().listOpponents(sock_opponents);
 		}
 	}

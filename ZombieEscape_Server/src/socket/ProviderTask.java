@@ -184,8 +184,13 @@ public class ProviderTask implements Runnable {
 	public void fight() {
 		sendJSONObject(new SocketMessage("fight"));
 	}
+	
+	public void listAllies(ArrayList<Socket_GamerInFight> allies) {
+		System.out.println("send lsAllies to " + gamer.getName() + " " + Thread.currentThread().getName());
+		sendJSONObject(new SocketMessage("listAllies", allies));		
+	}
 
-	public void listOpponents(ArrayList<Socket_Opponent> opponents) {
+	public void listOpponents(ArrayList<Socket_GamerInFight> opponents) {
 		System.out.println("send lsOpponents to " + gamer.getName() + " " + Thread.currentThread().getName());
 		sendJSONObject(new SocketMessage("listOpponents", opponents));
 		
@@ -218,5 +223,7 @@ public class ProviderTask implements Runnable {
 	public void fightOver(boolean b) {
 		sendJSONObject(new SocketMessage("fightOver", b));
 	}
+
+	
 
 }
