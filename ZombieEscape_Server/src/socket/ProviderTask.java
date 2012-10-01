@@ -185,14 +185,26 @@ public class ProviderTask implements Runnable {
 		sendJSONObject(new SocketMessage("fight"));
 	}
 	
-	public void listAllies(ArrayList<Socket_GamerInFight> allies) {
-		System.out.println("send lsAllies to " + gamer.getName() + " " + Thread.currentThread().getName());
-		sendJSONObject(new SocketMessage("listAllies", allies));		
-	}
-
-	public void listOpponents(ArrayList<Socket_GamerInFight> opponents) {
+//	public void listAllies(ArrayList<Socket_GamerInFight> allies) {
+//		System.out.println("send lsAllies to " + gamer.getName() + " " + Thread.currentThread().getName());
+//		sendJSONObject(new SocketMessage("listAllies", allies));		
+//	}
+//
+//	public void listOpponents(ArrayList<Socket_GamerInFight> opponents) {
+//		System.out.println("send lsOpponents to " + gamer.getName() + " " + Thread.currentThread().getName());
+//		sendJSONObject(new SocketMessage("listOpponents", opponents));
+//		
+//		try {
+//			gamerToAttackAvailable.acquire();
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+	
+	public void listFightingGamers(ArrayList<Socket_GamerInFight> fightingGamers) {
 		System.out.println("send lsOpponents to " + gamer.getName() + " " + Thread.currentThread().getName());
-		sendJSONObject(new SocketMessage("listOpponents", opponents));
+		sendJSONObject(new SocketMessage("listFightingGamers", fightingGamers));
 		
 		try {
 			gamerToAttackAvailable.acquire();

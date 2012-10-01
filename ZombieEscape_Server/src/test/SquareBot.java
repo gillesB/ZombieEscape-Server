@@ -56,10 +56,10 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 		SquareBot bh = new SquareBot(ll_corner, ut_corner);
 		bh.openConnection("127.0.0.1");
 		bh.newGamer(bh.getBotname());
-		bh.zombie = !bh.joinGameBotnet(0);
+		bh.zombie = !bh.joinGameBotnet(2);
 
-		bh.setRandomLocation();
-		//bh.setLocation(-122.406417,37.78584);
+		//bh.setRandomLocation();
+		bh.setLocation(-122.406417,37.78584);
 		//bh.setLocation( 6.980006, 49.233909);
 		new Thread(bh).start();
 
@@ -172,14 +172,21 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 		while (true) {
 			SocketMessage message = getMessageFromServer();
 			System.out.println(botname + ": got message " + message.command);
-			if (message.command.equals("listOpponents")) {
+			if (message.command.equals("listFightingGamers")) {
 				System.out.println("with value " + message.value);
-				ArrayList<StringMap<Socket_GamerInFight>> opponents = (ArrayList<StringMap<Socket_GamerInFight>>) message.value;
+				ArrayList<StringMap<Socket_GamerInFight>> fightingGamers = (ArrayList<StringMap<Socket_GamerInFight>>) message.value;
 				Socket_AttackGamer attackGamer = new Socket_AttackGamer();
 				Random r = new Random();
 				// choose opponent randomly
-				StringMap<Socket_GamerInFight> str_attackOpponent = opponents.get(r.nextInt(opponents.size()));
-				Socket_GamerInFight attackOpponent = gson.fromJson(str_attackOpponent.toString(), Socket_GamerInFight.class);
+				ArrayList<Socket_GamerInFight> opponents = new ArrayList<Socket_GamerInFight>();
+				for(StringMap<Socket_GamerInFight> str_fightingGamer : fightingGamers){
+					Socket_GamerInFight fightingGamer = gson.fromJson(str_fightingGamer.toString(), Socket_GamerInFight.class);
+					if(fightingGamer.isZombie ^ this.zombie){
+						opponents.add(fightingGamer);
+					}
+				}
+
+				Socket_GamerInFight attackOpponent = opponents.get(r.nextInt(opponents.size()));
 
 				attackGamer.IDofAttackedGamer = attackOpponent.gamerID;
 				attackGamer.strength = r.nextInt(25);

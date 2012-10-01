@@ -96,9 +96,10 @@ public class Fight implements Runnable {
 		ArrayList<Socket_GamerInFight> sock_opponents = Socket_Utils.transformGamerslistToSocket_GamerInFight(opponents
 				.values());
 		ArrayList<Socket_GamerInFight> sock_allies = Socket_Utils.transformGamerslistToSocket_GamerInFight(attackers.values());
+		ArrayList<Socket_GamerInFight> fightingGamers = new ArrayList<Socket_GamerInFight>(sock_allies);
+		fightingGamers.addAll(sock_opponents);
 		for (Gamer g : attackers.values()) {
-			g.getProviderTask().listAllies(sock_allies);
-			g.getProviderTask().listOpponents(sock_opponents);
+			g.getProviderTask().listFightingGamers(fightingGamers);
 		}
 	}
 
