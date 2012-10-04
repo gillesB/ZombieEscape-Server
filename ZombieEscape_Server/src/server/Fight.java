@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import socket.Socket_AttackGamer;
-import socket.Socket_Opponent;
+import socket.Socket_GamerInFight;
 import socket.Socket_Utils;
 
 public class Fight implements Runnable {
@@ -33,9 +33,15 @@ public class Fight implements Runnable {
 	@Override
 	public void run() {
 		System.out.println("started fight");
-		while (!zombies.isEmpty() && !humans.isEmpty() || !queue.isEmpty()) {
-			// breaks if all zombies or all humans are dead, and there are no
-			// queued gamers left
+		
+		while (true){
+			addQueuedGamersToFight();
+			
+			// breaks if all zombies or all humans are dead
+			if(zombies.isEmpty() || humans.isEmpty()){
+				break;
+			}
+			
 			makeARound();
 		}
 		fightOver();
@@ -43,11 +49,10 @@ public class Fight implements Runnable {
 
 	private void makeARound() {
 		System.out.println("entered round");
-		addQueuedGamerToFight();
 		// Order does not matter at the moment
 		letZombiesAttack();
 		letHumansAttack();
-		
+
 		getZombiesAttackResults();
 		getHumansAttackResults();
 
@@ -64,6 +69,7 @@ public class Fight implements Runnable {
 		}
 		for (Gamer g : deadGamers) {
 			g.setFight(null);
+			g.quitGame();
 		}
 		synchronized (queue) {
 			for (Gamer g : queue) {
@@ -72,7 +78,7 @@ public class Fight implements Runnable {
 		}
 	}
 
-	private void addQueuedGamerToFight() {
+	private void addQueuedGamersToFight() {
 		synchronized (queue) {
 			for (Gamer g : queue) {
 				String ID = new Integer(g.getGamerID()).toString();
@@ -87,9 +93,13 @@ public class Fight implements Runnable {
 	}
 
 	private void letAttack(HashMap<String, Gamer> attackers, HashMap<String, Gamer> opponents) {
-		ArrayList<Socket_Opponent> sock_opponents = Socket_Utils.transformGamerslistToSocket_OpponentList(opponents.values());
+		ArrayList<Socket_GamerInFight> sock_opponents = Socket_Utils.transformGamerslistToSocket_GamerInFight(opponents
+				.values());
+		ArrayList<Socket_GamerInFight> sock_allies = Socket_Utils.transformGamerslistToSocket_GamerInFight(attackers.values());
+		ArrayList<Socket_GamerInFight> fightingGamers = new ArrayList<Socket_GamerInFight>(sock_allies);
+		fightingGamers.addAll(sock_opponents);
 		for (Gamer g : attackers.values()) {
-			g.getProviderTask().listOpponents(sock_opponents);
+			g.getProviderTask().listFightingGamers(fightingGamers);
 		}
 	}
 
@@ -108,22 +118,26 @@ public class Fight implements Runnable {
 			underAttack.getsDamage(attack.strength);
 		}
 	}
-	
-	private void getZombiesAttackResults(){
+
+	private void getZombiesAttackResults() {
 		getAttackResults(zombies, humans);
 	}
-	
-	private void getHumansAttackResults(){
+
+	private void getHumansAttackResults() {
 		getAttackResults(humans, zombies);
 	}
 
 	private void removeDeadGamers(HashMap<String, Gamer> gamers) {
+		ArrayList<String> newDeadGamers = new ArrayList<String>();
 		for (Gamer g : gamers.values()) {
 			if (g.getHealth() <= 0) {
 				String ID = new Integer(g.getGamerID()).toString();
-				gamers.remove(ID);
 				deadGamers.add(g);
+				newDeadGamers.add(ID);
 			}
+		}
+		for (String ID : newDeadGamers) {
+			gamers.remove(ID);
 		}
 	}
 

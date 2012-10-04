@@ -46,6 +46,7 @@ public class Game implements Runnable {
 	public void addGamer(Gamer gamer, int state) {
 		synchronized (gamers) {
 			gamers.add(gamer);
+			gamer.resetHealth();
 		}
 		synchronized (gamer) {
 			if (state == 1) { // gamer becomes human
