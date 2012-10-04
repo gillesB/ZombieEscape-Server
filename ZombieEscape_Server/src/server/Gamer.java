@@ -4,6 +4,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import socket.ProviderTask;
 
+/**
+ * Enthält Informationen über einen Spieler. Ein <code>Game</code>-Objekt
+ * besitzt eine 1 zu 1 Verbindung mit einem <code>ProviderTask</code>-Objekt.
+ * 
+ * 
+ */
 public class Gamer {
 
 	private String name;
@@ -32,22 +38,52 @@ public class Gamer {
 		this.providerTask = providerTask;
 	}
 
-	public GPS_location getLocation() {
-		return location;
+	public Fight getFight() {
+		return fight;
 	}
 
-	public void setLocation(GPS_location location) {
-		this.location = location;
-	}
-
-	public int getGamerID() {
-		return gamerID;
-	}
-
-	public void quitGame() {
-		if (game != null) {
-			game.removeGamer(this);
+	/**
+	 * Benachrichtigt den Spieler dass er dem <code>Fight</code>-Objekt
+	 * <code>fight</code> hinzugefügt wurde, welches Eingabewert ist. Eine
+	 * entsprechende Nachricht wird an den Client gesendet. </br> Außnahme: Ist
+	 * der Eingabewert <code>null</code>, so wird angenommen dass der
+	 * <code>Fight</code> beendet wurde, in dem sich der Spieler befand. Der
+	 * Client erhält eine entsprechende Nachricht und den Wert true falls der
+	 * Spieler den Kampf überlebt hat, andernfalls false.
+	 * 
+	 * @param fight Das <code>Fight</code>-Objekt welchem der Spieler hinzugefügt wurde. <code>null</code> wenn der Kampf beendet wurde.
+	 */
+	void setFight(Fight fight) {
+		this.fight = fight;
+		if (fight == null) {
+			boolean stillAlive = health > 0 ? true : false;
+			this.providerTask.fightOver(stillAlive);
+		} else {
+			this.providerTask.fight();
 		}
+	
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	/**
+	 * Zieht den Eingabewert <code>strength</code> von der Gesundheit
+	 * <code>helath</code> des Spielers ab.
+	 * 
+	 * @param strength
+	 */
+	public void getsDamage(int strength) {
+		health -= strength;
+	}
+
+	/**
+	 * setzt den Gesundheitswert wieder auf den Anfangswert von 100.
+	 */
+	public void resetHealth() {
+		health = 100;
+	
 	}
 
 	public Game getGame() {
@@ -58,19 +94,33 @@ public class Gamer {
 		this.game = game;
 	}
 
+	/**
+	 * Falls sich der Spieler in einem Spiel befindet, verlässt er dieses.
+	 */
+	public void quitGame() {
+		if (game != null) {
+			game.removeGamer(this);
+		}
+	}
+
+	public int getGamerID() {
+		return gamerID;
+	}
+
+	public GPS_location getLocation() {
+		return location;
+	}
+
+	public void setLocation(GPS_location location) {
+		this.location = location;
+	}
+
 	public boolean isZombie() {
 		return zombie;
 	}
 
 	public void setZombie(boolean zombie) {
 		this.zombie = zombie;
-	}
-
-	public void fightOutcome(boolean b) {
-		providerTask.fightOver(b);
-		if (zombie == false) {
-			zombie = b;
-		}
 	}
 
 	public ProviderTask getProviderTask() {
@@ -83,34 +133,6 @@ public class Gamer {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public void getsDamage(int strength) {
-		health -= strength;		
-	}
-
-	public Fight getFight() {
-		return fight;
-	}
-
-	void setFight(Fight fight) {
-		this.fight = fight;
-		if(fight == null){
-			boolean stillAlive = health > 0 ? true : false;
-			this.providerTask.fightOver(stillAlive);
-		} else {
-			this.providerTask.fight();
-		}
-		
-	}
-
-	public int getHealth() {
-		return health;
-	}
-
-	public void resetHealth() {
-		health = 100;
-
 	}
 
 }
