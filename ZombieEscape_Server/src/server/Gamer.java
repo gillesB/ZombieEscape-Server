@@ -97,10 +97,14 @@ public class Gamer {
 	/**
 	 * Falls sich der Spieler in einem Spiel befindet, verlässt er dieses.
 	 */
-	public void quitGame() {
+	public boolean quitGame() {
 		if (game != null) {
 			game.removeGamer(this);
+			return true;
+		} else {
+			return false;
 		}
+		
 	}
 
 	public int getGamerID() {

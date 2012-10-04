@@ -9,9 +9,11 @@ import java.util.concurrent.Executors;
 import server.GameManager;
 
 /**
- * Listens on port 2004, if some clients connect and provides them a ProviderTask
+ * Hört auf dem Port 2004. Wartet bis sich ein Client verbindet und gibt ihm ein
+ * <code>ProviderTask</code>.
+ * Lässt augenblicklich nur 100 Verbindungen zu.
  * 
- *
+ * 
  */
 public class ParallelProvider implements Runnable {
 
@@ -19,13 +21,13 @@ public class ParallelProvider implements Runnable {
 	protected ServerSocket serverSocket = null;
 	protected boolean isStopped = false;
 	protected Thread currentThread = null;
-	protected ExecutorService threadPool = Executors.newFixedThreadPool(10);
+	protected ExecutorService threadPool = Executors.newFixedThreadPool(100);
 	GameManager gameManager;
 
 	public ParallelProvider(GameManager gameManager) {
 		this.gameManager = gameManager;
 	}
-	
+
 	@Override
 	public void run() {
 		synchronized (this) {
@@ -33,7 +35,7 @@ public class ParallelProvider implements Runnable {
 		}
 		// 1. creating a server socket
 		openServerSocket();
-		
+
 		while (!isStopped()) {
 			// 2. Wait for connection
 			System.out.println("Waiting for connection");
@@ -45,12 +47,12 @@ public class ParallelProvider implements Runnable {
 					System.out.println("Server Stopped.");
 					return;
 				}
-				throw new RuntimeException("Error accepting client connection",e);
+				throw new RuntimeException("Error accepting client connection", e);
 			}
-			System.out.println("Connection received from "+ clientSocket.getInetAddress().getHostName());
+			System.out.println("Connection received from " + clientSocket.getInetAddress().getHostName());
 			this.threadPool.execute(new ProviderTask(clientSocket, gameManager));
 		}
-		
+
 		this.threadPool.shutdown();
 		System.out.println("Server Stopped.");
 	}
