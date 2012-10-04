@@ -7,8 +7,8 @@ import java.util.Random;
 import server.GPS_location;
 import socket.SocketMessage;
 import socket.Socket_AttackGamer;
-import socket.Socket_GamerOverview;
 import socket.Socket_GamerInFight;
+import socket.Socket_GamerOverview;
 
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.internal.StringMap;
@@ -174,12 +174,12 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 			System.out.println(botname + ": got message " + message.command);
 			if (message.command.equals("listOpponents")) {
 				System.out.println("with value " + message.value);
-				ArrayList<StringMap<Socket_Opponent>> opponents = (ArrayList<StringMap<Socket_Opponent>>) message.value;
+				ArrayList<StringMap<Socket_GamerInFight>> opponents = (ArrayList<StringMap<Socket_GamerInFight>>) message.value;
 				Socket_AttackGamer attackGamer = new Socket_AttackGamer();
 				Random r = new Random();
 				// choose opponent randomly
-				StringMap<Socket_Opponent> str_attackOpponent = opponents.get(r.nextInt(opponents.size()));
-				Socket_Opponent attackOpponent = gson.fromJson(str_attackOpponent.toString(), Socket_Opponent.class);
+				StringMap<Socket_GamerInFight> str_attackOpponent = opponents.get(r.nextInt(opponents.size()));
+				Socket_GamerInFight attackOpponent = gson.fromJson(str_attackOpponent.toString(), Socket_GamerInFight.class);
 
 				attackGamer.IDofAttackedGamer = attackOpponent.gamerID;
 				attackGamer.strength = r.nextInt(25);
