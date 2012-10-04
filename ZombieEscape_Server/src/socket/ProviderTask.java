@@ -28,10 +28,9 @@ public class ProviderTask implements Runnable {
 	Gson gson = new Gson();
 	GameManager gameManager;
 	Gamer gamer;
-	
+
 	private final Semaphore gamerToAttackAvailable = new Semaphore(1, true);
 	private Socket_AttackGamer gamerToAttack;
-	
 
 	// RecommenderSystem recommender;
 
@@ -55,7 +54,8 @@ public class ProviderTask implements Runnable {
 				message = gson.fromJson(line, SocketMessage.class);
 
 				parseMessage(message);
-				//System.out.println("received line from " + gamer.getName() + " " + line);
+				// System.out.println("received line from " + gamer.getName() +
+				// " " + line);
 				System.out.println(Thread.currentThread().getName() + " received json from " + gamer.getName() + " " + message.command
 				+ " - " + message.value);
 
@@ -177,36 +177,31 @@ public class ProviderTask implements Runnable {
 	// commands send to the client
 
 	public void listGamers(ArrayList<Socket_GamerOverview> overview) {
-		//System.out.println("send lsgamers to " + gamer.getName());
+		// System.out.println("send lsgamers to " + gamer.getName());
 		sendJSONObject(new SocketMessage("listGamers", overview));
 
 	}
 
+	/**
+	 * Benachrichtigt den Spieler dass er sich nun in einem Kampf befindet.
+	 */
 	public void fight() {
 		sendJSONObject(new SocketMessage("fight"));
 	}
-	
-//	public void listAllies(ArrayList<Socket_GamerInFight> allies) {
-//		System.out.println("send lsAllies to " + gamer.getName() + " " + Thread.currentThread().getName());
-//		sendJSONObject(new SocketMessage("listAllies", allies));		
-//	}
-//
-//	public void listOpponents(ArrayList<Socket_GamerInFight> opponents) {
-//		System.out.println("send lsOpponents to " + gamer.getName() + " " + Thread.currentThread().getName());
-//		sendJSONObject(new SocketMessage("listOpponents", opponents));
-//		
-//		try {
-//			gamerToAttackAvailable.acquire();
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
-	
+
+	/**
+	 * Sendet dem Spieler die Liste mit den Spielern, die sich bei ihm im Kampf
+	 * befinden. Das Mutex <Code>gamerToAttackAvailable</Code> wird geschlossen,
+	 * so dass später auf den Client gewartet werden kann. Bis dieser sich
+	 * entschieden hat, welchen Gegner er angreift.
+	 * 
+	 * @param fightingGamers
+	 *            Die Liste mit den Spielern die sich im Kampf befinden.
+	 */
 	public void listFightingGamers(ArrayList<Socket_GamerInFight> fightingGamers) {
 		System.out.println("send lsOpponents to " + gamer.getName() + " " + Thread.currentThread().getName());
 		sendJSONObject(new SocketMessage("listFightingGamers", fightingGamers));
-		
+
 		try {
 			gamerToAttackAvailable.acquire();
 		} catch (InterruptedException e) {
@@ -214,13 +209,40 @@ public class ProviderTask implements Runnable {
 			e.printStackTrace();
 		}
 	}
-	
-	public void receiveGamerToAttack(Object json){
+
+	/**
+	 * Erhält ein Json-Objekt das einem Äquivalent zu einem
+	 * <Code>Socket_AttackGamer</Code>-Objekt darstellt. Dieses Objekt wird
+	 * deserialisiert und in der Objektvariablen <Code>gamerToAttack</Code>
+	 * abgespeichert. Das Mutex <Code>gamerToAttackAvailable</Code> wird
+	 * geöffnet und signalisiert damit, dass der anzugreifende Spieler gesetzt
+	 * wurde.
+	 * 
+	 * @param json
+	 *            Ein Json-Objekt mit dem Aufbau der Klasse
+	 *            <Code>Socket_AttackGamer</Code>
+	 */
+	public void receiveGamerToAttack(Object json) {
 		gamerToAttack = gson.fromJson(json.toString(), Socket_AttackGamer.class);
 		gamerToAttackAvailable.release();
 	}
-	
-	public Socket_AttackGamer getGamerToAttack(){
+
+	/**
+	 * Wartet bis der anzugreifende Spieler gesetzt ist und gibt diesen dann
+	 * zurück, sowie der Wert wieviel Schaden dass dieser nimmt.
+	 * <p>
+	 * Schließt den Mutex <Code>gamerToAttackAvailable</Code>, falls diese noch
+	 * geschlossen ist, muss gewartet werden, bis dieser geöffnet ist. Damit
+	 * wird sicher gegangen dass die Objektvariablen <Code>gamerToAttack</Code>
+	 * mit dem aktullen Wert belegt wurde. Die Werte der Objektvariablen werden
+	 * in eine lokale Variable copiert, die zu Schluss zurückgegeben wird. Das
+	 * Mutex wird wieder geöffnet, so dass die Objektvariable neu beschrieben
+	 * werden kann.
+	 * </p>
+	 * 
+	 * @return der anzugreifende Spieler und der Schadenswert
+	 */
+	public Socket_AttackGamer getGamerToAttack() {
 		Socket_AttackGamer gamer_clone = null;
 		try {
 			gamerToAttackAvailable.acquire();
@@ -233,10 +255,14 @@ public class ProviderTask implements Runnable {
 		return gamer_clone;
 	}
 
-	public void fightOver(boolean b) {
-		sendJSONObject(new SocketMessage("fightOver", b));
+	/**
+	 * Benachrichtigt den Spieler dass der Kampf beendet wurde und gibt ihm an,
+	 * ob er überlebt hat oder nicht.
+	 * 
+	 * @param aliveOrDeath true = überlebt, false = tot
+	 */
+	public void fightOver(boolean aliveOrDeath) {
+		sendJSONObject(new SocketMessage("fightOver", aliveOrDeath));
 	}
-
-	
 
 }
