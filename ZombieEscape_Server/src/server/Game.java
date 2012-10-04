@@ -164,7 +164,7 @@ public class Game implements Runnable {
 			}
 			ArrayList<Gamer> gamersClone = getGamersClone();
 			findCollision(gamersClone);
-			ArrayList<Socket_GamerOverview> overview = Socket_Utils.transformGamerslistToSocket_GamerOverviewList(gamersClone);
+			ArrayList<Socket_GamerOverview> overview = Socket_Utils.transformGamersListToSocket_GamerOverviewList(gamersClone);
 			for (Gamer g : gamersClone) {
 				// only send location updates of the other gamers to Gamer g, if
 				// Gamer g is not fighting

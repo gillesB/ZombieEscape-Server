@@ -160,8 +160,8 @@ public class Fight implements Runnable {
 	 *            Die Liste mit den Gegnern
 	 */
 	private void letAttack(HashMap<String, Gamer> attackers, HashMap<String, Gamer> opponents) {
-		ArrayList<Socket_GamerInFight> sock_opponents = Socket_Utils.transformGamerslistToSocket_GamerInFight(opponents.values());
-		ArrayList<Socket_GamerInFight> sock_allies = Socket_Utils.transformGamerslistToSocket_GamerInFight(attackers.values());
+		ArrayList<Socket_GamerInFight> sock_opponents = Socket_Utils.transformGamersListToSocket_GamerInFightList(opponents.values());
+		ArrayList<Socket_GamerInFight> sock_allies = Socket_Utils.transformGamersListToSocket_GamerInFightList(attackers.values());
 
 		// concatenate both lists
 		ArrayList<Socket_GamerInFight> fightingGamers = new ArrayList<Socket_GamerInFight>(sock_allies);
