@@ -200,18 +200,7 @@ public class ProviderTask implements Runnable {
 	 */
 	private void listGames() {
 		ArrayList<Game> currentGames = gameManager.getGamesClone();
-		ArrayList<Socket_GameOverview> gameList = new ArrayList<Socket_GameOverview>(currentGames.size());
-		for (Game g : currentGames) {
-			Socket_GameOverview go = new Socket_GameOverview();
-			go.amountGamers = g.getActiveGamersCount();
-			go.gameID = g.getGameID();
-			go.name = g.getName();
-			GPS_location gps = g.getAverageLocation();
-			go.longitude = gps.longitude;
-			go.latitude = gps.latitude;
-			gameList.add(go);
-		}
-		sendJSONObject(gameList);
+		sendJSONObject(Socket_Utils.transformGameListToSocket_GameOverviewList(currentGames));
 	}
 
 	/**
