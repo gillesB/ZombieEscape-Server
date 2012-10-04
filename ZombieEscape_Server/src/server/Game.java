@@ -1,11 +1,26 @@
 package server;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import socket.Socket_GamerOverview;
 import socket.Socket_Utils;
+
+/**
+ * Ein Objekt dieser Klasse läuft in einem eigenen Thread und wurde in einem
+ * Objekt der Klasse <code>GameManager</code> erstellt. Die Klasse kümmert sich
+ * um die Spielerverwaltung, der Spieler die sich im Spiel befinden. Zu den
+ * Aufagben gehören:
+ * <ul>
+ * <li>hinzufügen von Spielern und entscheiden ob er Zombie oder Mensch wird
+ * <li>entfernen von Spielern
+ * <li>bestimmen ob Spieler gegeneinander kämpfen müssen
+ * <li>Spieler einem <Code>Fight</Fight> hinzufügen
+ * </ul>
+ * 
+ * 
+ * Das Spiel stoppt sich nie selbst, sonder kann höchsten von außen gestoppt werden.
+ */
 
 public class Game implements Runnable {
 
@@ -22,11 +37,26 @@ public class Game implements Runnable {
 		this.gamers = new ArrayList<Gamer>();
 	}
 
+	/**
+	 * Gibt die Anzahl der Spieler im Spiel zurück
+	 * 
+	 * @return Anzahl der Spieler im Spiel
+	 */
 	public int getActiveGamersCount() {
 		return gamers.size();
 	}
 
-	public GPS_location getLocation() {
+	/**
+	 * Berechnet den Mittelwert der Positionen der Spieler. Den Mittelwert kann
+	 * z.B. im Client benutzt werden, um dem Benutzer anzuzeigen, wie weit die
+	 * Spieler (in etwa) von ihm entfernt sind. (Es erfolgt die Annahme dass
+	 * alle Spieler sich mehr oder weniger an einem Ort (z.B. eine Stadt)
+	 * befinden.)
+	 * 
+	 * @return eine Position, errechnet aus dem Mittelwert der Positionen der
+	 *         Spieler
+	 */
+	public GPS_location getAverageLocation() {
 		GPS_location location = new GPS_location();
 		ArrayList<Gamer> gamersClone = getGamersClone();
 
@@ -43,6 +73,27 @@ public class Game implements Runnable {
 		return location;
 	}
 
+	/**
+	 * Fügt einen Spieler dem Spiel hinzu und bestimmt ob er Zombie oder Mensch
+	 * wird.
+	 * <p>
+	 * Die Eingabewerte sind der Spieler selbst und einen Zustand, dieser
+	 * beeinflusst welcher Partei der Spieler hinzugefügt wird. Der Zustand kann
+	 * folgende Werte haben:
+	 * <ul>
+	 * <li>1: der Spieler wird ein Mensch
+	 * <li>2: der Spieler wird ein Zombie
+	 * <li>einen sonstigen Wert (0 wird empfohlen): Der Spieler wird der Partei
+	 * mit den wenigeren Spielern hinzugefügt. Bei gleicher Größe der Parteien
+	 * wird er zum Mensch.
+	 * </ul>
+	 * </p>
+	 * 
+	 * @param gamer
+	 *            der Spieler, der dem Spiel hinzugefügt werden soll
+	 * @param state
+	 *            Hinweis, welcher Partei der Spieler hinzugefügt werden soll
+	 */
 	public void addGamer(Gamer gamer, int state) {
 		synchronized (gamers) {
 			gamers.add(gamer);
@@ -66,13 +117,19 @@ public class Game implements Runnable {
 					humanCount.getAndIncrement();
 				}
 				if (state != 0) {
-					System.err.println("Invalid state in addGamer(): " + state);
+					System.err.println("state in addGamer() is not 0,1 or 2: " + state);
 				}
 			}
 			gamer.setGame(this);
 		}
 	}
 
+	/**
+	 * entfernt einen Spieler aus dem Spiel
+	 * 
+	 * @param gamer
+	 *            der Spieler der entfernt werden soll
+	 */
 	public void removeGamer(Gamer gamer) {
 		synchronized (gamers) {
 			gamers.remove(gamer);
@@ -87,23 +144,30 @@ public class Game implements Runnable {
 		}
 	}
 
+	/**
+	 * Die Spielschleife des Spiels, hierbei handelt es sich um eine
+	 * Endlosschleife. Ein Spiel stoppt sich nie selbst, sondern kann nur von
+	 * außen gestoppt werden. Während einer Iteration,
+	 * wird eine Sekunde gewartet, dann wird überprüft, ob 2 Spieler nah
+	 * aneinander sind. Ist dies der Fall und sie gehören unterschiedlichen
+	 * Parteien an, so werden sie einem <code>Fight</code> hinzugefügt.
+	 * Weiterhin werden die Spielerpositionen der Spieler an die Spieler
+	 * versendet, die sich nicht in einem Kampf befinden.
+	 */
 	@Override
 	public void run() {
 		while (true) {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// TODO change this back
 			ArrayList<Gamer> gamersClone = getGamersClone();
 			findCollision(gamersClone);
-			ArrayList<Socket_GamerOverview> overview = Socket_Utils
-					.transformGamerslistToSocket_GamerOverviewList(gamersClone);
+			ArrayList<Socket_GamerOverview> overview = Socket_Utils.transformGamerslistToSocket_GamerOverviewList(gamersClone);
 			for (Gamer g : gamersClone) {
-				// only set the gamer a list where the other gamers are if he is
-				// not fighting
+				// only send location updates of the other gamers to Gamer g, if
+				// Gamer g is not fighting
 				if (g.getFight() == null) {
 					g.getProviderTask().listGamers(overview);
 				}
@@ -111,16 +175,25 @@ public class Game implements Runnable {
 		}
 	}
 
-	public void findInaktivGamers() {
-
-	}
-
-	public void findCollision(ArrayList<Gamer> gamersClone) {
-		for (int i = 0; i < gamersClone.size() - 1; i++) {
-			Gamer g1 = gamersClone.get(i);
-			for (int j = i + 1; j < gamersClone.size(); j++) {
-				Gamer g2 = gamersClone.get(j);
-				if ((g1.isZombie() ^ g2.isZombie()) && g1.getLocation().getDistanceTo_km(g2.getLocation()) < 0.005) { // only
+	/**
+	 * Findet Kollisionen zwischen 2 Spieler aus einer Liste und fügt sie einem
+	 * Kampf hinzu.
+	 * <p>
+	 * Vergleicht die Position eines jeden Spielers, mit der Position von jedem
+	 * anderen Spieler. Gehören die Spieler unterschiedlichen Parteien an, so
+	 * wird deren Distanz zueinander bestimmt. Ist die Distanz kleiner gleich 5
+	 * Meter so werden die Spieler einem <code>Fight</code> hinzugefügt.
+	 * </p>
+	 * 
+	 * @param gamers
+	 *            Liste mit den Spielern, für die die Kollision bestimmt wird
+	 */
+	private void findCollision(ArrayList<Gamer> gamers) {
+		for (int i = 0; i < gamers.size() - 1; i++) {
+			Gamer g1 = gamers.get(i);
+			for (int j = i + 1; j < gamers.size(); j++) {
+				Gamer g2 = gamers.get(j);
+				if ((g1.isZombie() ^ g2.isZombie()) && g1.getLocation().getDistanceTo_km(g2.getLocation()) <= 0.005) { // only
 					// one of the gamers is a zombie and they are near to each
 					// other
 					fight(g1, g2);
@@ -129,7 +202,29 @@ public class Game implements Runnable {
 		}
 	}
 
-	public void fight(Gamer g1, Gamer g2) {
+	/**
+	 * Erhält 2 Spieler die einem Objekt der Klasse <code>Fight</code>
+	 * hinzugefügt werden.
+	 * <p>
+	 * Holt sich die Kämpfe der beiden Spieler und unterscheidet zwischen
+	 * verschiedenen Fällen.
+	 * <ul>
+	 * <li>Befindet sich keiner der beiden Spieler in einem Kampf, so wird ein
+	 * neues <code>Fight</code>-Objekt angelegt und die Spieler werden diesem
+	 * Objekt hinzugefügt. Das <code>Fight</code>-Objekt läuft in einem eigenen
+	 * Thread.
+	 * <li>Befindet sich bereits ein Spieler in einem Kampf, so wird der andere
+	 * Spieler diesem hinzugefügt.
+	 * <li>Befinden sich beide Spieler in einem Kampf wird nichts gemacht.
+	 * </ul>
+	 * </p>
+	 * 
+	 * @param g1
+	 *            der erste Spieler
+	 * @param g2
+	 *            der zweite Spieler
+	 */
+	private void fight(Gamer g1, Gamer g2) {
 
 		Fight f1 = g1.getFight();
 		Fight f2 = g2.getFight();
@@ -151,15 +246,30 @@ public class Game implements Runnable {
 
 	}
 
+	/**
+	 * Gibt die ID des Spiels zurück
+	 * 
+	 * @return ID des Spiels
+	 */
 	public int getGameID() {
 		return gameID;
 	}
 
+	/**
+	 * Gibt den Name des Spiels zurück
+	 * 
+	 * @return Name des Spiels
+	 */
 	public String getName() {
 		return name;
 	}
 
-	public ArrayList<Gamer> getGamersClone() {
+	/**
+	 * klont die Liste der Spieler, wobei <Code>gamers</Code> synchronized ist.
+	 * 
+	 * @return die geklonte Spielerliste
+	 */
+	private ArrayList<Gamer> getGamersClone() {
 		synchronized (gamers) {
 			return (ArrayList<Gamer>) gamers.clone();
 		}

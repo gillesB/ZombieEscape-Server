@@ -149,7 +149,7 @@ public class ProviderTask implements Runnable {
 			go.amountGamers = g.getActiveGamersCount();
 			go.gameID = g.getGameID();
 			go.name = g.getName();
-			GPS_location gps = g.getLocation();
+			GPS_location gps = g.getAverageLocation();
 			go.longitude = gps.longitude;
 			go.latitude = gps.latitude;
 			gameList.add(go);

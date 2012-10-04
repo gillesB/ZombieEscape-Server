@@ -9,7 +9,7 @@ import socket.Socket_Utils;
 
 /**
  * Ein Objekt dieser Klasse läuft in einem eigenen Thread und wurde in einem
- * Objekt der Klasse <code>Game</code> aufgerufen. Ein Kampf ist rundenbasiert
+ * Objekt der Klasse <code>Game</code> erstellt. Ein Kampf ist rundenbasiert
  * und jeder Spieler darf einmal pro Runde einen Gegenspieler angreifen. Ehe die
  * Spieler dem eigentlichen Kampf hinzugefügt werden, müssen sie in einer
  * Warteliste warten. Vor jeder Runde wird diese geleert und die Spieler werden
@@ -58,7 +58,7 @@ public class Fight implements Runnable {
 	}
 
 	/**
-	 * Die Spieleschleife des Kampfes. Vor jeder Runde werden die Spieler von
+	 * Die Spielschleife des Kampfes. Vor jeder Runde werden die Spieler von
 	 * der Warteliste in den Kampf hinzugefügt. Danach wird überprüft ob der
 	 * Kampf beendet ist. Ist dies nicht der Fall wird eine neue Runde
 	 * gestartet. Ist dies der Fall werden die Spieler über das Ende des Kampfes
