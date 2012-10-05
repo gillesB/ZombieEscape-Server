@@ -131,7 +131,7 @@ public class ProviderTask implements Runnable {
 	}
 
 	/**
-	 * Erstellt ein neues <code>Gamer</code>-Objekt mit dem Namen
+	 * Kommando newGamer vom Client erhalten. Erstellt ein neues <code>Gamer</code>-Objekt mit dem Namen
 	 * <code>gamername</code>, das in 1 zu 1 Verbindung mit diesem
 	 * <code>ProviderTask</code> steht. </br> Existiert bereits ein Spieler für
 	 * diesen <code>ProviderTask</code>, so wird nur der Spielername angepasst.

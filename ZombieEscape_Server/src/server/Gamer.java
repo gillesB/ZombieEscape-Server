@@ -51,7 +51,9 @@ public class Gamer {
 	 * Client erhält eine entsprechende Nachricht und den Wert true falls der
 	 * Spieler den Kampf überlebt hat, andernfalls false.
 	 * 
-	 * @param fight Das <code>Fight</code>-Objekt welchem der Spieler hinzugefügt wurde. <code>null</code> wenn der Kampf beendet wurde.
+	 * @param fight
+	 *            Das <code>Fight</code>-Objekt welchem der Spieler hinzugefügt
+	 *            wurde. <code>null</code> wenn der Kampf beendet wurde.
 	 */
 	void setFight(Fight fight) {
 		this.fight = fight;
@@ -61,7 +63,7 @@ public class Gamer {
 		} else {
 			this.providerTask.fight();
 		}
-	
+
 	}
 
 	public int getHealth() {
@@ -79,11 +81,21 @@ public class Gamer {
 	}
 
 	/**
+	 * falls der Spieler nicht tot ist erhält er einen Gesundheitsbonus, um den Wert von <code>value</code>
+	 * @param value der Gesundheitsbonus für den Spieler
+	 */
+	public void restoreHealth(int value) {
+		if (health <= 0) {
+			health += value;
+		}
+	}
+
+	/**
 	 * setzt den Gesundheitswert wieder auf den Anfangswert von 100.
 	 */
 	public void resetHealth() {
 		health = 100;
-	
+
 	}
 
 	public Game getGame() {
@@ -104,7 +116,7 @@ public class Gamer {
 		} else {
 			return false;
 		}
-		
+
 	}
 
 	public int getGamerID() {

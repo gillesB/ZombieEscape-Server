@@ -9,8 +9,8 @@ import socket.Socket_Utils;
 
 /**
  * Ein Objekt dieser Klasse läuft in einem eigenen Thread und wurde in einem
- * Objekt der Klasse <code>Game</code> erstellt. Ein Kampf ist rundenbasiert
- * und jeder Spieler darf einmal pro Runde einen Gegenspieler angreifen. Ehe die
+ * Objekt der Klasse <code>Game</code> erstellt. Ein Kampf ist rundenbasiert und
+ * jeder Spieler darf einmal pro Runde einen Gegenspieler angreifen. Ehe die
  * Spieler dem eigentlichen Kampf hinzugefügt werden, müssen sie in einer
  * Warteliste warten. Vor jeder Runde wird diese geleert und die Spieler werden
  * ihren jeweiligen Parteien (Menschen oder Zombies) hinzugefügt. </br> Eine
@@ -58,10 +58,10 @@ public class Fight implements Runnable {
 	}
 
 	/**
-	 * Die Spielschleife des Kampfes. Vor jeder Runde werden die Spieler von
-	 * der Warteliste in den Kampf hinzugefügt. Danach wird überprüft ob der
-	 * Kampf beendet ist. Ist dies nicht der Fall wird eine neue Runde
-	 * gestartet. Ist dies der Fall werden die Spieler über das Ende des Kampfes
+	 * Die Spielschleife des Kampfes. Vor jeder Runde werden die Spieler von der
+	 * Warteliste in den Kampf hinzugefügt. Danach wird überprüft ob der Kampf
+	 * beendet ist. Ist dies nicht der Fall wird eine neue Runde gestartet. Ist
+	 * dies der Fall werden die Spieler über das Ende des Kampfes
 	 * benachrichtigt.
 	 */
 	@Override
@@ -225,14 +225,19 @@ public class Fight implements Runnable {
 
 	/**
 	 * Entfernt tote Spieler aus dem Kampf. Ein Spieler ist tot, wenn sein
-	 * Gesundheitswert unter oder gleich 0 ist. Der tote Spieler wird der Liste der
-	 * toten Spieler hinzugefügt.
+	 * Gesundheitswert unter oder gleich 0 ist. Der tote Spieler wird der Liste
+	 * der toten Spieler hinzugefügt. Alle Angreifer erhalten einen Bonus von 25
+	 * Gesundheitspunkten, da sie einen Gegner erfolgreich töten konnten.
 	 * 
-	 * @param gamers
+	 * @param victims
+	 *            die Liste mit den potentiell toten Spieler
+	 * @param attackers
+	 *            die Liste mit den Spielern die eventuell einen
+	 *            Gesundheitsbonus erhalten
 	 */
-	private void removeDeadGamers(HashMap<String, Gamer> gamers) {
+	private void removeDeadGamers(HashMap<String, Gamer> victims, HashMap<String, Gamer> attackers) {
 		ArrayList<String> newDeadGamers = new ArrayList<String>();
-		for (Gamer g : gamers.values()) {
+		for (Gamer g : victims.values()) {
 			if (g.getHealth() <= 0) {
 				String ID = new Integer(g.getGamerID()).toString();
 				deadGamers.add(g);
@@ -240,7 +245,20 @@ public class Fight implements Runnable {
 			}
 		}
 		for (String ID : newDeadGamers) {
-			gamers.remove(ID);
+			victims.remove(ID);
+			giveHealthBonus(attackers);
+		}
+	}
+
+	/**
+	 * Wurde ein Gegner getötet, erhalten alle noch lebenden Angreifer einen
+	 * Gesundheitsbonus von 25.
+	 * 
+	 * @param attackers die Liste mit den angreifenden Spielern
+	 */
+	private void giveHealthBonus(HashMap<String, Gamer> attackers) {
+		for (Gamer g : attackers.values()) {
+			g.restoreHealth(25);
 		}
 	}
 
@@ -248,14 +266,14 @@ public class Fight implements Runnable {
 	 * Entferne tote Zombies aus dem Kampf
 	 */
 	private void removeDeadZombies() {
-		removeDeadGamers(zombies);
+		removeDeadGamers(zombies, humans);
 	}
 
 	/**
 	 * Entferne tote Spieler aus dem Kampf
 	 */
 	private void removeDeadHumans() {
-		removeDeadGamers(humans);
+		removeDeadGamers(humans, zombies);
 	}
 
 }
