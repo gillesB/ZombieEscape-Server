@@ -124,6 +124,8 @@ public class ProviderTask implements Runnable {
 	 */
 	private void sendJSONObject(Object obj) {
 		try {
+			//we wait because the ipad seemes to have problems if messages come too fast after each other
+			Thread.sleep(1);
 			String json = gson.toJson(obj);
 			output.write(json + "\n");
 			output.flush();

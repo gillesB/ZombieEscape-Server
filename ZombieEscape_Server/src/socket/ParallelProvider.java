@@ -19,7 +19,7 @@ public class ParallelProvider implements Runnable {
 	protected ServerSocket serverSocket = null;
 	protected boolean isStopped = false;
 	protected Thread currentThread = null;
-	protected ExecutorService threadPool = Executors.newFixedThreadPool(10);
+	protected ExecutorService threadPool = Executors.newFixedThreadPool(100);
 	GameManager gameManager;
 
 	public ParallelProvider(GameManager gameManager) {
