@@ -7,20 +7,20 @@ import java.util.Random;
 import server.GPS_location;
 import socket.SocketMessage;
 import socket.Socket_AttackGamer;
-import socket.Socket_GamerInFight;
 import socket.Socket_GamerOverview;
+import socket.Socket_GamerInFight;
 
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.internal.StringMap;
 
-public class SquareBot extends AutoNetworkConnection implements Runnable {
+public class CompanionBot extends AutoNetworkConnection implements Runnable {
 
 	private GPS_location lowerleftCorner;
 	private GPS_location uppertopCorner;
 	private boolean zombie;
 	private String botname;
 
-	public SquareBot(GPS_location lowerleftCorner, GPS_location uppertopCorner) {
+	public CompanionBot(GPS_location lowerleftCorner, GPS_location uppertopCorner) {
 		super();
 		this.lowerleftCorner = lowerleftCorner;
 		this.uppertopCorner = uppertopCorner;
@@ -53,10 +53,10 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 		// Thread t = new Thread(b);
 		// t.setName(b.getBotname());
 		// t.start();
-		SquareBot bh = new SquareBot(ll_corner, ut_corner);
+		CompanionBot bh = new CompanionBot(ll_corner, ut_corner);
 		bh.openConnection("127.0.0.1");
 		bh.newGamer(bh.getBotname());
-		bh.zombie = !bh.joinGameBotnet(2);
+		bh.zombie = !bh.joinGameBotnet(1);
 
 		//bh.setRandomLocation();
 		//bh.setLocation(-122.406417,37.78584);
@@ -90,7 +90,8 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 			if (zombie) {
 				huntHumans();
 			} else {
-				escapeZombies();
+				huntHumans();
+				//escapeZombies();
 			}
 		}
 	}
@@ -173,11 +174,11 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 			SocketMessage message = getMessageFromServer();
 			System.out.println(botname + ": got message " + message.command);
 			if (message.command.equals("listFightingGamers")) {
- 				System.out.println("with value " + message.value);
+				System.out.println("with value " + message.value);
 				ArrayList<StringMap<Socket_GamerInFight>> fightingGamers = (ArrayList<StringMap<Socket_GamerInFight>>) message.value;
- 				Socket_AttackGamer attackGamer = new Socket_AttackGamer();
- 				Random r = new Random();
- 				// choose opponent randomly
+				Socket_AttackGamer attackGamer = new Socket_AttackGamer();
+				Random r = new Random();
+				// choose opponent randomly
 				ArrayList<Socket_GamerInFight> opponents = new ArrayList<Socket_GamerInFight>();
 				for(StringMap<Socket_GamerInFight> str_fightingGamer : fightingGamers){
 					Socket_GamerInFight fightingGamer = gson.fromJson(str_fightingGamer.toString(), Socket_GamerInFight.class);
@@ -187,13 +188,13 @@ public class SquareBot extends AutoNetworkConnection implements Runnable {
 				}
 
 				Socket_GamerInFight attackOpponent = opponents.get(r.nextInt(opponents.size()));
- 
- 				attackGamer.IDofAttackedGamer = attackOpponent.gamerID;
- 				attackGamer.strength = r.nextInt(25);
- 				System.out.println(botname + ": I attack " + attackGamer.IDofAttackedGamer + " with strength: "
- 						+ attackGamer.strength);
- 				
- 				sendJSONObject(new SocketMessage("attack", attackGamer));
+
+				attackGamer.IDofAttackedGamer = attackOpponent.gamerID;
+				attackGamer.strength = r.nextInt(25);
+				System.out.println(botname + ": I attack " + attackGamer.IDofAttackedGamer + " with strength: "
+						+ attackGamer.strength);
+				
+				sendJSONObject(new SocketMessage("attack", attackGamer));
 			} else if (message.command.equals("fightOver")) {
 				boolean stillAlive = gson.fromJson(message.value.toString(), Boolean.class);
 				if (!stillAlive) {
